@@ -1,0 +1,28 @@
+source 'https://rubygems.org'
+
+gem 'rack-cors'
+gem 'mysql2'
+gem 'activerecord', '3.2.13', :require => 'active_record'
+gem 'honeybadger'
+gem 'json'
+gem 'shotgun'
+gem 'napa', :git => 'https://github.com/bellycard/napa.git'
+gem 'grape-pagination'
+gem 'will_paginate', '~> 3.0'
+
+group :development,:test do
+  gem 'pry'
+end
+
+group :development do
+  gem 'rubocop'
+end
+
+group :test do
+  gem 'factory_girl'
+  gem 'rspec'
+  gem 'rack-test'
+  gem 'simplecov'
+  gem 'webmock'
+  gem 'database_cleaner'
+end

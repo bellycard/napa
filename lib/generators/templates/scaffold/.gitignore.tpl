@@ -1,0 +1,10 @@
+.ruby-gemset
+.ruby-version
+.DS_Store
+.env
+.vagrant
+.rspec
+.env.*
+log/*
+tmp/*
+!.keep

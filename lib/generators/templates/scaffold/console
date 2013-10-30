@@ -1,0 +1,5 @@
+require 'bundler'
+require './app'
+require 'irb'
+require 'irb/completion'
+IRB.start
