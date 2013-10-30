@@ -9,84 +9,67 @@ The Napa gem is a simple framework for building APIs with Grape. These features 
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Napa is available as a gem, to install it run:
 
-    gem 'napa'
-
-And then execute:
-
-    $ bundle
-
-## Getting started, an example
-
-This gem comes with a useful generator to stub out your projects folder structure.
-
-    $ napa new your_project_name
-
-There are no default APIs, so you will have to add one.  Create a new file in the /app/apis folder, name this file `hello.rb` and define the following class within it. This will be our first endpoint.
-
-```ruby
-// /app/apis/hello.rb
-class HelloApi < Grape::API
-  desc "a hello world API endpoint"
-  get do
-    {cheery_message: "hello wonderful world"}
-  end
-end
+```
+gem install napa
 ```
 
-Every API should have a coresponding spec. Create a file named `hello_api_spec.rb` under /spec/apis (you will need to create the 'apis' folder) and define the following class within it.
+Or, if you're using Bundler, add it to your Gemfile:
 
-```ruby
-// /spec/apis/hello_api_spec.rb
-require 'spec_helper'
-
-describe HelloApi do
-  include Rack::Test::Methods
-
-  def app
-    HelloApi
-  end
-
-  describe 'Get /hello' do
-
-    before do
-      get '/hello'
-    end
-
-    it 'returns a cheery message' do
-      expect(last_response.body).to eq({cheery_message: "hello wonderful world"}.to_json)
-    end
-
-  end
-
-end
+```
+gem 'napa'
 ```
 
-Now open `app.rb` and define your service by adding the following class to the end of the file
+And run:
 
-```ruby
-// add this to the end of /app.rb
-class HelloWorldService < Grape::API
-  format :json
-
-  mount HelloApi => 'hello'
-end
+```
+$ bundle install
 ```
 
-The last step is to update your `config.ru` file to identify which service to boot.  Add the following line to the end of `config.ru`
+## Getting Started
 
-    run HelloWorldService
+Napa comes with a useful generator to quickly scaffold up a new project. Simply run:
 
-To check your tests pass, execute:
+```
+$ napa new your_project_name
+```
 
-    $ rspec
+This will generate a basic application framework for you. It includes everything you need to get started including a Hello World API.
 
-To run your service, execute:
+1) To get started, run Bundler to make sure you have all the gems for the project:
 
-    $ rackup
+```
+$ bundle install
+```
 
-When you visit http://localhost:9292/hello you should now be presented with your first JSON response.
+2) Then, make sure your database connections are setup correctly. The configuration is set in the `.env` and `.env.test`.
+
+3) Now you're ready to start up the server:
+
+```
+$ shotgun
+```
+
+4) Once the server is started, run the following command to load your service in a browser:
+
+```
+$ open http://127.0.0.1:9393/hello
+```
+
+...and you should see:
+
+```
+{
+  message: "Hello Wonderful World!"
+}
+```
+
+5) We've also provided a spec file. You can run the tests by running:
+
+```
+rspec spec
+```
 
 ## Usage/Features
 
