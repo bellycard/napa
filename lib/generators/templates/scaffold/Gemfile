@@ -6,7 +6,7 @@ gem 'activerecord', '3.2.13', :require => 'active_record'
 gem 'honeybadger'
 gem 'json'
 gem 'shotgun'
-gem 'napa', :git => 'https://github.com/bellycard/napa.git'
+gem 'napa'
 gem 'grape-pagination'
 gem 'will_paginate', '~> 3.0'
 
