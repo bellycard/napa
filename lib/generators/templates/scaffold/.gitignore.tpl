@@ -7,4 +7,5 @@
 .env.*
 log/*
 tmp/*
+coverage
 !.keep
