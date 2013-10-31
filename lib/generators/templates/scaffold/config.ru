@@ -11,6 +11,7 @@ require './app'
 # use Napa::Middleware::Logger
 
 use Napa::Middleware::AppMonitor
+use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
 run HelloService::API # <-- boot your service here --
   
