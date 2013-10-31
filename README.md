@@ -43,7 +43,11 @@ This will generate a basic application framework for you. It includes everything
 $ bundle install
 ```
 
-2) Then, make sure your database connections are setup correctly. The configuration is set in the `.env` and `.env.test`.
+2) Then, make sure your database connections are setup correctly. The configuration is set in the `.env` and `.env.test`. Then create your database by running:
+
+```
+$ rake db:create
+```
 
 3) Now you're ready to start up the server:
 
@@ -65,9 +69,10 @@ $ open http://127.0.0.1:9393/hello
 }
 ```
 
-5) We've also provided a spec file. You can run the tests by running:
+5) We've also provided a sample spec file. You can run the tests by running:
 
 ```
+rake db:test:prepare
 rspec spec
 ```
 

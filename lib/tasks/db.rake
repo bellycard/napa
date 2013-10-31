@@ -1,6 +1,8 @@
 task :environment do
   require 'erb'  
   require './app'
+
+  raise "ActiveRecord Not Found" unless Module.const_defined?(:ActiveRecord)
 end
 
 namespace :db do
@@ -25,6 +27,17 @@ namespace :db do
     ActiveRecord::Base.connection.drop_database(db.fetch('database'))
   end
 
+  namespace :test do
+    desc "Create the test database"
+    task :prepare => :environment do
+      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)['test']
+      admin = db.merge({'database'=> 'mysql'})
+      ActiveRecord::Base.establish_connection(admin)
+      ActiveRecord::Base.connection.drop_database(db.fetch('database'))
+      ActiveRecord::Base.connection.create_database(db.fetch('database'))
+    end
+  end
+
   namespace :generate do
     desc "Generate a migration with given name. Specify migration name with NAME=my_migration_name"
     task :migration => :environment do
@@ -43,11 +56,8 @@ namespace :db do
         version = 1
       end
       
-      # Read the contents of the migration template into string
-      migrations_template = File.read(File.join(migrations_path, 'migration.template') )
-      
-      # Replace the migration name in template with the acutal one
-      migration_content = migrations_template.gsub('__migration_name__', migration_name.camelize)
+      # Use the migration template to fill the body of the migration
+      migration_content = Napa::ActiveRecord.migration_template(migration_name.camelize)
       
       # Generate migration filename
       migration_filename = "#{"%03d" % version}_#{migration_name}.rb"
