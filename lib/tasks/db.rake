@@ -27,6 +27,17 @@ namespace :db do
     ActiveRecord::Base.connection.drop_database(db.fetch('database'))
   end
 
+  namespace :test do
+    desc "Create the test database"
+    task :prepare => :environment do
+      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)['test']
+      admin = db.merge({'database'=> 'mysql'})
+      ActiveRecord::Base.establish_connection(admin)
+      ActiveRecord::Base.connection.drop_database(db.fetch('database'))
+      ActiveRecord::Base.connection.create_database(db.fetch('database'))
+    end
+  end
+
   namespace :generate do
     desc "Generate a migration with given name. Specify migration name with NAME=my_migration_name"
     task :migration => :environment do
