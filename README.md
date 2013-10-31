@@ -2,10 +2,12 @@
 
 The Napa gem is a simple framework for building APIs with Grape. These features include:
 
+* Generator
+* Console
 * Identity
 * Logging
 * Deployment
-* Grape Specific Features (Cache management and Route inspection)
+* Grape Specific Features (Cache management and Route inspection) i.e. `rake routes`
 
 ## Installation
 
@@ -77,6 +79,13 @@ rspec spec
 ```
 
 ## Usage/Features
+
+### Console
+Similar to the Rails console, load an IRB sesson with your applications environment by running:
+
+```
+ruby console
+```
 
 ### Identity
 The *Identity* module exists to provide and interface to get information about the application. For example:
