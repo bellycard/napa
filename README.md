@@ -72,7 +72,7 @@ $ open http://127.0.0.1:9393/hello
 5) We've also provided a sample spec file. You can run the tests by running:
 
 ```
-rake db:test:prepare
+RACK_ENV='test' rake db:test:prepare
 rspec spec
 ```
 

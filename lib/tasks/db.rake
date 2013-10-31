@@ -9,33 +9,30 @@ namespace :db do
   desc "Migrate the database through scripts in db/migrate. Target specific version with VERSION=x"
   task :migrate => :environment do
     ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
+    Rake::Task["db:schema:dump"].invoke
   end
 
   desc "Create the database"
   task :create => :environment do
     db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
-    admin = db.merge({'database'=> 'mysql'})
-    ActiveRecord::Base.establish_connection(admin)
+    adapter = db.merge({'database'=> 'mysql'})
+    ActiveRecord::Base.establish_connection(adapter)
     ActiveRecord::Base.connection.create_database(db.fetch('database'))
   end
 
   desc "Delete the database"
   task :drop => :environment do
     db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
-    admin = db.merge({'database'=> 'mysql'})
-    ActiveRecord::Base.establish_connection(admin)
+    adapter = db.merge({'database'=> 'mysql'})
+    ActiveRecord::Base.establish_connection(adapter)
     ActiveRecord::Base.connection.drop_database(db.fetch('database'))
   end
 
-  namespace :test do
-    desc "Create the test database"
-    task :prepare => :environment do
-      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)['test']
-      admin = db.merge({'database'=> 'mysql'})
-      ActiveRecord::Base.establish_connection(admin)
-      ActiveRecord::Base.connection.drop_database(db.fetch('database'))
-      ActiveRecord::Base.connection.create_database(db.fetch('database'))
-    end
+  desc "Create the test database"
+  task :reset => :environment do  
+    Rake::Task["db:drop"].invoke
+    Rake::Task["db:create"].invoke
+    Rake::Task["db:schema:load"].invoke
   end
 
   namespace :generate do
