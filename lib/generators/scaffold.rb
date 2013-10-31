@@ -9,7 +9,7 @@ module Napa
 
         create_files!
 
-        STDOUT.write "Generator Finished!"
+        STDOUT.write "Generator Finished!\n"
       end
 
       def file_list
@@ -28,7 +28,7 @@ module Napa
           "tmp/.keep",
           ".env",
           ".env.test",
-          ".gitignore",
+          ".gitignore.tpl",
           "app.rb",
           "config.ru",
           "console",
