@@ -57,7 +57,7 @@ namespace :db do
       end
       
       # Use the migration template to fill the body of the migration
-      migration_content = Napa::ActiveRecord.migration_template(migration_name)
+      migration_content = Napa::ActiveRecord.migration_template(migration_name.camelize)
       
       # Generate migration filename
       migration_filename = "#{"%03d" % version}_#{migration_name}.rb"
