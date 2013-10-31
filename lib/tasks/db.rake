@@ -1,6 +1,8 @@
 task :environment do
   require 'erb'  
   require './app'
+
+  raise "ActiveRecord Not Found" unless Module.const_defined?(:ActiveRecord)
 end
 
 namespace :db do
@@ -43,11 +45,8 @@ namespace :db do
         version = 1
       end
       
-      # Read the contents of the migration template into string
-      migrations_template = File.read(File.join(migrations_path, 'migration.template') )
-      
-      # Replace the migration name in template with the acutal one
-      migration_content = migrations_template.gsub('__migration_name__', migration_name.camelize)
+      # Use the migration template to fill the body of the migration
+      migration_content = Napa::ActiveRecord.migration_template('foo')
       
       # Generate migration filename
       migration_filename = "#{"%03d" % version}_#{migration_name}.rb"
