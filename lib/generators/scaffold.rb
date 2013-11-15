@@ -28,6 +28,7 @@ module Napa
           'tmp/.keep',
           '.env',
           '.env.test',
+          '.rubocopy.yml',
           '.gitignore.tpl',
           'app.rb',
           'config.ru',
