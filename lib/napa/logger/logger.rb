@@ -13,17 +13,15 @@ module Napa
         unless @logger
           Logging.appenders.stdout(
             'stdout',
-            :layout => Logging.layouts.json
+            layout: Logging.layouts.json
           )
           Logging.appenders.file(
             "log/#{Napa.env}.log",
-            :layout => Logging.layouts.json
+            layout: Logging.layouts.json
           )
 
           @logger = Logging.logger["[#{name}]"]
-          unless Napa.env.test?
-            @logger.add_appenders 'stdout'
-          end
+          @logger.add_appenders 'stdout' unless Napa.env.test?
           @logger.add_appenders "log/#{Napa.env}.log"
         end
 
