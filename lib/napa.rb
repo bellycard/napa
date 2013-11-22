@@ -15,6 +15,7 @@ require 'napa/middleware/app_monitor'
 require 'napa/activerecord'
 require 'napa/grape_api'
 require 'generators/scaffold'
+require 'generators/model'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
