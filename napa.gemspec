@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'logging'
   gem.add_dependency 'dotenv'
   gem.add_dependency 'octokit', '~> 1.25'
-  gem.add_dependency 'virtus', '0.5.5'
+  gem.add_dependency 'virtus'
   gem.add_dependency 'grape'
   gem.add_dependency 'grape-swagger'
   gem.add_dependency 'unicorn'
