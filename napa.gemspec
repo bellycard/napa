@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'virtus'
   gem.add_dependency 'grape'
   gem.add_dependency 'grape-swagger'
+  gem.add_dependency 'grape-entity'
   gem.add_dependency 'unicorn'
 
   gem.add_development_dependency "rspec"

@@ -2,7 +2,7 @@
 
 require 'napa'
 
-actions = ['new']
+actions = ['new', 'model']
 
 if actions.include?(ARGV[0])
   if ARGV[0] == 'new'
@@ -10,6 +10,14 @@ if actions.include?(ARGV[0])
       STDOUT.write "Missing App Name, Exiting\n"
     else
       Napa::Generators::Scaffold.new(ARGV[1], ARGV[2])
+    end
+  end
+
+  if ARGV[0] == 'model'
+    if ARGV[1].nil?
+      STDOUT.write "Missing Model Name, Exiting\n"
+    else
+      Napa::Generators::Model.new(ARGV[1])
     end
   end
 else
