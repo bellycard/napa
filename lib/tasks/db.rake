@@ -7,6 +7,7 @@ unless defined?(Rails)
   end
 
   namespace :db do
+
     desc "Migrate the database through scripts in db/migrate. Target specific version with VERSION=x"
     task :migrate => :environment do
       ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
@@ -15,18 +16,30 @@ unless defined?(Rails)
 
     desc "Create the database"
     task :create => :environment do
-      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
-      adapter = db.merge({'database'=> 'mysql'})
-      ActiveRecord::Base.establish_connection(adapter)
-      ActiveRecord::Base.connection.create_database(db.fetch('database'))
+      ActiveRecord::Base.configurations = db_conf
+
+      if db_conf['adapter'] == 'em_postgresql'
+        # drop and create need to be performed with a connection to the 'postgres' (system) database
+        ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
+                                                              'schema_search_path' => 'public')
+      else
+        ActiveRecord::Base.establish_connection(db_conf)
+      end
+      ActiveRecord::Base.connection.create_database(db_conf.fetch('database'))
     end
 
     desc "Delete the database"
     task :drop => :environment do
-      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
-      adapter = db.merge({'database'=> 'mysql'})
-      ActiveRecord::Base.establish_connection(adapter)
-      ActiveRecord::Base.connection.drop_database(db.fetch('database'))
+      ActiveRecord::Base.configurations = db_conf
+
+      if db_conf['adapter'] == 'em_postgresql'
+        # drop and create need to be performed with a connection to the 'postgres' (system) database
+        ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
+                                                              'schema_search_path' => 'public')
+      else
+        ActiveRecord::Base.establish_connection(db_conf)
+      end
+      ActiveRecord::Base.connection.drop_database(db_conf.fetch('database'))
     end
 
     desc "Create the test database"
@@ -86,4 +99,9 @@ unless defined?(Rails)
       end
     end
   end
+
+  def db_conf
+    config = YAML.load(ERB.new(File.read('config/database.yml')).result)[Napa.env]
+  end
+
 end
