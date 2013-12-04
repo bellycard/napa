@@ -18,7 +18,7 @@ unless defined?(Rails)
     task :create => :environment do
       ActiveRecord::Base.configurations = db_conf
 
-      if db_conf['adapter'] == 'em_postgresql'
+      if db_conf['adapter'] == 'em_postgresql' || db_conf['adapter'] == 'postgresql'
         # drop and create need to be performed with a connection to the 'postgres' (system) database
         ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
                                                               'schema_search_path' => 'public')
@@ -30,15 +30,7 @@ unless defined?(Rails)
 
     desc "Delete the database"
     task :drop => :environment do
-      ActiveRecord::Base.configurations = db_conf
-
-      if db_conf['adapter'] == 'em_postgresql'
-        # drop and create need to be performed with a connection to the 'postgres' (system) database
-        ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
-                                                              'schema_search_path' => 'public')
-      else
-        ActiveRecord::Base.establish_connection(db_conf)
-      end
+      establish_connection
       ActiveRecord::Base.connection.drop_database(db_conf.fetch('database'))
     end
 
@@ -104,4 +96,14 @@ unless defined?(Rails)
     config = YAML.load(ERB.new(File.read('config/database.yml')).result)[Napa.env]
   end
 
+  def establish_connection
+    ActiveRecord::Base.configurations = db_conf
+    if db_conf['adapter'] == 'em_postgresql' || db_conf['adapter'] == 'postgresql'
+      # drop and create need to be performed with a connection to the 'postgres' (system) database
+      ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
+                                                            'schema_search_path' => 'public')
+    else
+      ActiveRecord::Base.establish_connection(db_conf)
+    end
+  end
 end
