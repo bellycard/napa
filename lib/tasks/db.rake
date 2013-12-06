@@ -16,15 +16,7 @@ unless defined?(Rails)
 
     desc "Create the database"
     task :create => :environment do
-      ActiveRecord::Base.configurations = db_conf
-
-      if db_conf['adapter'] == 'em_postgresql' || db_conf['adapter'] == 'postgresql'
-        # drop and create need to be performed with a connection to the 'postgres' (system) database
-        ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
-                                                              'schema_search_path' => 'public')
-      else
-        ActiveRecord::Base.establish_connection(db_conf)
-      end
+      establish_connection
       ActiveRecord::Base.connection.create_database(db_conf.fetch('database'))
     end
 
