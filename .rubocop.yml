@@ -15,3 +15,9 @@ NumericLiterals:
 
 MethodLength:
   Enabled: false
+
+AllCops:
+  Excludes:
+    - db/**
+    - config/**
+    - script/**
