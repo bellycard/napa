@@ -1,6 +1,6 @@
 module Napa
   module ErrorPresenter
-    def present_error(code, message)
+    def present_error(code, message = '')
       Napa::JsonError.new(code, message)
     end
 
