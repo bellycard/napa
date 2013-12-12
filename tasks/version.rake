@@ -29,15 +29,15 @@ namespace :version do
         git.add('lib/napa/version.rb')
         git.commit("Version bump: #{release_tag}")
         git.add_tag(release_tag)
-        git.push(git.remote('upstream'), git.branch, release_tag) if git.remote('upstream')
+        git.push(git.remote('origin'), git.branch, release_tag) if git.remote('origin')
         puts "Version bumped: #{release_tag}"
       end
     end
 
     def write_update
       filedata = File.read('lib/napa/version.rb')
-      changed_filedata = filedata.gsub("VERSION = \"#{Napa::VERSION}\"\n", "VERSION = \"#{@new_version}\"\n")
-      File.write('lib/napa/version.rb', changed_filedata)
+      changed_filedata = filedata.gsub("VERSION = '#{Napa::VERSION}'\n", "VERSION = '#{@new_version}'\n")
+      File.open('lib/napa/version.rb',"w"){|file| file.puts changed_filedata}
     end
 
     def clean_staging_area?
