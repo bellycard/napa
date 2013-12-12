@@ -37,7 +37,7 @@ namespace :version do
     def write_update
       filedata = File.read('lib/napa/version.rb')
       changed_filedata = filedata.gsub("VERSION = \"#{Napa::VERSION}\"\n", "VERSION = \"#{@new_version}\"\n")
-      File.open('lib/napa/version.rb',"w"){|file| file.puts changed_filedata}
+      File.open('lib/napa/version.rb',"w"){|file| file.write changed_filedata}
     end
 
     def clean_staging_area?
