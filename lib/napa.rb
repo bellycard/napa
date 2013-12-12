@@ -18,6 +18,7 @@ require 'napa/middleware/logger'
 require 'napa/middleware/app_monitor'
 require 'napa/middleware/authentication'
 require 'napa/activerecord'
+require 'napa/authentication'
 require 'napa/grape_api'
 require 'generators/scaffold'
 

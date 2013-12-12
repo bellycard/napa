@@ -7,7 +7,7 @@ module Napa
         revision: revision,
         pid: pid,
         parent_pid: parent_pid,
-        platform_revision: platform_revision
+        napa_revision: napa_revision
       }
     end
 
@@ -31,7 +31,7 @@ module Napa
       @ppid ||= Process.ppid
     end
 
-    def self.platform_revision
+    def self.napa_revision
       Napa::VERSION
     end
   end

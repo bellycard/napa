@@ -131,7 +131,7 @@ rake deploy:staging
 rake deploy:production
 ```
 
-**Please Note:** These tasks rely on two environment variables - `GITHUB_OAUTH_TOKEN` and `GITHUB_REPO`. For more information, see **Environment Variables** below. 
+**Please Note:** These tasks rely on two environment variables - `GITHUB_OAUTH_TOKEN` and `GITHUB_REPO`. For more information, see **Environment Variables** below.
 
 ### Grape Specific Features
 At Belly we use the [Grape Micro-Framework](https://github.com/intridea/grape) for many services, so we've included a few common features.
@@ -157,6 +157,30 @@ Used to grant access to your application on Github for deployment tagging
 
 #### GITHUB_REPO
 Your application's Github repo. i.e. `bellycard/napa`
+
+## Middlewares
+Napa includes a number of Rack middlewares that can be enabled to add functionality to your project.
+
+### Authentication
+The Authentication middleware will add a simple header based authentication layer to all requests. This is just looking for a header of `'Password' = 'Your Password'`. The passwords are defined in the `.env` file. You can allow multiple passwords by supplying a comma separated list. For example:
+
+`HEADER_PASSWORDS='password1,password2'`
+
+If your application doesn't require authentication, you can simply remove the middleware.
+
+### Health Check
+The Health Check middleware will add an endpoint at `/health` that will return some data about your app. This was created to allow monitoring tools a standardized way to monitor multiple services. This endpoint will return a response similar to this:
+
+```
+{
+    "name": "service-name",
+    "hostname": "host-name",
+    "revision": "current-git-sha-of-app",
+    "pid": 1234,
+    "parent_pid": 1233,
+    "napa_revision": "running-version-of-napa"
+}
+```
 
 ## Contributing
 
