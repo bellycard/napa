@@ -9,7 +9,7 @@ describe Napa::Stats do
   it 'should raise an error if StatsD env variables are not configured' do
     ENV['STATSD_HOST'] = nil
     ENV['STATSD_PORT'] = nil
-    expect{Napa::Stats.emitter}.to raise_error
+    expect { Napa::Stats.emitter }.to raise_error
   end
 
   it 'should return a StatsD client object' do

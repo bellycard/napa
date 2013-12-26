@@ -9,7 +9,7 @@ module Napa
       def emitter
         unless @emitter
           # Raise an error if StatsD settings are not configured
-          raise 'statsd_not_configured' unless ENV['STATSD_HOST'] && ENV['STATSD_PORT']
+          fail 'statsd_not_configured' unless ENV['STATSD_HOST'] && ENV['STATSD_PORT']
 
           # Create a new StatsD emitter with the service name as the namespace
           @emitter = Statsd.new(ENV['STATSD_HOST'], ENV['STATSD_PORT'])
