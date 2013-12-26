@@ -3,6 +3,7 @@ require 'napa/stats'
 
 describe Napa::Stats do
   before do
+    # Delete any prevous instantiations of the emitter
     Napa::Stats.emitter = nil
   end
 
