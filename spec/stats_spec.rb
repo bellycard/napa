@@ -12,7 +12,8 @@ describe Napa::Stats do
   it 'should log an error if StatsD env variables are not configured' do
     ENV['STATSD_HOST'] = nil
     ENV['STATSD_PORT'] = nil
-    Napa::Logger.logger.should_receive(:warn).with('StatsD client not configured')
+    message = 'StatsD host and port not configured in environment variables, using default settings'
+    Napa::Logger.logger.should_receive(:warn).with(message)
     Napa::Stats.emitter
   end
 
