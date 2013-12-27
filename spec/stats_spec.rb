@@ -24,15 +24,18 @@ describe Napa::Stats do
   end
 
   it 'should return a StatsD client object' do
-    ENV['STATSD_HOST'] = 'localhost'
-    ENV['STATSD_PORT'] = '8125'
     expect(Napa::Stats.emitter.class.name).to eq('Statsd')
   end
 
   it 'the namespace of the StatsD client object should equal the service name' do
-    ENV['STATSD_HOST']  = 'localhost'
-    ENV['STATSD_PORT']  = '8125'
     ENV['SERVICE_NAME'] = 'my-service'
     expect(Napa::Stats.emitter.namespace).to eq('my-service')
+  end
+
+  it 'should use env variables to set statsd host and port' do
+    ENV['STATSD_HOST']  = 'localhost'
+    ENV['STATSD_PORT']  = '9000'
+    expect(Napa::Stats.emitter.host).to eq('localhost')
+    expect(Napa::Stats.emitter.port).to eq('9000')
   end
 end
