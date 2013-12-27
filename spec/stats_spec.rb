@@ -5,14 +5,22 @@ describe Napa::Stats do
   before do
     # Delete any prevous instantiations of the emitter
     Napa::Stats.emitter = nil
+    # Stub out logging since there is no log to output to
+    Napa::Logger.stub_chain(:logger, :warn)
   end
 
   it 'should log an error if StatsD env variables are not configured' do
     ENV['STATSD_HOST'] = nil
     ENV['STATSD_PORT'] = nil
-    Napa::Logger.stub_chain(:logger, :warn)
     Napa::Logger.logger.should_receive(:warn).with('StatsD client not configured')
     Napa::Stats.emitter
+  end
+
+  it 'should default statsd to localhost port 8125 if env vars are not specified' do
+    ENV['STATSD_HOST'] = nil
+    ENV['STATSD_PORT'] = nil
+    expect(Napa::Stats.emitter.host).to eq('127.0.0.1')
+    expect(Napa::Stats.emitter.port).to eq(8125)
   end
 
   it 'should return a StatsD client object' do
