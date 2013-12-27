@@ -8,12 +8,12 @@ module Napa
 
       def emitter
         unless @emitter
-          # Raise an error if StatsD settings are not configured
-          fail 'statsd_not_configured' unless ENV['STATSD_HOST'] && ENV['STATSD_PORT']
+          # Log an error if StatsD settings are not configured
+          Napa::Logger.logger.warn 'StatsD client not configured' unless ENV['STATSD_HOST'] && ENV['STATSD_PORT']
 
           # Create a new StatsD emitter with the service name as the namespace
-          @emitter = Statsd.new(ENV['STATSD_HOST'], ENV['STATSD_PORT'])
-                           .tap { |sd| sd.namespace = Napa::Identity.name }
+          # Defaults to localhost port 8125 if env vars are nil
+          @emitter = Statsd.new(ENV['STATSD_HOST'], ENV['STATSD_PORT']).tap { |sd| sd.namespace = Napa::Identity.name }
         end
         @emitter
       end

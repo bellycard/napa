@@ -7,10 +7,12 @@ describe Napa::Stats do
     Napa::Stats.emitter = nil
   end
 
-  it 'should raise an error if StatsD env variables are not configured' do
+  it 'should log an error if StatsD env variables are not configured' do
     ENV['STATSD_HOST'] = nil
     ENV['STATSD_PORT'] = nil
-    expect { Napa::Stats.emitter }.to raise_error
+    Napa::Logger.stub_chain(:logger, :warn)
+    Napa::Logger.logger.should_receive(:warn).with('StatsD client not configured')
+    Napa::Stats.emitter
   end
 
   it 'should return a StatsD client object' do
