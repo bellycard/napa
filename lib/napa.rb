@@ -20,7 +20,6 @@ require 'napa/middleware/authentication'
 require 'napa/activerecord'
 require 'napa/authentication'
 require 'napa/grape_api'
-require 'generators/scaffold'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
