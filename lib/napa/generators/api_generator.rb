@@ -1,5 +1,5 @@
 require 'thor'
-require 'active_support/core_ext/string'
+require 'active_support/all'
 
 module Napa
   module Generators
@@ -10,10 +10,18 @@ module Napa
 
       argument :api_name
 
+      def api_name_underscore
+        api_name.underscore
+      end
+
+      def api_name_tableize
+        api_name.tableize
+      end
+
       def generate
         say 'Generating api...'
 
-        directory 'api', '.'
+        directory '.', '.'
 
         say 'Done!', :green
       end
