@@ -1,3 +1,0 @@
-class <%= api_name.classify %> < ActiveRecord::Base
-  include FilterByHash
-end

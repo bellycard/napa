@@ -27,8 +27,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'unicorn'
   gem.add_dependency 'statsd-ruby'
 
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "pry"
-  gem.add_development_dependency "git"
-  gem.add_development_dependency "rubocop"
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'pry'
+  gem.add_development_dependency 'git'
+  gem.add_development_dependency 'rubocop'
+  gem.add_development_dependency 'activerecord', '~>3.2.2'
 end

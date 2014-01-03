@@ -1,6 +1,6 @@
-class <%= api_name.classify %>Entity < Grape::Entity
+class <%= name.classify %>Entity < Grape::Entity
   root :data, :data
   expose :id, proc: lambda { |o, opts| o.id.to_s }, documentation:
     { type: 'String', description: 'ID' }
   expose :type, proc: lambda { |o, opts| o.class.name.underscore }, documentation:
-    { type: 'String', description: '"<%= api_name.underscore %>"' }
+    { type: 'String', description: '"<%= name.underscore %>"' }
