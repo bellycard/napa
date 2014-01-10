@@ -7,7 +7,6 @@ unless defined?(Rails)
   end
 
   namespace :db do
-
     desc "Migrate the database through scripts in db/migrate. Target specific version with VERSION=x"
     task :migrate => :environment do
       ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
@@ -16,14 +15,18 @@ unless defined?(Rails)
 
     desc "Create the database"
     task :create => :environment do
-      establish_connection
-      ActiveRecord::Base.connection.create_database(db_conf.fetch('database'))
+      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
+      adapter = db.merge({'database'=> 'mysql'})
+      ActiveRecord::Base.establish_connection(adapter)
+      ActiveRecord::Base.connection.create_database(db.fetch('database'))
     end
 
     desc "Delete the database"
     task :drop => :environment do
-      establish_connection
-      ActiveRecord::Base.connection.drop_database(db_conf.fetch('database'))
+      db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
+      adapter = db.merge({'database'=> 'mysql'})
+      ActiveRecord::Base.establish_connection(adapter)
+      ActiveRecord::Base.connection.drop_database(db.fetch('database'))
     end
 
     desc "Create the test database"
@@ -81,21 +84,6 @@ unless defined?(Rails)
         file = ENV['SCHEMA'] || "db/schema.rb"
         load(file)
       end
-    end
-  end
-
-  def db_conf
-    config = YAML.load(ERB.new(File.read('config/database.yml')).result)[Napa.env]
-  end
-
-  def establish_connection
-    ActiveRecord::Base.configurations = db_conf
-    if db_conf['adapter'] == 'em_postgresql' || db_conf['adapter'] == 'postgresql'
-      # drop and create need to be performed with a connection to the 'postgres' (system) database
-      ActiveRecord::Base.establish_connection db_conf.merge('database' => 'postgres',
-                                                            'schema_search_path' => 'public')
-    else
-      ActiveRecord::Base.establish_connection(db_conf)
     end
   end
 end

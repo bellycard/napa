@@ -1,0 +1,3 @@
+class <%= name.classify %> < ActiveRecord::Base
+  include Napa::FilterByHash
+end
