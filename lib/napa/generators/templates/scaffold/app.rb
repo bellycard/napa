@@ -1,7 +1,8 @@
 # load bundler
 Bundler.setup(:default)
-require 'napa'
+require 'napa/setup'
 Bundler.require(:default, Napa.env.to_sym)
+require 'napa'
 require 'will_paginate'
 require 'will_paginate/active_record'
 

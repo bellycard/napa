@@ -7,12 +7,14 @@ require 'grape'
 require 'json'
 
 # require internal files
+require 'setup'
 require 'napa/version'
 require 'napa/logger/logger'
 require 'napa/logger/log_transaction'
 require 'napa/identity'
 require 'napa/json_error'
 require 'napa/stats'
+require 'napa/active_record_extensions/filter_by_hash'
 require 'napa/grape_extensions/error_formatter'
 require 'napa/grape_extensions/error_presenter'
 require 'napa/middleware/logger'
@@ -29,16 +31,4 @@ if defined?(Rake)
   load 'tasks/deploy.rake'
   load 'tasks/routes.rake'
   load 'tasks/db.rake'
-end
-
-module Napa
-  class << self
-    def env
-      @_env ||= ActiveSupport::StringInquirer.new(ENV['RACK_ENV'] || 'development')
-    end
-
-    def env=(environment)
-      @_env = ActiveSupport::StringInquirer.new(environment)
-    end
-  end
 end
