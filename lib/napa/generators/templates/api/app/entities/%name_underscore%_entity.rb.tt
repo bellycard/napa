@@ -4,3 +4,4 @@ class <%= name.classify %>Entity < Grape::Entity
     { type: 'String', description: 'ID' }
   expose :type, proc: lambda { |o, opts| o.class.name.underscore }, documentation:
     { type: 'String', description: '"<%= name.underscore %>"' }
+end
