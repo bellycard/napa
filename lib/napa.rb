@@ -7,7 +7,7 @@ require 'grape'
 require 'json'
 
 # require internal files
-require 'setup'
+require 'napa/setup'
 require 'napa/version'
 require 'napa/logger/logger'
 require 'napa/logger/log_transaction'
