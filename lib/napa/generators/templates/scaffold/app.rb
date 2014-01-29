@@ -1,4 +1,5 @@
 # load bundler
+require 'bundler/setup'
 Bundler.setup(:default)
 require 'napa/setup'
 Bundler.require(:default, Napa.env.to_sym)

@@ -1,5 +1,5 @@
-require 'spec_helper'
 require 'active_record'
+require 'spec_helper'
 require 'napa/active_record_extensions/filter_by_hash'
 
 class Foo < ActiveRecord::Base
