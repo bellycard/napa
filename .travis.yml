@@ -1,0 +1,9 @@
+---
+language: ruby
+cache:
+  - bundler
+  - apt
+rvm:
+  - ruby-2.0.0
+
+script: "bundle exec rspec spec --color"
