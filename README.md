@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bellycard/napa.png?branch=master)](https://travis-ci.org/bellycard/napa)
+
 # Napa
 
 The Napa gem is a simple framework for building APIs with Grape. These features include:

@@ -1,5 +1,5 @@
 namespace :git do
-  client = Octokit::Client.new(:oauth_token => ENV['GITHUB_OAUTH_TOKEN'])
+  client = Octokit::Client.new(:access_token => ENV['GITHUB_OAUTH_TOKEN'])
   logger = Logger.new(STDOUT)
 
   github_repo = ENV['GITHUB_REPO']
