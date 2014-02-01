@@ -1,5 +1,5 @@
 module Napa
-  VERSION = '0.1.20'
+  VERSION = '0.1.21'
 
   class Version
     class << self
