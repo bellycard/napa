@@ -5,7 +5,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
     optional :ids, type: String, desc: 'comma separated <%= name.underscore %> ids'
   end
   get do
-    <%= name.underscore.tableize %> = <%= name.classify %>.filter(declared(params))
+    <%= name.underscore.tableize %> = <%= name.classify %>.filter(declared(params, include_missing: false))
     present <%= name.underscore.tableize %>
   end
 
@@ -14,11 +14,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
   end
 
   post do
-    begin
-      <%= name.underscore %> = <%= name.classify %>.create(declared(params))
-    rescue NameError
-      error!(present_error(:kind_not_found))
-    end
+    <%= name.underscore %> = <%= name.classify %>.create(declared(params, include_missing: false))
     error!(present_error(:record_invalid, <%= name.underscore %>.errors.full_messages)) unless <%= name.underscore %>.errors.empty?
     present <%= name.underscore %>
   end
@@ -39,7 +35,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
     put do
       # fetch <%= name.underscore %> record and update attributes.  exceptions caught in app.rb
       <%= name.underscore %> = <%= name.classify %>.find(params[:id])
-      <%= name.underscore %>.update_attributes!(declared(params).select { |param, value| value.present? })
+      <%= name.underscore %>.update_attributes!(declared(params, include_missing: false).select { |param, value| value.present? })
       present <%= name.underscore %>
     end
   end
