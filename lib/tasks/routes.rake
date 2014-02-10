@@ -8,7 +8,7 @@ unless defined?(Rails)
         false
       end
     end
-    grape_apis.each do |api|
+    grape_apis.include(:routes).each do |api| # optimize database call to include all routes when calling each method on grape_apis. Pulls all data necessary in one call rather than two.
       api.routes.each do |r|
         puts "#{r}"
       end
