@@ -18,7 +18,7 @@ module Napa
       def next_level(level)
         fail 'Unidentified Level' unless [:major, :minor, :patch].include?(level)
 
-        parts = Napa::VERSION.split('.').map { |p| p.to_i }
+        parts = Napa::VERSION.split('.').map(&:to_i) # convert for cleaner code
 
         if level == :major
           parts[0] += 1
