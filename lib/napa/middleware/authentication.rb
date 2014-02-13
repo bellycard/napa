@@ -5,7 +5,7 @@ module Napa
         @app = app
 
         if ENV['HEADER_PASSWORDS']
-          @allowed_passwords = ENV['HEADER_PASSWORDS'].split(',').map { |pw| pw.strip }.freeze
+          @allowed_passwords = ENV['HEADER_PASSWORDS'].split(',').map(&:strip).freeze # optimize map method call for cleaner code
         end
       end
 
