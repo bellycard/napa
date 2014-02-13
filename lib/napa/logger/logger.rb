@@ -1,13 +1,14 @@
 module Napa
   class Logger
     class << self
+      attr_writer :logger # setter method for logger
       def name
         [Napa::Identity.name, Napa::LogTransaction.id].join('-')
       end
 
-      def logger=(logger)
-        @logger = logger
-      end
+      # def logger=(logger)
+      #   @logger = logger
+      # end
 
       def logger
         unless @logger
