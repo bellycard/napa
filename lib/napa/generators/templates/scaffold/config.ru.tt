@@ -14,5 +14,5 @@ use Napa::Middleware::AppMonitor
 use Napa::Middleware::Authentication
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
-run <%= app_name.classify %>::API # <-- boot your service here --
+run <%= app_name.underscore.classify %>::API # <-- boot your service here --
 
