@@ -1,12 +1,11 @@
 class <%= name.classify.pluralize %>Api < Grape::API
-  represent <%= name.classify %>, with: <%= name.classify %>Entity
   desc 'Get a list of <%= name.underscore.tableize %>', entity: <%= name.classify %>Entity
   params do
     optional :ids, type: String, desc: 'comma separated <%= name.underscore %> ids'
   end
   get do
-    <%= name.underscore.tableize %> = <%= name.classify %>.filter(declared(params))
-    present <%= name.underscore.tableize %>
+    <%= name.underscore.tableize %> = <%= name.classify %>.filter(declared(params, include_missing: false))
+    present <%= name.underscore.tableize %>, with: <%= name.classify %>Entity
   end
 
   desc 'Create an <%= name.underscore %>', entity: <%= name.classify %>Entity
@@ -14,13 +13,9 @@ class <%= name.classify.pluralize %>Api < Grape::API
   end
 
   post do
-    begin
-      <%= name.underscore %> = <%= name.classify %>.create(declared(params))
-    rescue NameError
-      error!(present_error(:kind_not_found))
-    end
+    <%= name.underscore %> = <%= name.classify %>.create(declared(params, include_missing: false))
     error!(present_error(:record_invalid, <%= name.underscore %>.errors.full_messages)) unless <%= name.underscore %>.errors.empty?
-    present <%= name.underscore %>
+    present <%= name.underscore %>, with: <%= name.classify %>Entity
   end
 
   params do
@@ -30,7 +25,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
     desc 'Get an <%= name.underscore %>', entity: <%= name.classify %>Entity
     get do
       <%= name.underscore %> = <%= name.classify %>.find(params[:id])
-      present <%= name.underscore %>
+      present <%= name.underscore %>, with: <%= name.classify %>Entity
     end
 
     desc 'Update an <%= name.underscore %>', entity: <%= name.classify %>Entity
@@ -39,8 +34,8 @@ class <%= name.classify.pluralize %>Api < Grape::API
     put do
       # fetch <%= name.underscore %> record and update attributes.  exceptions caught in app.rb
       <%= name.underscore %> = <%= name.classify %>.find(params[:id])
-      <%= name.underscore %>.update_attributes!(declared(params).select { |param, value| value.present? })
-      present <%= name.underscore %>
+      <%= name.underscore %>.update_attributes!(declared(params, include_missing: false).select { |param, value| value.present? })
+      present <%= name.underscore %>, with: <%= name.classify %>Entity
     end
   end
 end
