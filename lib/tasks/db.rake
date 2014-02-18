@@ -47,18 +47,14 @@ unless defined?(Rails)
         # Define migrations path (needed later)
         migrations_path = './db/migrate'
 
-        # Find the highest existing migration version or set to 1
-        if (existing_migrations = Dir[File.join(migrations_path, '*.rb')]).length > 0
-          version = File.basename(existing_migrations.sort.reverse.first)[/^(\d+)_/,1].to_i + 1
-        else
-          version = 1
-        end
+        # timestamp the migration
+        version = Time.now.utc.to_s.gsub(':','').gsub('-','').gsub('UTC','').gsub(' ','')
 
         # Use the migration template to fill the body of the migration
         migration_content = Napa::ActiveRecord.migration_template(migration_name.camelize)
 
         # Generate migration filename
-        migration_filename = "#{"%03d" % version}_#{migration_name}.rb"
+        migration_filename = "#{version}_#{migration_name}.rb"
 
         # Write the migration
         File.open(File.join(migrations_path, migration_filename), "w+") do |migration|

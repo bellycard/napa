@@ -2,13 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rack-cors'
 gem 'mysql2'
-gem 'activerecord', '3.2.13', :require => 'active_record'
+gem 'activerecord', :require => 'active_record'
 gem 'honeybadger'
 gem 'json'
 gem 'shotgun'
 gem 'napa'
-gem 'grape-pagination'
-gem 'will_paginate', '~> 3.0'
 
 group :development,:test do
   gem 'pry'

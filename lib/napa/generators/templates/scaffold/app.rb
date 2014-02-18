@@ -4,8 +4,6 @@ Bundler.setup(:default)
 require 'napa/setup'
 Bundler.require(:default, Napa.env.to_sym)
 require 'napa'
-require 'will_paginate'
-require 'will_paginate/active_record'
 
 # load environment
 Dotenv.load(Napa.env.test? ? '.env.test' : '.env')
@@ -20,4 +18,5 @@ Dir['./config/initializers/**/*.rb'].map { |file| require file }
 Dir['./config/middleware/**/*.rb'].map { |file| require file }
 
 # autoload app
-Dir['./app/**/**/*.rb'].map { |file| require file }
+relative_load_paths = %w[app/apis app/entities app/models app/workers lib]
+ActiveSupport::Dependencies.autoload_paths += relative_load_paths
