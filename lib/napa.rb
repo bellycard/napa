@@ -15,16 +15,15 @@ require 'napa/identity'
 require 'napa/json_error'
 require 'napa/stats'
 require 'napa/active_record_extensions/filter_by_hash'
-require 'napa/active_record_extensions/active_record_exception_catchers'
 require 'napa/grape_extensions/error_formatter'
 require 'napa/grape_extensions/error_presenter'
+require 'napa/exception_catchers'
 require 'napa/middleware/logger'
 require 'napa/middleware/app_monitor'
 require 'napa/middleware/authentication'
 require 'napa/middleware/request_stats'
 require 'napa/activerecord'
 require 'napa/authentication'
-require 'napa/grape_api'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
