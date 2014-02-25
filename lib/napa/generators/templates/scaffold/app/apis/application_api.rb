@@ -1,6 +1,6 @@
-class ApplicationApi
+class ApplicationApi < Grape::API
   format :json
-  extend Napa::ApiExceptionCatchers
+  extend Napa::GrapeExtenders
 
   mount HelloApi => '/'
 
