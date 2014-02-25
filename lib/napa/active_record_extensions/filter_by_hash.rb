@@ -6,7 +6,7 @@ if defined?(ActiveRecord)
           # pass an empty where clause to force results to be a relation that will be lazy evaluated
           results = where({})
           search_hash.each do |k, v|
-            results = results.where(k => v) if v.present?
+            results = results.where(k => v)
           end
           results
         end

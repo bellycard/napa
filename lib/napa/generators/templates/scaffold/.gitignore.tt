@@ -4,7 +4,8 @@
 .env
 .vagrant
 .rspec
-.env.*
+.env
+!.env.test
 log/*
 tmp/*
 coverage
