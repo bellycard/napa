@@ -8,9 +8,6 @@ require 'napa'
 # load environment
 Dotenv.load(Napa.env.test? ? '.env.test' : '.env')
 
-# autoload lib
-Dir['./lib/**/**/*.rb'].map { |file| require file }
-
 # autoload initalizers
 Dir['./config/initializers/**/*.rb'].map { |file| require file }
 
