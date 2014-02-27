@@ -5,7 +5,7 @@ module Napa
   module Generators
     class ApiGenerator < Thor::Group
       include Thor::Actions
-      argument :generator_name # allows us to type reasonable CLI commands
+      namespace :generate
       argument :name
 
       def name_underscore
@@ -16,7 +16,7 @@ module Napa
         name.tableize
       end
 
-      def generate
+      def api
         self.class.source_root "#{File.dirname(__FILE__)}/templates/api"
         say 'Generating api...'
         directory '.', '.'
