@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rack-cors'
 gem 'mysql2'
-gem 'activerecord', :require => 'active_record'
+gem 'activerecord', '~> 4.0.0', :require => 'active_record'
 gem 'honeybadger'
 gem 'json'
 gem 'shotgun'

@@ -9,8 +9,8 @@ module Napa
     end
 
     register(Generators::ScaffoldGenerator, 'new', 'new <app_name> [app_path]',
-             'Create a new Napa scaffold')
-    register(Generators::ApiGenerator, 'generate', 'generate api <generator_name> <name>',
-             'Create a Grape API and model')
+             'Create a scaffold for a new Napa service')
+    register(Generators::ApiGenerator, 'generate:api', 'generate:api <api_name>',
+             'Create a Grape API, Model and Entity')
   end
 end
