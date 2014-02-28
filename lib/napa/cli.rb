@@ -1,5 +1,6 @@
 require 'thor'
 require 'napa/generators'
+require 'napa/version'
 
 module Napa
   class CLI < Thor
