@@ -1,5 +1,9 @@
-require 'bundler'
 require './app'
-require 'irb'
-require 'irb/completion'
-IRB.start
+
+begin
+  require 'pry'
+  Pry.start
+rescue LoadError
+  require 'irb/completion'
+  IRB.start
+end
