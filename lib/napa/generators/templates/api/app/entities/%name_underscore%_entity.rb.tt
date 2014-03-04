@@ -1,4 +1,4 @@
-class <%= name.classify %>Entity < Grape::Entity
+class <%= name.classify %>Entity < Napa::Entity
   root :data, :data
   expose :id, proc: lambda { |o, opts| o.id.to_s }, documentation:
     { type: 'String', description: 'ID' }
