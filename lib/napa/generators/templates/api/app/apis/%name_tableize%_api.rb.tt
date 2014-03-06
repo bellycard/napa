@@ -34,7 +34,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
     put do
       # fetch <%= name.underscore %> record and update attributes.  exceptions caught in app.rb
       <%= name.underscore %> = <%= name.classify %>.find(params[:id])
-      <%= name.underscore %>.update_attributes!(declared(params, include_missing: false).select { |param, value| value.present? })
+      <%= name.underscore %>.update_attributes!(declared(params, include_missing: false)
       present <%= name.underscore %>, with: <%= name.classify %>Entity
     end
   end
