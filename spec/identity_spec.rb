@@ -47,10 +47,4 @@ describe Napa::Identity do
       Napa::Identity.platform_revision.should == Napa::VERSION
     end
   end
-
-   context '#platform_name' do
-    it 'returns the name of the platform gem' do
-      Napa::Identity.platform_name.should == Napa.name
-    end
-  end
 end

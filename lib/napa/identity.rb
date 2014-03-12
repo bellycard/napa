@@ -34,12 +34,8 @@ module Napa
     def self.platform
       {
         version: platform_revision,
-        name: platform_name
+        name: "Napa"
       }
-    end
-
-    def self.platform_name
-      Napa.name
     end
 
     def self.platform_revision
