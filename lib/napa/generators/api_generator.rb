@@ -5,7 +5,6 @@ module Napa
   module Generators
     class ApiGenerator < Thor::Group
       include Thor::Actions
-      namespace :generate
       argument :name
 
       def name_underscore
