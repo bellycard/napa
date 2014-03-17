@@ -36,36 +36,6 @@ unless defined?(Rails)
       Rake::Task["db:schema:load"].invoke
     end
 
-    namespace :generate do
-      desc "Generate a migration with given name. Specify migration name with NAME=my_migration_name"
-      task :migration => :environment do
-        raise "Please specify desired migration name with NAME=my_migration_name" unless ENV['NAME']
-
-        # Find migration name from env
-        migration_name = ENV['NAME'].strip.chomp
-
-        # Define migrations path (needed later)
-        migrations_path = './db/migrate'
-
-        # timestamp the migration
-        version = Time.now.utc.to_s.gsub(':','').gsub('-','').gsub('UTC','').gsub(' ','')
-
-        # Use the migration template to fill the body of the migration
-        migration_content = Napa::ActiveRecord.migration_template(migration_name.camelize)
-
-        # Generate migration filename
-        migration_filename = "#{version}_#{migration_name}.rb"
-
-        # Write the migration
-        File.open(File.join(migrations_path, migration_filename), "w+") do |migration|
-          migration.puts migration_content
-        end
-
-        # Done!
-        puts "Successfully created migration #{migration_filename}"
-      end
-    end
-
     namespace :schema do
       desc "Create a db/schema.rb file that can be portably used against any DB supported by AR"
       task :dump => :environment do
