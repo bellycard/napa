@@ -36,7 +36,7 @@ module Napa
       )
 
       desc "generate api <api_name>", "Create a Grape API, Model and Entity"
-      subcommand "generate", Napa::CLI::Generate
+      subcommand "generate api", Napa::CLI::Generate
 
       desc "generate migration <migration_name>", "Create a Database Migration"
       subcommand "generate", Napa::CLI::Generate
