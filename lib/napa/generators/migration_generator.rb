@@ -12,7 +12,7 @@ module Napa
       end
 
       def migration_filename
-        "#{version}_#{migration_name}"
+        "#{version}_#{migration_name.underscore}"
       end
 
       def migration

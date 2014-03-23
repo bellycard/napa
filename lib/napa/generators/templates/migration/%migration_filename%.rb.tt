@@ -1,7 +1,4 @@
 class <%= migration_name.classify %> < ActiveRecord::Migration
   def change
-    # create_table :foo do |t|
-    #   t.string :name, :null => false
-    # end
   end
 end
