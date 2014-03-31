@@ -42,9 +42,9 @@ describe Napa::Identity do
     end
   end
 
-  context '#napa_revision' do
+  context '#platform_revision' do
     it 'returns the current version of the platform gem' do
-      Napa::Identity.napa_revision.should == Napa::VERSION
+      Napa::Identity.platform_revision.should == Napa::VERSION
     end
   end
 end

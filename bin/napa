@@ -2,4 +2,4 @@
 
 require 'napa/cli'
 
-Napa::CLI.start(ARGV)
+Napa::CLI::Base.start(ARGV)
