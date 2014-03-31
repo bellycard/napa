@@ -5,6 +5,15 @@ module Napa
         @app = app
       end
 
+      def normalize_path(path)
+        case 
+          when path == '/'
+            'root'
+          else
+            path.start_with?('/') ? path[1..-1] : path
+        end
+      end
+
       def call(env)
         # Mark the request time
         start = Time.now
@@ -17,11 +26,14 @@ module Napa
 
         # Calculate total response time
         response_time = stop - start
+        
+        request = Rack::Request.new(env)
+        path = normalize_path(request.path_info)
+        stat = "http.#{request.request_method.downcase}.#{Napa::Identity.name}.#{path}".gsub('/', '.')
 
         # Emit stats to StatsD
-        Napa::Stats.emitter.increment('api_requests')
-        Napa::Stats.emitter.timing('api_response_time', response_time)
-
+        Napa::Stats.emitter.increment(stat + '.requests')
+        Napa::Stats.emitter.timing(stat + '.response_time', response_time)
         # Return the results
         [status, headers, body]
       end
