@@ -25,7 +25,7 @@ module Napa
         stop = Time.now
 
         # Calculate total response time
-        response_time = stop - start
+        response_time = (stop - start) * 1000
         
         request = Rack::Request.new(env)
         path = normalize_path(request.path_info)
