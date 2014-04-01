@@ -25,7 +25,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'grape'
   gem.add_dependency 'grape-swagger'
   gem.add_dependency 'roar'
-  gem.add_dependency 'unicorn'
   gem.add_dependency 'statsd-ruby'
   gem.add_dependency 'racksh'
 
