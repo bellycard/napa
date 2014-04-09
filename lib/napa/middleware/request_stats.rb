@@ -29,11 +29,11 @@ module Napa
         
         request = Rack::Request.new(env)
         path = normalize_path(request.path_info)
-        stat = "#{Napa::Identity.name}.http.#{request.request_method.downcase}.#{path}".gsub('/', '.')
+        Thread.current[:stats_context] = "#{Napa::Identity.name}.http.#{request.request_method.downcase}.#{path}".gsub('/', '.')
 
         # Emit stats to StatsD
-        Napa::Stats.emitter.increment(stat + '.requests')
-        Napa::Stats.emitter.timing(stat + '.response_time', response_time)
+        Napa::Stats.emitter.increment(Thread.current[:stats_context] + '.requests')
+        Napa::Stats.emitter.timing(Thread.current[:stats_context] + '.response_time', response_time)
         # Return the results
         [status, headers, body]
       end

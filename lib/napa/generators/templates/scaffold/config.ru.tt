@@ -1,4 +1,5 @@
 require './app'
+require 'napa/active_record_extensions/stats.rb'
 
 # use Rack::Cors do
 #   allow do
