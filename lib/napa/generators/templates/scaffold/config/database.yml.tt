@@ -1,0 +1,18 @@
+defaults: &defaults
+  adapter: <%= @database_adapter %>
+  host: <%%= ENV['DATABASE_HOST'] %>
+  username: <%%= ENV['DATABASE_USER'] %>
+  password: <%%= ENV['DATABASE_PASSWORD'] %>
+  database: <%%= ENV['DATABASE_NAME'] %>
+
+production:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
