@@ -16,17 +16,28 @@ unless defined?(Rails)
     desc "Create the database"
     task :create => :environment do
       db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
-      adapter = db.merge({'database'=> 'mysql'})
-      ActiveRecord::Base.establish_connection(adapter)
-      ActiveRecord::Base.connection.create_database(db.fetch('database'))
+
+      options = {}.tap do |o|
+        o[:adapter]                 = db['adapter']
+        o[:database]                = db['database'] if db['adapter'] == 'postgres'
+      end
+
+      ActiveRecord::Base.establish_connection(options)
+      ActiveRecord::Base.connection.create_database(db['database'])
+
     end
 
     desc "Delete the database"
     task :drop => :environment do
       db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
-      adapter = db.merge({'database'=> 'mysql'})
-      ActiveRecord::Base.establish_connection(adapter)
-      ActiveRecord::Base.connection.drop_database(db.fetch('database'))
+
+      options = {}.tap do |o|
+        o[:adapter]                 = db['adapter']
+        o[:database]                = db['database'] if db['adapter'] == 'postgres'
+      end
+
+      ActiveRecord::Base.establish_connection(options)
+      ActiveRecord::Base.connection.drop_database(db['database'])
     end
 
     desc "Create the test database"

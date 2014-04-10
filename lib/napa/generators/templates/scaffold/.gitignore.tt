@@ -1,5 +1,3 @@
-.ruby-gemset
-.ruby-version
 .DS_Store
 .env
 .vagrant
