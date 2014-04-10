@@ -28,6 +28,25 @@ module Napa
         say Napa::VERSION
       end
 
+      desc 'console', 'Start the Napa console'
+      def console
+        require 'racksh/init'
+
+        begin
+          require "pry"
+          interpreter = Pry
+        rescue LoadError
+          require "irb"
+          require "irb/completion"
+          interpreter = IRB
+        end
+
+        Rack::Shell.init
+
+        $0 = "#{$0} console"
+        interpreter.start
+      end
+
       register(
         Generators::ScaffoldGenerator,
         'new',
