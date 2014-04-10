@@ -19,7 +19,7 @@ unless defined?(Rails)
 
       options = {}.tap do |o|
         o[:adapter]                 = db['adapter']
-        o[:database]                = db['database'] if db['adapter'] == 'postgres'
+        o[:database]                = 'postgres' if db['adapter'] == 'postgres'
       end
 
       ActiveRecord::Base.establish_connection(options)
@@ -33,7 +33,7 @@ unless defined?(Rails)
 
       options = {}.tap do |o|
         o[:adapter]                 = db['adapter']
-        o[:database]                = db['database'] if db['adapter'] == 'postgres'
+        o[:database]                = 'postgres' if db['adapter'] == 'postgres'
       end
 
       ActiveRecord::Base.establish_connection(options)
