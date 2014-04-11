@@ -130,7 +130,7 @@ rake db:migrate
 
 ## Declare these attributes in the API and Representer
 
-To provide a more secure API, Napa requires you to declare any parameters your API will accept. This is done in the `params` blocks related to the specific request. In this case we will want to declare the params in `people_api.rb` for `POST` and `PUT` to be:
+To provide a more secure API, the Napa generator requires you to declare any parameters your API will accept. This is done in the `params` blocks related to the specific request. In this case we will want to declare the params in `people_api.rb` for `POST` and `PUT` to be:
 
 ### POST
 
@@ -147,7 +147,6 @@ end
 ```ruby
 desc 'Update a person'
 params do
-  requires :id, desc: 'ID of the person'
   optional :name, type: String, desc: 'The Name of the person'
   optional :job_title, type: String, desc: 'The Job Title of the person'
   optional :email, type: String, desc: 'The Email Address of the person'
