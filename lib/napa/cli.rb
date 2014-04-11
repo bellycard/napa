@@ -54,7 +54,7 @@ module Napa
         'Create a scaffold for a new Napa service'
       )
 
-      desc "generate api <api_name>", "Create a Grape API, Model and Entity"
+      desc "generate api <api_name>", "Create a Grape API, Model and Representer"
       subcommand "generate api", Napa::CLI::Generate
 
       desc "generate migration <migration_name>", "Create a Database Migration"
