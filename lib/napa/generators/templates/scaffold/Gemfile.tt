@@ -8,7 +8,7 @@ gem 'honeybadger'
 gem 'json'
 gem 'shotgun'
 gem 'napa'
-gem 'grape-entity'
+gem 'roar'
 gem 'grape-swagger'
 
 group :development,:test do
