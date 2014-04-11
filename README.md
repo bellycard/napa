@@ -3,14 +3,7 @@
 
 # Napa
 
-The Napa gem is a simple framework for building APIs with Grape. These features include:
-
-* Generator
-* Console
-* Identity
-* Logging
-* Deployment
-* Grape Specific Features (Cache management and Route inspection) i.e. `rake routes`
+Napa is a simple framework for building Rack based APIs using Grape, Roar and ActiveRecord. It's designed to make it easy to quickly create and deploy new API services by providing **generators**, **middlewares** and a **console** similar to what you would expect from a Rails app.
 
 ## Installation
 
@@ -34,132 +27,47 @@ $ bundle install
 
 ## Getting Started
 
-Napa comes with a useful generator to quickly scaffold up a new project. Simply run:
+See the [Quickstart Guide](https://github.com/bellycard/napa/blob/master/docs/quickstart.md) for an intro to creating a simple service with Napa.
+
+## Usage
+
+Run `napa` terminal prompt to see available features:
 
 ```
-$ napa new your_project_name
+Commands:
+  napa console                              # Start the Napa console
+  napa generate api <api_name>              # Create a Grape API, Model and Representer
+  napa generate migration <migration_name>  # Create a Database Migration
+  napa help [COMMAND]                       # Describe available commands or one specific command
+  napa new <app_name> [app_path]            # Create a scaffold for a new Napa service
+  napa version                              # Shows the Napa version number
 ```
 
-This will generate a basic application framework for you. It includes everything you need to get started including a Hello World API.
-
-1) To get started, run Bundler to make sure you have all the gems for the project:
-
-```
-$ bundle install
-```
-
-2) Then, make sure your database connections are setup correctly. The configuration is set in the `.env` and `.env.test`. Then create your database by running:
-
-```
-$ rake db:create
-```
-
-3) Now you're ready to start up the server:
-
-```
-$ shotgun
-```
-
-4) Once the server is started, run the following command to load your service in a browser:
-
-```
-$ open http://127.0.0.1:9393/hello
-```
-
-...and you should see:
-
-```
-{
-  message: "Hello Wonderful World!"
-}
-```
-
-5) We've also provided a sample spec file. You can run the tests by running:
-
-```
-RACK_ENV='test' rake db:test:prepare
-rspec spec
-```
-
-## Usage/Features
 
 ### Console
 Similar to the Rails console, load an IRB sesson with your applications environment by running:
 
 ```
-ruby console
+napa console
 ```
 
-### Identity
-The *Identity* module exists to provide and interface to get information about the application. For example:
+### Rake Tasks
 
-`Napa::Identity.name` => Returns the name of the app defined by `ENV['SERVICE_NAME']`.
+`rake -T` will give you a list of all available rake tasks:
 
-`Napa::Identity.hostname` => Returns the name of the host running the application.
-
-`Napa::Identity.revision` => Returns the current revision from Git.
-
-`Napa::Identity.pid` => Returns the current running process id.
-
-### Logger
-The *Logger* modules is used to create a common log format across applications. The Logger is enable via a rack middleware by adding the line below to your `config.ru` file:
-
-```ruby
-use Napa::Middleware::Logger
 ```
-
-You can also enable the logger for ActiveRecord by adding the following line to an initializer:
-
-```ruby
-ActiveRecord::Base.logger = Napa::Logger.logger
+rake db:create          # Create the database
+rake db:drop            # Delete the database
+rake db:migrate         # Migrate the database through scripts in db/migrate
+rake db:reset           # Create the test database
+rake db:schema:dump     # Create a db/schema.rb file that can be portably used against any DB supported by AR
+rake db:schema:load     # Load a schema.rb file into the database
+rake deploy:production  # Deploy to production
+rake deploy:staging     # Deploy to staging
+rake git:set_tag[tag]   # Set tag, which triggers deploy
+rake git:verify         # Verify git repository is in a good state for deployment
+rake routes             # display all routes for Grape
 ```
-
-`Napa::Logger.logger` returns a Singleton instance of the Logging object, so it can be passed to other libraries or called directly. For example:
-
-```ruby
-Napa::Logger.logger.debug 'Some Debug Message'
-```
-
-### Deployment
-At Belly we leverage a git based deployment process, so we've included some rake tasks we use to automate deployments. These tasks will essentially just tag a commit with `production` or `staging` so that it can be picked up by a separate deployment process.
-
-The tasks currently available are:
-
-```ruby
-rake deploy:staging
-```
-
-
-```ruby
-rake deploy:production
-```
-
-**Please Note:** These tasks rely on two environment variables - `GITHUB_OAUTH_TOKEN` and `GITHUB_REPO`. For more information, see **Environment Variables** below.
-
-### Grape Specific Features
-At Belly we use the [Grape Micro-Framework](https://github.com/intridea/grape) for many services, so we've included a few common features.
-
-#### Cache Managment
-Cache control headers are sent with Grape API responses to prevent clients from caching responses unexpectedly. This feature is enabled by default, so you don't have to make any changes to enable it.
-
-#### Route Inspection
-A rake task is included to give you a Rails style list of your routes. Simpley run:
-
-```ruby
-rake routes
-```
-
-### Environment Variables
-Napa expects to find some environment variables set in your application in order for some features to work. A list is below:
-
-#### SERVICE_NAME
-The name of your app or service, used by Identity and as a label for your logs
-
-#### GITHUB\_OAUTH\_TOKEN
-Used to grant access to your application on Github for deployment tagging
-
-#### GITHUB_REPO
-Your application's Github repo. i.e. `bellycard/napa`
 
 ## Middlewares
 Napa includes a number of Rack middlewares that can be enabled to add functionality to your project.
@@ -185,6 +93,28 @@ The Health Check middleware will add an endpoint at `/health` that will return s
 }
 ```
 
+### Logger
+The *Logger* modules is used to create a common log format across applications. The Logger is enable via a rack middleware by adding the line below to your `config.ru` file:
+
+```ruby
+use Napa::Middleware::Logger
+```
+
+You can also enable the logger for ActiveRecord by adding the following line to an initializer:
+
+```ruby
+ActiveRecord::Base.logger = Napa::Logger.logger
+```
+
+`Napa::Logger.logger` returns a Singleton instance of the Logging object, so it can be passed to other libraries or called directly. For example:
+
+```ruby
+Napa::Logger.logger.debug 'Some Debug Message'
+```
+
+## Bugs & Feature Requests
+Please add an issue in [Github](https://github.com/bellycard/napa/issues) if you discover a bug or have a feature request.
+
 ## Contributing
 
 1. Fork it
@@ -192,8 +122,3 @@ The Health Check middleware will add an endpoint at `/health` that will return s
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-
-## Todo/Feature Requests
-
-* Add specs for logger and logging middleware
