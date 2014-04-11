@@ -1,6 +1,6 @@
 #Napa Quickstart
 
-Napa was designed to make it easy to quickly create a new API service. Here we will cover the steps required to create a new Napa by making a simple API service.
+Napa was designed to make it easy to quickly create a new API service. Here we will cover the steps required to create a new simple API service using Napa, Grape, Roar and ActiveRecord.
 
 Napa is available as a Ruby gem, to install it run:
 
@@ -282,3 +282,11 @@ curl -X PUT -d job_title="Doctor Pepper" http://localhost:9393/people/1
   }
 }
 ```
+
+So, there you have it, a new API service in minutes. It's very basic, but you can continue to build it out from here. One thing to note, we don't generate a `DELETE` request from the generator, but you can easily add that. The resources section below will link you to the Grape docs where you can find those instructions.
+
+## Resources
+
+* [Code Example: people-service](https://github.com/darbyfrey/people_service)
+* [Grape](http://intridea.github.io/grape/)
+* [Roar](https://github.com/apotonick/roar)
