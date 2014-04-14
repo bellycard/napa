@@ -28,6 +28,25 @@ module Napa
         say Napa::VERSION
       end
 
+      desc 'console', 'Start the Napa console'
+      def console
+        require 'racksh/init'
+
+        begin
+          require "pry"
+          interpreter = Pry
+        rescue LoadError
+          require "irb"
+          require "irb/completion"
+          interpreter = IRB
+        end
+
+        Rack::Shell.init
+
+        $0 = "#{$0} console"
+        interpreter.start
+      end
+
       register(
         Generators::ScaffoldGenerator,
         'new',
@@ -35,7 +54,7 @@ module Napa
         'Create a scaffold for a new Napa service'
       )
 
-      desc "generate api <api_name>", "Create a Grape API, Model and Entity"
+      desc "generate api <api_name>", "Create a Grape API, Model and Representer"
       subcommand "generate api", Napa::CLI::Generate
 
       desc "generate migration <migration_name>", "Create a Database Migration"

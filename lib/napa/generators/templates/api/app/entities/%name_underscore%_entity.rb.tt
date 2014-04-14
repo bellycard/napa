@@ -1,7 +1,0 @@
-class <%= name.classify %>Entity < Napa::Entity
-  root :data, :data
-  expose :id, proc: lambda { |o, opts| o.id.to_s }, documentation:
-    { type: 'String', description: 'ID' }
-  expose :type, proc: lambda { |o, opts| o.class.name.underscore }, documentation:
-    { type: 'String', description: '"<%= name.underscore %>"' }
-end
