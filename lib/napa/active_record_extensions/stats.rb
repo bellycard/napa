@@ -1,3 +1,4 @@
+''
 module Napa
   module ActiveRecordStats
     SQL_INSERT_DELETE_PARSER_REGEXP = /^(?<action>\w+)\s(\w+)\s\W*(?<table>\w+)/
@@ -15,22 +16,22 @@ module Napa
       [m[:table], 'SELECT']
     end
 
-    def self.guess_sql_content(query)
+    def self.extract_sql_content(query)
       m = query.match(SQL_UPDATE_REGEXP)
       return [m[:table], 'UPDATE'] if m
       unless m
         m = query.match(SQL_SELECT_REGEXP)
-        extract_sql_selects(query) if m
+        return extract_sql_selects(query) if m
+      end
+      unless m
+        m = query.match(SQL_INSERT_DELETE_PARSER_REGEXP)
+        return extract_from_sql_inserts_deletes(query) if m
       end
     end
 
     ActiveSupport::Notifications.subscribe 'sql.active_record' do |name, start, finish, id, payload|
-      if payload[:name] == 'SQL'
-        table, action = extract_from_sql_inserts_deletes(payload[:sql])
-      elsif payload[:name] =~ /.* Load$/
-        table, action = extract_sql_selects(payload[:sql])
-      elsif !payload[:name]
-        table, action = guess_sql_content(payload[:sql])
+      if payload[:sql].match(/(select|update|insert|delete)(.+)/i)
+        table, action = extract_sql_content(payload[:sql])
       end
 
       if table
