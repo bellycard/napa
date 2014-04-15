@@ -16,22 +16,26 @@ if defined?(ActiveSupport)
         [m[:table], 'SELECT']
       end
 
-      def self.guess_sql_content(query)
+      def self.extract_sql_updates(query)
         m = query.match(SQL_UPDATE_REGEXP)
-        return [m[:table], 'UPDATE'] if m
-        unless m
-          m = query.match(SQL_SELECT_REGEXP)
-          extract_sql_selects(query) if m
+        [m[:table], 'UPDATE']
+      end
+
+      def self.extract_sql_content(query)
+        table = action = nil
+        if query.match(SQL_UPDATE_REGEXP)
+          table, action = extract_sql_updates(query)
+        elsif query.match(SQL_SELECT_REGEXP)
+          table, action =  extract_sql_selects(query)
+        elsif query.match(SQL_INSERT_DELETE_PARSER_REGEXP)
+          table, action =  extract_from_sql_inserts_deletes(query)
         end
+        [table, action]
       end
 
       ActiveSupport::Notifications.subscribe 'sql.active_record' do |name, start, finish, id, payload|
-        if payload[:name] == 'SQL'
-          table, action = extract_from_sql_inserts_deletes(payload[:sql])
-        elsif payload[:name] =~ /.* Load$/
-          table, action = extract_sql_selects(payload[:sql])
-        elsif !payload[:name]
-          table, action = guess_sql_content(payload[:sql])
+        if payload[:sql].match(/(select|update|insert|delete)(.+)/i)
+          table, action = extract_sql_content(payload[:sql])
         end
 
         if table
