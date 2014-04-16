@@ -1,5 +1,7 @@
 master
 ===
+* Fixed a bug causing `rake db:schema:load` to fail
+* Fixed a bug affecting `rake db:create` and `rake db:drop` using Postgres
 
 0.2.0
 ===
