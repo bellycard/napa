@@ -19,7 +19,7 @@ unless defined?(Rails)
 
       options = {}.tap do |o|
         o[:adapter]                 = db['adapter']
-        o[:database]                = 'postgres' if db['adapter'] == 'postgres'
+        o[:database]                = 'postgres' if db['adapter'] == 'postgresql'
       end
 
       ActiveRecord::Base.establish_connection(options)
@@ -33,7 +33,7 @@ unless defined?(Rails)
 
       options = {}.tap do |o|
         o[:adapter]                 = db['adapter']
-        o[:database]                = 'postgres' if db['adapter'] == 'postgres'
+        o[:database]                = 'postgres' if db['adapter'] == 'postgresql'
       end
 
       ActiveRecord::Base.establish_connection(options)
@@ -59,6 +59,9 @@ unless defined?(Rails)
       desc "Load a schema.rb file into the database"
       task :load => :environment do
         file = ENV['SCHEMA'] || "db/schema.rb"
+        db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
+        ActiveRecord::Base.establish_connection(db)
+        ActiveRecord::Schema.verbose = true
         load(file)
       end
     end
