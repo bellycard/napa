@@ -79,8 +79,6 @@ Napa include an API generator which will create a Grape API, Model and Represent
 napa generate api person
 ```
 
-**Note:** the generator will pluralize the name of your resource for the API, so use the singular version in the generator.
-
 You will see the following output:
 
 ```
