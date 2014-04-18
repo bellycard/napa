@@ -30,8 +30,8 @@ module Napa
 
       desc 'console [environment]', 'Start the Napa console'
       options aliases: 'c'
-      def console(environment = nil)
-        ENV['RACK_ENV'] = environment.nil? ? 'development' : environment
+      def console(environment = 'development' )
+        ENV['RACK_ENV'] = environment
 
         require 'racksh/init'
 
