@@ -1,5 +1,8 @@
 master
 ===
+
+0.2.1
+===
 * Updated Napa console. It now takes an optional environment parameter, i.e. `napa console production`.
 * Added `c` alias for Napa console, i.e. `napa c` or `napa c production`
 * Fixed a bug causing `rake db:schema:load` to fail
