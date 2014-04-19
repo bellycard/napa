@@ -1,8 +1,10 @@
 master
 ===
+* Updated Napa console. It now takes an optional environment parameter, i.e. `napa console production`.
+* Added `c` alias for Napa console, i.e. `napa c` or `napa c production`
 * Fixed a bug causing `rake db:schema:load` to fail
 * Fixed a bug affecting `rake db:create` and `rake db:drop` using Postgres
-* Fixed a bug Napa::GrapeHelpers to represent (with Roar) an array
+* Fixed a bug Napa::GrapeHelpers to bypass the representer when given an array
 
 0.2.0
 ===
