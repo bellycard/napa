@@ -13,6 +13,13 @@ unless defined?(Rails)
       Rake::Task["db:schema:dump"].invoke unless Napa.env.production?
     end
 
+    desc 'Rollback to a previous migration. Go back multiple steps with STEP=x'
+    task :rollback => :environment do
+      ActiveRecord::Migration.verbose = true
+      step = ENV['STEP'] ? ENV['STEP'].to_i : 1
+      ActiveRecord::Migrator.rollback('db/migrate', step)
+    end
+
     desc "Create the database"
     task :create => :environment do
       db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
