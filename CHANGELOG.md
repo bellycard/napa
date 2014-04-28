@@ -1,5 +1,7 @@
 master
 ===
+* Added `rake db:rollback` to rollback migrations just like Rails
+* Fixed bug in migration generator causing constant not defined errors
 
 0.2.1
 ===
