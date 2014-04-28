@@ -15,10 +15,14 @@ module Napa
         "#{version}_#{migration_name.underscore}"
       end
 
+      def output_directory
+        './db/migrate'
+      end
+
       def migration
         self.class.source_root "#{File.dirname(__FILE__)}/templates/migration"
         say 'Generating migration...'
-        directory '.', './db/migrate'
+        directory '.', output_directory
         say 'Done!', :green
       end
     end
