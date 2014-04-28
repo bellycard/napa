@@ -2,6 +2,8 @@ master
 ===
 * Added `rake db:rollback` to rollback migrations just like Rails
 * Fixed bug in migration generator causing constant not defined errors
+* Fixed CORS config in scaffold generator
+* Fixed logging bug in grape_extenders
 
 0.2.1
 ===
