@@ -54,13 +54,7 @@ module Napa
             response_body = body.inspect
           end
 
-          { response:
-            {
-              status:   status,
-              headers:  headers,
-              response: response_body
-            }
-          }
+          Napa::Logger.response(status, headers, response_body)
         end
     end
   end

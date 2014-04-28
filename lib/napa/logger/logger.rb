@@ -27,6 +27,16 @@ module Napa
 
         @logger
       end
+
+      def response(status, headers, body)
+        { response:
+          {
+            status:   status,
+            headers:  headers,
+            response: body
+          }
+        }
+      end
     end
   end
 end

@@ -7,12 +7,12 @@ module Napa
       if defined?(::ActiveRecord)
         modified_class.rescue_from ::ActiveRecord::RecordNotFound do |e|
           err = Napa::JsonError.new(:record_not_found, 'record not found')
-          Napa::Logger.logger.debug format_response(404, {}, err)
+          Napa::Logger.logger.debug Napa::Logger.response(404, {}, err)
           rack_response(err.to_json, 404)
         end
         modified_class.rescue_from ::ActiveRecord::RecordInvalid do |e|
           err = Napa::JsonError.new(:unprocessable_entity, e.message)
-          Napa::Logger.logger.debug format_response(422, {}, err)
+          Napa::Logger.logger.debug Napa::Logger.response(422, {}, err)
           rack_response(err.to_json, 422)
         end
       end
