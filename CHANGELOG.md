@@ -4,6 +4,8 @@ master
 * Fixed bug in migration generator causing constant not defined errors
 * Fixed CORS config in scaffold generator
 * Fixed logging bug in grape_extenders
+* Set UTF-8 encoding in generated database.yml
+* Removed unneeded gem dependencies (shotgun and unicorn)
 
 0.2.1
 ===

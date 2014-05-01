@@ -1,4 +1,5 @@
 defaults: &defaults
+  encoding: <%= @database_encoding %>
   adapter: <%= @database_adapter %>
   host: <%%= ENV['DATABASE_HOST'] %>
   username: <%%= ENV['DATABASE_USER'] %>
