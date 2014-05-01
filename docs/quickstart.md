@@ -238,6 +238,7 @@ All response from Napa include the `data` key. In this case, we see an array con
 {
   "data": [
     {
+      "object_type": "person",
       "id": 1,
       "name": "Darby Frey",
       "job_title": "Software Engineer",
