@@ -1,0 +1,4 @@
+class <%= name.singularize.classify %>Representer < Napa::Representer
+  property :id, type: String
+
+end

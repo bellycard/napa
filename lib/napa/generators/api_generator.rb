@@ -15,6 +15,14 @@ module Napa
         name.tableize
       end
 
+      def name_singularize
+        name.singularize
+      end
+
+      def name_singularize_underscore
+        name.singularize.underscore
+      end
+
       def api
         self.class.source_root "#{File.dirname(__FILE__)}/templates/api"
         say 'Generating api...'
