@@ -6,7 +6,6 @@ gem '<%= @database_gem %>'
 gem 'activerecord', '~> 4.0.0', :require => 'active_record'
 gem 'honeybadger'
 gem 'json'
-gem 'shotgun', require: false
 gem 'napa'
 gem 'roar'
 gem 'grape-swagger'
@@ -17,6 +16,7 @@ end
 
 group :development do
   gem 'rubocop', require: false
+  gem 'shotgun', require: false
 end
 
 group :test do
