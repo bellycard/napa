@@ -6,6 +6,7 @@ master
 * Fixed logging bug in grape_extenders
 * Set UTF-8 encoding in generated database.yml
 * Removed unneeded gem dependencies (shotgun and unicorn)
+* Fixed spec_helper that gets generated to ignore spec files and gems (on CI servers)
 
 0.2.1
 ===
