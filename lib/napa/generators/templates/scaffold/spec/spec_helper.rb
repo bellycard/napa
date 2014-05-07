@@ -12,6 +12,14 @@ SimpleCov.start
 require './app'
 require 'database_cleaner'
 
+SimpleCov.start do
+  add_filter "/spec\/.*/"
+  add_filter "/vendor\/.*/"
+end
+
+# fail once the test coverage gets below an accepted amount
+# SimpleCov.minimum_coverage 90
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir['./spec/support/**/*.rb'].each { |f| require f }
