@@ -15,10 +15,14 @@ module Napa
         name.tableize
       end
 
+      def output_directory
+        '.'
+      end
+
       def api
         self.class.source_root "#{File.dirname(__FILE__)}/templates/api"
         say 'Generating api...'
-        directory '.', '.'
+        directory '.', output_directory
         say 'Done!', :green
       end
     end
