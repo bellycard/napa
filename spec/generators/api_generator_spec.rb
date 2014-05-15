@@ -35,4 +35,10 @@ describe Napa::Generators::ApiGenerator do
 
     expect(representer_code).to match(/class FooRepresenter/)
   end
+
+  it 'representers should inherit from Napa::Representer' do
+    representer_file = File.join(test_api_directory, 'app/representers/foo_representer.rb')
+    require "./#{representer_file}"
+    expect(FooRepresenter.superclass).to be(Napa::Representer)
+  end
 end
