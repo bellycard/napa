@@ -5,33 +5,32 @@ require 'napa/cli'
 describe Napa::Generators::ScaffoldGenerator do
   let(:app_name) { 'my_test_app' }
   let(:app_path) { 'spec/my_different_directory' }
+  let(:options) { {} }
+
+  before do
+    scaffold = Napa::CLI::Base.new(args, options)
+    scaffold.invoke(:new)
+  end
+
+  after do
+    if args[1] # if app_path exists, delete dir at app_path
+      FileUtils.rm_rf(args[1])
+    else # otherwise delete dir at app_name
+      FileUtils.rm_rf(args[0])
+    end
+  end
 
   context 'given only an app name' do
-    before do
-      args = [app_name]
-      scaffold = Napa::CLI::Base.new(args)
-      scaffold.invoke(:new)
-    end
-
-    after do
-      FileUtils.rm_rf(app_name)
-    end
+    let(:args) { [app_name] }
 
     it 'creates a scaffold app in a directory that mirrors the app name' do
+      args = [app_name]
       expect(Dir).to exist(app_name)
     end
   end
 
   context 'given an app name and a directory' do
-    before do
-      args = [app_name, app_path]
-      scaffold = Napa::CLI::Base.new(args)
-      scaffold.invoke(:new)
-    end
-
-    after do
-      FileUtils.rm_rf(app_path)
-    end
+    let(:args) { [app_name, app_path] }
 
     it 'creates a scaffold app in a directory of my choosing' do
       expect(Dir).to exist(app_path)
@@ -75,16 +74,8 @@ describe Napa::Generators::ScaffoldGenerator do
   end
 
   context 'with the -d=pg option' do
-    before do
-      args = [app_name, app_path]
-      options = { :database => "pg" }
-      scaffold = Napa::CLI::Base.new(args, options)
-      scaffold.invoke(:new)
-    end
-
-    after do
-      FileUtils.rm_rf(app_path)
-    end
+    let(:args) { [app_name, app_path] }
+    let(:options) { { :database => "pg" } }
 
     it 'selects postres/pg as the database' do
       database_config_file = File.read("#{app_path}/config/database.yml")
