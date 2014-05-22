@@ -6,7 +6,7 @@ module Napa
       end
 
       def call(env)
-        if ["/health", "/health.json"].include? env['REQUEST_PATH']
+        if ["/health", "/health.json"].include? env['PATH_INFO']
           [200, { 'Content-type' => 'application/json' }, [Napa::Identity.health.to_json]]
         else
           @app.call(env)
