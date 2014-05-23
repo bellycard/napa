@@ -58,6 +58,11 @@ describe Napa::Generators::ScaffoldGenerator do
       expect(gemfile).to match(/gem 'mysql2'/)
     end
 
+    it 'adds the kaminari gem in the Gemfile' do
+      gemfile = File.read("#{app_path}/Gemfile")
+      expect(gemfile).to match(/gem 'kaminari'/)
+    end
+
     it 'generates an application api' do
       expect(File).to exist("#{app_path}/app/apis/application_api.rb")
     end
