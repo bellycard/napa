@@ -7,6 +7,7 @@ master
 * Set UTF-8 encoding in generated database.yml
 * Removed unneeded gem dependencies (shotgun and unicorn)
 * Fixed spec_helper that gets generated to ignore spec files and gems (on CI servers)
+* Added pagination to response payload from the represent method
 
 0.2.1
 ===
