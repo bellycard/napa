@@ -14,6 +14,11 @@ module Napa
       Napa::JsonError.new(code, message)
     end
 
+    def permitted_params(options = {})
+      options = { include_missing: false }.merge(options)
+      declared(params, options)
+    end
+
     # extend all endpoints to include this
     Grape::Endpoint.send :include, self
   end
