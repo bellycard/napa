@@ -288,6 +288,6 @@ So, there you have it, a new API service in minutes. It's very basic, but you ca
 
 ## Resources
 
-* [Code Example: people-service](https://github.com/darbyfrey/people-service)
+* [Code Example: people_service](https://github.com/darbyfrey/people_service)
 * [Grape](http://intridea.github.io/grape/)
 * [Roar](https://github.com/apotonick/roar)
