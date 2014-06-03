@@ -7,17 +7,6 @@ Napa::Stats.emitter = nil
 ENV['STATSD_HOST'] = 'localhost'
 ENV['STATSD_PORT'] = '8125'
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
-
-ActiveRecord::Schema.define(version: 1) do
-  create_table :foos do |t|
-    t.string :word
-  end
-end
-
-class Foo < ActiveRecord::Base
-end
-
 describe Napa::ActiveRecordStats do
   before(:each) do
     Foo.delete_all
@@ -37,7 +26,7 @@ describe Napa::ActiveRecordStats do
       "#{Napa::Identity.name}.unknown.sql.foos.select.query_time",
       an_instance_of(Float)
     )
-    Foo.all
+    Foo.all.first
   end
 
   it 'should send a query_time for a delete' do
