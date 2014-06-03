@@ -36,7 +36,7 @@ Run `napa` terminal prompt to see available features:
 ```
 Commands:
   napa console                              # Start the Napa console
-  napa generate api <api_name>              # Create a Grape API, Model and Representer, api_name should be plural i.e. `users`
+  napa generate api <api_name>              # Create a Grape API, Model and Representer, api_name should be plural i.e. users
   napa generate migration <migration_name>  # Create a Database Migration
   napa help [COMMAND]                       # Describe available commands or one specific command
   napa new <app_name> [app_path]            # Create a scaffold for a new Napa service
