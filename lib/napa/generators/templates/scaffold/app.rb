@@ -15,5 +15,5 @@ Dir['./config/initializers/**/*.rb'].map { |file| require file }
 Dir['./config/middleware/**/*.rb'].map { |file| require file }
 
 # autoload app
-relative_load_paths = %w[app/apis app/representers app/models app/workers lib]
+relative_load_paths = %w(app/apis app/representers app/models app/workers lib)
 ActiveSupport::Dependencies.autoload_paths += relative_load_paths
