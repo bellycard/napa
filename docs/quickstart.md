@@ -13,7 +13,7 @@ gem install napa
 In this example we will create a new API to manage a directory of people. Each person will have a `name`, `job_title` and `email_address`. To get started, create a new scaffold by running:
 
 ```
-napa new people_service
+napa new people-service
 ```
 
 **Note:** by default, Napa will configure itself to use Mysql. If you prefer to use Postgres, simply pass in the `-d=pg` option to the `napa new` command.
@@ -22,33 +22,33 @@ You will see the following output:
 
 ```
 Generating scaffold...
-      create  people_service
-      create  people_service/.env.test
-      create  people_service/.env
-      create  people_service/.gitignore
-      create  people_service/.rubocop.yml
-      create  people_service/.ruby-gemset
-      create  people_service/.ruby-version
-      create  people_service/Gemfile
-      create  people_service/README.md
-      create  people_service/Rakefile
-      create  people_service/app.rb
-      create  people_service/app/apis/application_api.rb
-      create  people_service/app/apis/hello_api.rb
-      create  people_service/config.ru
-      create  people_service/config/database.yml
-      create  people_service/config/initializers/active_record.rb
-      create  people_service/config/middleware/honeybadger.rb
-      create  people_service/db/schema.rb
-      create  people_service/lib/.keep
-      create  people_service/log/.gitkeep
-      create  people_service/spec/apis/hello_api_spec.rb
-      create  people_service/spec/factories/.gitkeep
-      create  people_service/spec/spec_helper.rb
+      create  people-service
+      create  people-service/.env.test
+      create  people-service/.env
+      create  people-service/.gitignore
+      create  people-service/.rubocop.yml
+      create  people-service/.ruby-gemset
+      create  people-service/.ruby-version
+      create  people-service/Gemfile
+      create  people-service/README.md
+      create  people-service/Rakefile
+      create  people-service/app.rb
+      create  people-service/app/apis/application_api.rb
+      create  people-service/app/apis/hello_api.rb
+      create  people-service/config.ru
+      create  people-service/config/database.yml
+      create  people-service/config/initializers/active_record.rb
+      create  people-service/config/middleware/honeybadger.rb
+      create  people-service/db/schema.rb
+      create  people-service/lib/.keep
+      create  people-service/log/.gitkeep
+      create  people-service/spec/apis/hello_api_spec.rb
+      create  people-service/spec/factories/.gitkeep
+      create  people-service/spec/spec_helper.rb
 Done!
 ```
 
-Now, change into the `people_service` directory and run Bundler to get all the gems you need:
+Now, change into the `people-service` directory and run Bundler to get all the gems you need:
 
 ```
 bundle install
@@ -288,6 +288,6 @@ So, there you have it, a new API service in minutes. It's very basic, but you ca
 
 ## Resources
 
-* [Code Example: people-service](https://github.com/darbyfrey/people_service)
+* [Code Example: people_service](https://github.com/darbyfrey/people_service)
 * [Grape](http://intridea.github.io/grape/)
 * [Roar](https://github.com/apotonick/roar)
