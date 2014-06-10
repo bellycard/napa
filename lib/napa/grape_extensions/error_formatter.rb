@@ -7,7 +7,7 @@ if defined?(Grape)
             result = message.is_a?(Napa::JsonError) ? message : Napa::JsonError.new(:api_error, message)
 
             if (options[:rescue_options] || {})[:backtrace] && backtrace && !backtrace.empty?
-              result = result.merge(backtrace: backtrace)
+              result = result.to_h.merge(backtrace: backtrace)
             end
             MultiJson.dump(result)
           end
