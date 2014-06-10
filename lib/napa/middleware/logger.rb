@@ -34,13 +34,14 @@ module Napa
           end
 
           request_data = {
-            method:           env['REQUEST_METHOD'],
-            path:             env['PATH_INFO'],
-            query:            env['QUERY_STRING'],
+            method:           request.request_method,
+            path:             request.path_info,
+            query:            request.query_string,
             host:             Napa::Identity.hostname,
             pid:              Napa::Identity.pid,
             revision:         Napa::Identity.revision,
-            params:           params
+            params:           params,
+            remote_ip:        request.ip
           }
           request_data[:user_id] = current_user.try(:id) if defined?(current_user)
           { request: request_data }
