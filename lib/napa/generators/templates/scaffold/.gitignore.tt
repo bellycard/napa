@@ -8,3 +8,5 @@ log/*
 tmp/*
 coverage
 !.keep
+.ruby-gemset
+.ruby-version
