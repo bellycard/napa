@@ -10,7 +10,7 @@ describe HelloApi do
   describe 'GET /hello' do
     it 'returns a hello world message' do
       get '/hello'
-      expect(last_response.body).to eq({ message: 'Hello Wonderful World, from <%= app_name.classify %>!' }.to_json)
+      expect(response_body).to eq({ message: 'Hello Wonderful World, from <%= app_name.classify %>!' }.to_json)
     end
   end
 

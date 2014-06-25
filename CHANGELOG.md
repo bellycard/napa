@@ -7,6 +7,7 @@ master
 * Set UTF-8 encoding in generated database.yml
 * Removed unneeded gem dependencies (shotgun and unicorn)
 * Fixed spec_helper that gets generated to ignore spec files and gems (on CI servers)
+* Added spec response helpers `parsed_response`, `response_code` and `response_body` to make tests easier to DRY up
 
 0.2.1
 ===

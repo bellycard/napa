@@ -4,6 +4,7 @@ require 'webmock/rspec'
 require 'rack/test'
 require 'simplecov'
 require 'factory_girl'
+require 'napa/rspec_extensions/response_helpers'
 
 FactoryGirl.definition_file_paths = %w(./spec/factories)
 FactoryGirl.find_definitions
@@ -29,6 +30,7 @@ Dir['./spec/support/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include Napa::RspecExtensions::ResponseHelpers
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
