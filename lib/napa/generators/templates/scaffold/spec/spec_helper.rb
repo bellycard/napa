@@ -4,6 +4,7 @@ require 'webmock/rspec'
 require 'rack/test'
 require 'simplecov'
 require 'factory_girl'
+require 'napa/rspec_extensions/response_helpers'
 
 FactoryGirl.definition_file_paths = %w(./spec/factories)
 FactoryGirl.find_definitions

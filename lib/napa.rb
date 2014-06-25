@@ -25,7 +25,6 @@ require 'napa/middleware/logger'
 require 'napa/middleware/app_monitor'
 require 'napa/middleware/authentication'
 require 'napa/middleware/request_stats'
-require 'napa/rspec_extensions/response_helpers'
 require 'napa/authentication'
 
 # load rake tasks if Rake installed
