@@ -4,7 +4,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
     optional :ids, type: Array, desc: 'Array of <%= name.underscore %> ids'
   end
   get do
-    <%= name.underscore.tableize %> = <%= name.classify %>.filter(permitted_params)
+    <%= name.underscore.tableize %> = params[:ids] ? <%= name.classify %>.where(id: params[:ids]) : <%= name.classify %>.all
     represent <%= name.underscore.tableize %>, with: <%= name.classify %>Representer
   end
 

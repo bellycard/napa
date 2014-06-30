@@ -8,6 +8,7 @@ master
 * Removed unneeded gem dependencies (shotgun and unicorn)
 * Fixed spec_helper that gets generated to ignore spec files and gems (on CI servers)
 * Added spec response helpers `parsed_response`, `response_code` and `response_body` to make tests easier to DRY up
+* Removed #filter and `include Napa::FilterByHash` from generated code.
 
 0.2.1
 ===
