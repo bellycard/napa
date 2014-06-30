@@ -30,8 +30,8 @@ module Napa
 
       desc 'console [environment]', 'Start the Napa console'
       options aliases: 'c'
-      def console(environment = 'development' )
-        ENV['RACK_ENV'] = environment
+      def console(environment = nil)
+        ENV['RACK_ENV'] = environment || 'development'
 
         require 'racksh/init'
 
@@ -42,6 +42,9 @@ module Napa
           require "irb"
           require "irb/completion"
           interpreter = IRB
+          # IRB uses ARGV and does not expect these arguments.
+          ARGV.delete('console')
+          ARGV.delete(environment) if environment
         end
 
         Rack::Shell.init
