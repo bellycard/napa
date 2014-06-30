@@ -5,7 +5,7 @@ require 'roar/representer/feature/coercion'
 module Napa
   class Representer < Roar::Decorator
     include Roar::Representer::JSON
-    include Representable::Coercion
+    include ::Representable::Coercion
 
     property :object_type, getter: lambda { |*| self.class.name.underscore }
   end
