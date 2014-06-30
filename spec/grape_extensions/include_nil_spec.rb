@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'napa/grape_extensions/include_nil'
+require 'napa/output_formatters/include_nil'
 require 'napa/grape_extensions/grape_helpers'
 require 'pry'
 
