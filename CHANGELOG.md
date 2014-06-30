@@ -9,6 +9,11 @@ master
 * Fixed spec_helper that gets generated to ignore spec files and gems (on CI servers)
 * Added spec response helpers `parsed_response`, `response_code` and `response_body` to make tests easier to DRY up
 * Removed #filter and `include Napa::FilterByHash` from generated code.
+* Fix when using IRB and napa console
+* Added IncludeNil module for Representable/Roar output
+* Template updates to include spec files for APIs
+* Removing FilterByHash in the API template
+* Fix when ErrorFormatter is passed a non-hash
 
 0.2.1
 ===
