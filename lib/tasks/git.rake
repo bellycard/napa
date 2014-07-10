@@ -7,6 +7,9 @@ namespace :git do
 
   desc "Verify git repository is in a good state for deployment"
   task :verify do
+    raise RuntimeError, "ENV['GITHUB_REPO'] is not defined" if github_repo.nil?
+    raise RuntimeError, "ENV['GITHUB_OAUTH_TOKEN'] is not defined" if ENV['GITHUB_OAUTH_TOKEN'].nil?
+
     logger.info "Verifying git repository is in a good state"
 
     # Be sure local HEAD exists on remote
