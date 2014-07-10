@@ -14,6 +14,7 @@ master
 * Template updates to include spec files for APIs
 * Removing FilterByHash in the API template
 * Fix when ErrorFormatter is passed a non-hash
+* Added more descriptive messages on git based deploy errors
 
 0.2.1
 ===
