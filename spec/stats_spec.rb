@@ -6,14 +6,14 @@ describe Napa::Stats do
     # Delete any prevous instantiations of the emitter
     Napa::Stats.emitter = nil
     # Stub out logging since there is no log to output to
-    Napa::Logger.stub_chain(:logger, :warn)
+    allow(Napa::Logger).to receive_message_chain(:logger, :warn)
   end
 
   it 'should log an error if StatsD env variables are not configured' do
     ENV['STATSD_HOST'] = nil
     ENV['STATSD_PORT'] = nil
     message = 'StatsD host and port not configured in environment variables, using default settings'
-    Napa::Logger.logger.should_receive(:warn).with(message)
+    expect(Napa::Logger.logger).to receive(:warn).with(message)
     Napa::Stats.emitter
   end
 

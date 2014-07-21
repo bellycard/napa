@@ -7,8 +7,8 @@ describe Napa::JsonError do
       error = Napa::JsonError.new(:code, 'message').to_json
       parsed = JSON.parse(error)
 
-      parsed['error']['code'].should eq('code')
-      parsed['error']['message'].should eq('message')
+      expect(parsed['error']['code']).to eq('code')
+      expect(parsed['error']['message']).to eq('message')
     end
   end
 end

@@ -10,8 +10,8 @@ describe Napa::Middleware::RequestStats do
   end
 
   it 'should increment api_requests counter' do
-    Napa::Stats.emitter.should_receive(:increment).with('request_count')
-    Napa::Stats.emitter.should_receive(:increment).with('path.get.test.path.request_count')
+    expect(Napa::Stats.emitter).to receive(:increment).with('request_count')
+    expect(Napa::Stats.emitter).to receive(:increment).with('path.get.test.path.request_count')
     app = lambda { |env| [200, { 'Content-Type' => 'application/json' }, Array.new] }
     middleware = Napa::Middleware::RequestStats.new(app)
     env = Rack::MockRequest.env_for('/test/path')
@@ -19,8 +19,8 @@ describe Napa::Middleware::RequestStats do
   end
 
   it 'should send the api_response_time' do
-    Napa::Stats.emitter.should_receive(:timing).with('response_time', an_instance_of(Float))
-    Napa::Stats.emitter.should_receive(:timing).with('path.get.test.path.response_time', an_instance_of(Float))
+    expect(Napa::Stats.emitter).to receive(:timing).with('response_time', an_instance_of(Float))
+    expect(Napa::Stats.emitter).to receive(:timing).with('path.get.test.path.response_time', an_instance_of(Float))
     app = lambda { |env| [200, { 'Content-Type' => 'application/json'}, Array.new] }
     middleware = Napa::Middleware::RequestStats.new(app)
     env = Rack::MockRequest.env_for('/test/path')
