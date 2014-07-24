@@ -30,7 +30,7 @@ describe Napa::Stats do
 
   it 'the namespace of the StatsD client object should equal the service name' do
     ENV['SERVICE_NAME'] = 'my-service'
-    expect(Napa::Stats.emitter.namespace).to eq('my-service')
+    expect(Napa::Stats.emitter.namespace).to eq("my-service.#{ENV['SERVICE_NAME']}")
   end
 
   it 'should use env variables to set statsd host and port' do
@@ -38,5 +38,10 @@ describe Napa::Stats do
     ENV['STATSD_PORT']  = '9000'
     expect(Napa::Stats.emitter.host).to eq('localhost')
     expect(Napa::Stats.emitter.port).to eq('9000')
+  end
+
+  describe '#namespace' do
+    it 'prepends the namespace with the STATSD_API_KEY if present'
+    it 'does not include the STATSD_API_KEY if empty'
   end
 end

@@ -1,4 +1,4 @@
-if defined?(ActiveSupport)
+if defined?(ActiveSupport) && defined?(ActiveRecord)
   module Napa
     module ActiveRecordStats
       SQL_INSERT_DELETE_PARSER_REGEXP = /^(?<action>\w+)\s(\w+)\s\W*(?<table>\w+)/
@@ -31,19 +31,6 @@ if defined?(ActiveSupport)
           table, action =  extract_from_sql_inserts_deletes(query)
         end
         [table, action]
-      end
-
-      ActiveSupport::Notifications.subscribe 'sql.active_record' do |name, start, finish, id, payload|
-        if payload[:sql].match(/(select|update|insert|delete)(.+)/i)
-          table, action = extract_sql_content(payload[:sql])
-        end
-
-        if table
-          stat_context = "#{Thread.current[:stats_context] || Napa::Identity.name + '.unknown'}"
-          Napa::Stats.emitter.timing(
-            "#{stat_context}.sql.#{table}.#{action.downcase}.query_time",
-            (finish - start) * 1000)
-        end
       end
     end
   end
