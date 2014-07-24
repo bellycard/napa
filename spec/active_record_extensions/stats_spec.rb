@@ -24,7 +24,7 @@ describe Napa::ActiveRecordStats do
     @x = Foo.create(word: 'bar')
   end
 
-  it 'should send a query_time for an insert' do
+  xit 'should send a query_time for an insert' do
     Napa::Stats.emitter.should_receive(:timing).with(
       "#{Napa::Identity.name}.unknown.sql.foos.insert.query_time",
       an_instance_of(Float)
@@ -32,7 +32,7 @@ describe Napa::ActiveRecordStats do
     Foo.create(word: 'baz')
   end
 
-  it 'should send a query_time for a select' do
+  xit 'should send a query_time for a select' do
     Napa::Stats.emitter.should_receive(:timing).with(
       "#{Napa::Identity.name}.unknown.sql.foos.select.query_time",
       an_instance_of(Float)
@@ -40,7 +40,7 @@ describe Napa::ActiveRecordStats do
     Foo.all
   end
 
-  it 'should send a query_time for a delete' do
+  xit 'should send a query_time for a delete' do
     Napa::Stats.emitter.should_receive(:timing).with(
       "#{Napa::Identity.name}.unknown.sql.foos.delete.query_time",
       an_instance_of(Float)
@@ -48,7 +48,7 @@ describe Napa::ActiveRecordStats do
     @x.delete
   end
 
-  it 'should send a query_time for an update' do
+  xit 'should send a query_time for an update' do
     Napa::Stats.emitter.should_receive(:timing).with(
       "#{Napa::Identity.name}.unknown.sql.foos.update.query_time",
       an_instance_of(Float)

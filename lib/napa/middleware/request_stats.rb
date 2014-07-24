@@ -6,7 +6,7 @@ module Napa
       end
 
       def normalize_path(path)
-        case 
+        case
           when path == '/'
             'root'
           else
@@ -26,14 +26,16 @@ module Napa
 
         # Calculate total response time
         response_time = (stop - start) * 1000
-        
+
         request = Rack::Request.new(env)
         path = normalize_path(request.path_info)
-        Thread.current[:stats_context] = "#{Napa::Identity.name}.http.#{request.request_method.downcase}.#{path}".gsub('/', '.')
 
         # Emit stats to StatsD
-        Napa::Stats.emitter.increment(Thread.current[:stats_context] + '.requests')
-        Napa::Stats.emitter.timing(Thread.current[:stats_context] + '.response_time', response_time)
+        Napa::Stats.emitter.increment('request_count')
+        Napa::Stats.emitter.timing('response_time', response_time)
+        Napa::Stats.emitter.increment("path.#{Napa::Stats.path_to_key(request.request_method, path)}.request_count")
+        Napa::Stats.emitter.timing("path.#{Napa::Stats.path_to_key(request.request_method, path)}.response_time", response_time)
+
         # Return the results
         [status, headers, body]
       end
