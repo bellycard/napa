@@ -20,6 +20,8 @@ module Napa
     end
 
     # extend all endpoints to include this
-    Grape::Endpoint.send :include, self
+    Grape::Endpoint.send :include, self if defined?(Grape)
+    # rails 4 controller concern
+    extend ActiveSupport::Concern if defined?(Rails)
   end
 end
