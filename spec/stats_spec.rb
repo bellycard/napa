@@ -30,7 +30,7 @@ describe Napa::Stats do
 
   it 'the namespace of the StatsD client object should equal the service name' do
     ENV['SERVICE_NAME'] = 'my-service'
-    expect(Napa::Stats.emitter.namespace).to eq('my-service.development')
+    expect(Napa::Stats.emitter.namespace).to eq("my-service.#{ENV['SERVICE_NAME']}")
   end
 
   it 'should use env variables to set statsd host and port' do
