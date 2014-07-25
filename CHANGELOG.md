@@ -1,5 +1,8 @@
 master
 ===
+
+0.3.0
+===
 * Added `rake db:rollback` to rollback migrations just like Rails
 * Fixed bug in migration generator causing constant not defined errors
 * Fixed CORS config in scaffold generator
@@ -16,6 +19,7 @@ master
 * Fix when ErrorFormatter is passed a non-hash
 * Added more descriptive messages on git based deploy errors
 * Added RequestStats and DatabaseStats middlewares to report data to StatsD
+* All String logs are now wrapped in a hash before being written to the log file
 
 0.2.1
 ===
