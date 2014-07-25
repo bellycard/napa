@@ -15,6 +15,7 @@ master
 * Removing FilterByHash in the API template
 * Fix when ErrorFormatter is passed a non-hash
 * Added more descriptive messages on git based deploy errors
+* Added RequestStats and DatabaseStats middlewares to report data to StatsD
 
 0.2.1
 ===

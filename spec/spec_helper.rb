@@ -1,5 +1,7 @@
 require 'napa'
 
+ENV['RACK_ENV'] = 'test'
+
 # from https://gist.github.com/adamstegman/926858
 RSpec.configure do |config|
   config.before(:all) { silence_output }
