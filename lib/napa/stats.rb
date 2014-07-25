@@ -30,7 +30,13 @@ module Napa
       end
 
       def path_to_key(method, path)
-        "#{method}.#{path.split(/\//).collect{|p| p.gsub(/\d+/,'_')}.join('.')}".downcase
+        # split the path on forward slash
+        # remove any elements that are empty
+        # replace any number strings with _
+        # join all parts with a .
+        # prepend with the method
+        # downcase the whole thing
+        "#{method}.#{path.split(/\//).reject{|p| p.empty?}.collect{|p| p.gsub(/\d+/,'_')}.join('.')}".downcase
       end
     end
   end
