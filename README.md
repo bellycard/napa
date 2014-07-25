@@ -94,7 +94,7 @@ The Health Check middleware will add an endpoint at `/health` that will return s
 ```
 
 ### Logger
-The *Logger* modules is used to create a common log format across applications. The Logger is enable via a rack middleware by adding the line below to your `config.ru` file:
+The *Logger* module is used to create a common log format across applications. The Logger is enable via a rack middleware by adding the line below to your `config.ru` file:
 
 ```ruby
 use Napa::Middleware::Logger
@@ -110,6 +110,29 @@ ActiveRecord::Base.logger = Napa::Logger.logger
 
 ```ruby
 Napa::Logger.logger.debug 'Some Debug Message'
+```
+### StatsD
+There are two middlewares available to enable StatsD reporting, `RequestStats` and `DatabaseStats`. They can be enabled independently in your `config.ru` file:
+
+```
+use Napa::Middleware::RequestStats
+use Napa::Middleware::DatabaseStats
+```
+
+**RequestStats** will emit information about your application's request count and response time.
+
+**DatabaseStats** will emit information from ActiveRecord about query times.
+
+##### Configuration
+
+To configure StatsD in your application you will need to supply the `STATSD_HOST` and `STATSD_PORT` in your environment. Optionally, if your StatsD host requires an api token (i.e. hostedgraphite), you can configure that with the `STATSD_API_KEY` environment variable.
+
+##### Logging
+
+If you want to see the StatsD reporting in action you can hook up the logger to the Napa logger to see the requests in your logs.
+
+```
+Statsd.logger = Napa::Logger.logger
 ```
 
 ## Bugs & Feature Requests
