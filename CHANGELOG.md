@@ -15,6 +15,7 @@ master
 * Removing FilterByHash in the API template
 * Fix when ErrorFormatter is passed a non-hash
 * Added more descriptive messages on git based deploy errors
+* All String logs are now wrapped in a hash before being written to the log file
 
 0.2.1
 ===
