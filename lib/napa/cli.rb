@@ -18,6 +18,13 @@ module Napa
         'migration <migration_name>',
         'Create a Database Migration'
       )
+
+      register(
+        Generators::ReadmeGenerator,
+        'readme',
+        'readme',
+        'Create a formatted README'
+      )
     end
   end
 
