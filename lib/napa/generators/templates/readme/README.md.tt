@@ -22,11 +22,11 @@ Tell us about the __mechanics__ or__logic__ driving the service. Diagrams and pi
 
 ### Endpoints
 
-```
-<%= routes >
-```
-
 Sounds like the end of the road for you, you :poop:
+
+Try typing `rake routes` into your console, and then dump (:poop:) that here.
+
+If those endpoints need to be explained in more detail, do that as well.
 
 ### Development
 

@@ -1,5 +1,8 @@
 require 'thor'
 require 'active_support/all'
+require 'napa/identity'
+require 'dotenv'
+Dotenv.load
 
 module Napa
   module Generators
