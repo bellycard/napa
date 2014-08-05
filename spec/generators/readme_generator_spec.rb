@@ -28,7 +28,7 @@ describe Napa::Generators::ReadmeGenerator do
       expected_spec_file = File.join(test_readme_directory, 'spec/docs/readme_spec.rb')
       spec_code = File.read(expected_spec_file)
 
-      expect(spec_code).to match(/describe Readme/)
+      expect(spec_code).to match(/describe \'README\'/)
     end
   end
 
