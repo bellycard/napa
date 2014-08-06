@@ -7,7 +7,7 @@ describe Napa::Generators::ApiGenerator do
   let(:test_api_directory) { 'spec/tmp' }
 
   before do
-    described_class.any_instance.stub(:output_directory) { test_api_directory }
+    allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_api_directory)
     Napa::CLI::Base.new.generate("api", api_name)
   end
 

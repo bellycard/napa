@@ -8,7 +8,7 @@ describe Napa::Generators::MigrationGenerator do
   let(:test_migrations_directory) { 'spec/tmp' }
 
   before do
-    described_class.any_instance.stub(:output_directory) { test_migrations_directory }
+    allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_migrations_directory)
   end
 
   after do
@@ -16,7 +16,7 @@ describe Napa::Generators::MigrationGenerator do
   end
 
   it 'creates a camelized migration class' do
-    described_class.any_instance.stub(:migration_filename) { 'foo' }
+    allow_any_instance_of(described_class).to receive(:migration_filename).and_return('foo')
     Napa::CLI::Base.new.generate("migration", migration_name)
     expected_migration_file = File.join(test_migrations_directory, 'foo.rb')
     migration_code = File.read(expected_migration_file)

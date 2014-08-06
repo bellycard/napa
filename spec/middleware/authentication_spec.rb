@@ -14,7 +14,7 @@ describe Napa::Identity do
       env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'foo'})
       status, headers, body = middleware.call(env)
 
-      status.should be(200)
+      expect(status).to eq(200)
     end
   end
 
@@ -25,8 +25,8 @@ describe Napa::Identity do
       env = Rack::MockRequest.env_for('/test')
       status, headers, body = middleware.call(env)
 
-      status.should be(401)
-      body.should eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
+      expect(status).to eq(401)
+      expect(body).to eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
     end
 
     it 'returns an error message if an incorrect Password header is supplied' do
@@ -35,8 +35,8 @@ describe Napa::Identity do
       env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect'})
       status, headers, body = middleware.call(env)
 
-      status.should be(401)
-      body.should eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
+      expect(status).to eq(401)
+      expect(body).to eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
     end
 
     it 'returns an error message if HEADER_PASSWORDS is not configured' do
@@ -47,8 +47,8 @@ describe Napa::Identity do
       env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect'})
       status, headers, body = middleware.call(env)
 
-      status.should be(401)
-      body.should eq([Napa::JsonError.new('not_configured', 'password not configured').to_json])
+      expect(status).to eq(401)
+      expect(body).to eq([Napa::JsonError.new('not_configured', 'password not configured').to_json])
     end
   end
 end
