@@ -1,5 +1,6 @@
 master
 ===
+* Added `Napa.cache` to wrap `ActiveSupport::Cache`
 
 0.3.0
 ===

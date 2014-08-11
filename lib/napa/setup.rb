@@ -12,5 +12,13 @@ module Napa
     def env=(environment)
       @_env = ActiveSupport::StringInquirer.new(environment)
     end
+
+    def cache
+      @_cache ||= ActiveSupport::Cache.lookup_store(:memory_store)
+    end
+
+    def cache=(store_option)
+      @_cache = ActiveSupport::Cache.lookup_store(store_option)
+    end
   end
 end
