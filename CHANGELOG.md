@@ -1,5 +1,6 @@
 master
 ===
+* Fixed a bug with Napa::StatsDTimer where time was being reported in seconds, not milliseconds
 
 0.3.0
 ===
