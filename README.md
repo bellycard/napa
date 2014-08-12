@@ -135,6 +135,23 @@ If you want to see the StatsD reporting in action you can hook up the logger to 
 Statsd.logger = Napa::Logger.logger
 ```
 
+### Caching
+
+Napa adds a simple wrapper around `ActiveSupport::Cache` that allows you to easily access it similar to how it works in Rails. `Napa.cache` will give you access to all of the methods available in `ActiveSupport::Cache::Store` [http://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html](). So, for example:
+
+```
+Napa.cache.read
+Napa.cache.write
+Napa.cache.fetch
+...
+```
+
+By default it will use `:memory_store`, but you can override it to use any other caching strategy, like Memcache by setting the store:
+
+```
+Napa.cache = :dalli_store
+```
+
 ## Bugs & Feature Requests
 Please add an issue in [Github](https://github.com/bellycard/napa/issues) if you discover a bug or have a feature request.
 
