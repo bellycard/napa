@@ -1,6 +1,7 @@
 master
 ===
 * Added `Napa.cache` to wrap `ActiveSupport::Cache`
+* Added README generator
 
 0.3.0
 ===
