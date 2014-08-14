@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe 'README' do
   it 'has been filled out' do
-    readme = File.read('README.md')
-
-    expect(readme).not_to match(/:poop:/)
+    pending 'Please fill out the sections that have a :bow:'
   end
 end
