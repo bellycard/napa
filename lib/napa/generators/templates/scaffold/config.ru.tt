@@ -10,7 +10,7 @@ require './app'
 #   end
 # end
 #
-# use Honeybadger::Rack
+# use Honeybadger::Rack::ErrorNotifier
 # use Napa::Middleware::Logger
 
 use Napa::Middleware::AppMonitor
