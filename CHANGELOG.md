@@ -2,6 +2,7 @@ master
 ===
 * Added `Napa.cache` to wrap `ActiveSupport::Cache`
 * Added README generator
+* Update the HoneyBadger scaffolding
 
 0.3.0
 ===
