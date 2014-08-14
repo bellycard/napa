@@ -38,6 +38,7 @@ Commands:
   napa console                              # Start the Napa console
   napa generate api <api_name>              # Create a Grape API, Model and Representer, api_name should be singular i.e. user
   napa generate migration <migration_name>  # Create a Database Migration
+  napa generate readme                      # Create a formatted README
   napa help [COMMAND]                       # Describe available commands or one specific command
   napa new <app_name> [app_path]            # Create a scaffold for a new Napa service
   napa version                              # Shows the Napa version number
@@ -133,6 +134,23 @@ If you want to see the StatsD reporting in action you can hook up the logger to 
 
 ```
 Statsd.logger = Napa::Logger.logger
+```
+
+### Caching
+
+Napa adds a simple wrapper around `ActiveSupport::Cache` that allows you to easily access it similar to how it works in Rails. `Napa.cache` will give you access to all of the methods available in `ActiveSupport::Cache::Store` [http://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html](). So, for example:
+
+```
+Napa.cache.read
+Napa.cache.write
+Napa.cache.fetch
+...
+```
+
+By default it will use `:memory_store`, but you can override it to use any other caching strategy, like Memcache by setting the store:
+
+```
+Napa.cache = :dalli_store
 ```
 
 ## Bugs & Feature Requests

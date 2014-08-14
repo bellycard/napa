@@ -73,7 +73,7 @@ rspec spec
 
 Now that we have our service scaffolded up, let's generate an API.
 
-Napa include an API generator which will create a Grape API, Model and Representer by running:
+Napa includes an API generator which will create a Grape API, Model and Representer by running:
 
 ```
 napa generate api person
@@ -283,6 +283,32 @@ curl -X PUT -d job_title="Doctor Pepper" http://localhost:9393/people/1
   }
 }
 ```
+
+## README Generator
+
+Now that you have an API service, time to document it!
+
+```
+napa generate readme
+```
+
+**Note:** Napa will have generated a README already, so you'll most likely see the conflict below
+
+You will see the following output:
+
+```
+Generating readme...
+       exist
+    conflict  README.md
+Overwrite /Users/main/workspace/napa/README.md? (enter "h" for help) [Ynaqdh] y
+       force  README.md
+      create  spec/docs/readme_spec.rb
+Done!
+```
+
+Go through the formatted README and fill out all of the sections that have a :bow:
+
+- - -
 
 So, there you have it, a new API service in minutes. It's very basic, but you can continue to build it out from here. One thing to note, we don't generate a `DELETE` request from the generator, but you can easily add that. The resources section below will link you to the Grape docs where you can find those instructions.
 
