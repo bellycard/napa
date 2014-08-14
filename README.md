@@ -38,6 +38,7 @@ Commands:
   napa console                              # Start the Napa console
   napa generate api <api_name>              # Create a Grape API, Model and Representer, api_name should be singular i.e. user
   napa generate migration <migration_name>  # Create a Database Migration
+  napa generate readme                      # Create a formatted README
   napa help [COMMAND]                       # Describe available commands or one specific command
   napa new <app_name> [app_path]            # Create a scaffold for a new Napa service
   napa version                              # Shows the Napa version number
