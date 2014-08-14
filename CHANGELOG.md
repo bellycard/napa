@@ -4,6 +4,7 @@ master
 * Added README generator
 * Update the HoneyBadger scaffolding
 * Fixed a bug with Napa::StatsDTimer where time was being reported in seconds, not milliseconds
+* Removed additional StatsD counter metric for request stats middleware
 
 0.3.0
 ===
