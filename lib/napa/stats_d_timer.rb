@@ -3,7 +3,7 @@ module Napa
     def report_time(timer_name)
       start_time = Time.now
       yield
-      response_time = Time.now - start_time
+      response_time = (Time.now - start_time) * 1000 # statsd reports timers in milliseconds
       Napa::Stats.emitter.timing(timer_name, response_time)
     end
 

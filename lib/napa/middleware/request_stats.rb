@@ -31,9 +31,7 @@ module Napa
         path = normalize_path(request.path_info)
 
         # Emit stats to StatsD
-        Napa::Stats.emitter.increment('request_count')
         Napa::Stats.emitter.timing('response_time', response_time)
-        Napa::Stats.emitter.increment("path.#{Napa::Stats.path_to_key(request.request_method, path)}.request_count")
         Napa::Stats.emitter.timing("path.#{Napa::Stats.path_to_key(request.request_method, path)}.response_time", response_time)
 
         # Return the results
