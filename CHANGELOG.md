@@ -5,6 +5,9 @@ master
 * Update the HoneyBadger scaffolding
 * Fixed a bug with Napa::StatsDTimer where time was being reported in seconds, not milliseconds
 * Removed additional StatsD counter metric for request stats middleware
+* Added new deploy CLI with `force` and `revision` options `napa deploy production`
+* Added deprecation warnings
+* Added initialization hook to run code when a Napa service boots
 
 0.3.0
 ===
