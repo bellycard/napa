@@ -32,6 +32,11 @@ require 'napa/middleware/request_stats'
 require 'napa/middleware/database_stats'
 require 'napa/authentication'
 
+require 'napa/deprecations'
+require 'napa/deploy'
+require 'napa/gem_dependency'
+require 'napa/initializer'
+
 # load rake tasks if Rake installed
 if defined?(Rake)
   load 'tasks/git.rake'
