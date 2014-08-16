@@ -9,7 +9,7 @@ module Napa
       /Dotenv.load\(Napa.env.test\? \? '.env.test' : '.env'\)/,
       /Dir['.\/config\/initializers\/**\/*.rb'].map { |file| require file }/,
       /Dir['.\/config\/middleware\/**\/*.rb'].map { |file| require file }/,
-      /relative_load_paths = %w\(app\/apis app\/entities app\/models app\/workers app\/representers lib\)/,
+      /relative_load_paths/,
       /ActiveSupport::Dependencies.autoload_paths \+\= relative_load_paths/
     ]
 
