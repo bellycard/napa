@@ -1,4 +1,13 @@
 require 'napa/deprecations/active_support_behavior'
-require 'napa/deprecations/entity'
-require 'napa/deprecations/filter_by_hash'
+require 'napa/deprecations/application_api'
 require 'napa/deprecations/napa_setup'
+
+
+module Napa
+  class Deprecations
+    def self.initialization_checks
+      napa_setup_check
+      application_api_check
+    end
+  end
+end

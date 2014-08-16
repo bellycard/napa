@@ -5,6 +5,14 @@ require 'active_support'
 
 module Napa
   class << self
+    def skip_initialization
+      @_skip_initialization || false
+    end
+
+    def skip_initialization=(value)
+      @_skip_initialization = value if [TrueClass, FalseClass].include?(value.class)
+    end
+
     def env
       @_env ||= ActiveSupport::StringInquirer.new(ENV['RACK_ENV'] || 'development')
     end

@@ -44,3 +44,16 @@ if defined?(Rake)
   load 'tasks/routes.rake'
   load 'tasks/db.rake'
 end
+
+module Napa
+  class << self
+    def initialize
+      unless Napa.skip_initialization
+        Napa::Logger.logger.info Napa::GemDependency.log_all if Napa.env.production?
+        Napa::Deprecations.initialization_checks
+      end
+    end
+  end
+end
+
+Napa.initialize
