@@ -35,7 +35,6 @@ require 'napa/authentication'
 require 'napa/deprecations'
 require 'napa/deploy'
 require 'napa/gem_dependency'
-require 'napa/initializer'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
