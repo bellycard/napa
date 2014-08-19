@@ -5,8 +5,10 @@ module Napa
   module Generators
     class MigrationGenerator < Thor::Group
       include Thor::Actions
+      # largely ported over, with a few differences, from
+      # https://github.com/rails/rails/blob/76883f92374c6395f13c16628e1d87d40b6d2399/activerecord/lib/rails/generators/active_record/migration/migration_generator.rb
       argument :migration_name
-      argument :attributes, type: :array, default: [], banner: 'field[:type][:index] field[:type][:index]'
+      argument :attributes, type: :array, default: []
 
       attr_reader :migration_action, :join_tables, :table_name
 
@@ -62,8 +64,15 @@ module Napa
         directory '.', output_directory
         say 'Done!', :green
       end
+
+      private
+        def attributes_with_index
+          attributes.select { |a| !a.reference? && a.has_index? }
+        end
     end
 
+    # directly ported from
+    # https://github.com/rails/rails/blob/76883f92374c6395f13c16628e1d87d40b6d2399/railties/lib/rails/generators/generated_attribute.rb
     class GeneratedAttribute # :nodoc:
       INDEX_OPTIONS = %w(index uniq)
       UNIQ_INDEX_OPTIONS = %w(uniq)
