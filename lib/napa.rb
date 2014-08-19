@@ -32,10 +32,26 @@ require 'napa/middleware/request_stats'
 require 'napa/middleware/database_stats'
 require 'napa/authentication'
 
+require 'napa/deprecations'
+require 'napa/deploy'
+require 'napa/gem_dependency'
+
 # load rake tasks if Rake installed
 if defined?(Rake)
-  load 'tasks/git.rake'
   load 'tasks/deploy.rake'
   load 'tasks/routes.rake'
   load 'tasks/db.rake'
 end
+
+module Napa
+  class << self
+    def initialize
+      unless Napa.skip_initialization
+        Napa::Logger.logger.info Napa::GemDependency.log_all if Napa.env.production?
+        Napa::Deprecations.initialization_checks
+      end
+    end
+  end
+end
+
+Napa.initialize

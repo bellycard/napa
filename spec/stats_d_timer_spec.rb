@@ -10,7 +10,7 @@ describe Napa::StatsDTimer do
     # Delete any prevous instantiations of the emitter
     Napa::Stats.emitter = nil
     # Stub out logging since there is no log to output to
-    Napa::Logger.stub_chain(:logger, :warn)
+    allow(Napa::Logger).to receive_message_chain(:logger, :warn)
   end
 
   it 'logs a timing event based on how long the block takes' do

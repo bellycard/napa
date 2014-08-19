@@ -1,11 +1,20 @@
-require 'napa'
-
 ENV['RACK_ENV'] = 'test'
+
+require 'napa/setup'
+
+Napa.skip_initialization = true
+
+require 'napa'
 
 # from https://gist.github.com/adamstegman/926858
 RSpec.configure do |config|
   config.before(:all) { silence_output }
   config.after(:all) { enable_output }
+
+  config.before(:each) do
+    allow(Napa).to receive(:initialize)
+    allow(Napa::Logger).to receive_message_chain('logger.info').with(:napa_deprecation_warning)
+  end
 end
 
 # Redirects stderr and stdout to /dev/null.
