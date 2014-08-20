@@ -1,13 +1,17 @@
 require 'thor'
 require 'active_support/all'
 require 'napa/identity'
+require 'napa/setup'
 require 'dotenv'
-Dotenv.load
 
 module Napa
   module Generators
     class ReadmeGenerator < Thor::Group
       include Thor::Actions
+
+      def load_environment
+        Dotenv.load(Napa.env.test? ? '.env.test' : '.env')
+      end
 
       def service_name
         Napa::Identity.name
