@@ -5,6 +5,10 @@ require 'active_support'
 
 module Napa
   class << self
+    def load_environment
+      Dotenv.load(Napa.env.test? ? '.env.test' : '.env')
+    end
+
     def skip_initialization
       @_skip_initialization || false
     end

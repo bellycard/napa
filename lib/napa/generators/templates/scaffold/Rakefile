@@ -1,6 +1,6 @@
 #!/usr/bin/env rake
 require 'dotenv'
-Dotenv.load(ENV['RACK_ENV'] == 'test' ? '.env.test' : '.env')
+Napa.load_environment
 
 require './app'
 require 'json'

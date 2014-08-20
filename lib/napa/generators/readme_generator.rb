@@ -10,7 +10,7 @@ module Napa
       include Thor::Actions
 
       def load_environment
-        Dotenv.load(Napa.env.test? ? '.env.test' : '.env')
+        Napa.load_environment
       end
 
       def service_name

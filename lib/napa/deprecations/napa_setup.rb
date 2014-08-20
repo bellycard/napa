@@ -6,7 +6,7 @@ module Napa
       /require 'napa\/setup'/,
       /Bundler.require\(:default, Napa.env.to_sym\)/,
       /require 'napa'/,
-      /Dotenv.load\(Napa.env.test\? \? '.env.test' : '.env'\)/,
+      /Napa.load_environment/,
       /Dir['.\/config\/initializers\/**\/*.rb'].map { |file| require file }/,
       /Dir['.\/config\/middleware\/**\/*.rb'].map { |file| require file }/,
       /relative_load_paths/,
@@ -18,6 +18,7 @@ module Napa
       "RACK_ENV = ENV['RACK_ENV']",
       "if RACK_ENV == 'test'",
       /Dotenv.load\(".env.test"\)/,
+      /Dotenv.load\(Napa.env.test\? \? '.env.test' : '.env'\)/,
       /Bundler.require :default, RACK_ENV/,
       /require 'will_paginate'/,
       /require 'will_paginate\/active_record'/
