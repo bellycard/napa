@@ -42,15 +42,7 @@ module Napa
             @migration_action = 'join'
             @join_tables      = attributes.map(&:plural_name)
 
-            attributes.each_with_index do |attr, i|
-              attr.index_name = [attr, attributes[i - 1]].map do |a|
-                if attribute.foreign_key?
-                  attribute.name
-                else
-                  attribute.name.singularize.foreign_key
-                end.to_sym
-              end
-            end
+            set_index_names
           end
         when /^create_(.+)/
           @table_name = $1.pluralize
@@ -68,6 +60,20 @@ module Napa
       private
         def attributes_with_index
           attributes.select { |a| !a.reference? && a.has_index? }
+        end
+
+        def set_index_names
+          attributes.each_with_index do |attr, i|
+            attr.index_name = [attr, attributes[i - 1]].map{ |a| index_name_for(a) }
+          end
+        end
+
+        def index_name_for(attribute)
+          if attribute.foreign_key?
+            attribute.name
+          else
+            attribute.name.singularize.foreign_key
+          end.to_sym
         end
     end
 
