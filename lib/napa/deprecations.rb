@@ -1,7 +1,7 @@
 require 'napa/deprecations/active_support_behavior'
 require 'napa/deprecations/application_api'
 require 'napa/deprecations/napa_setup'
-
+require 'napa/deprecations/grape_entity'
 
 module Napa
   class Deprecations
