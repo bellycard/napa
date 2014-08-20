@@ -16,7 +16,7 @@ module Napa
       register(
         Generators::MigrationGenerator,
         'migration',
-        'migration <migration_name>',
+        'migration <migration_name> [field[:type][:index] field[:type][:index]]',
         'Create a Database Migration'
       )
 
@@ -84,7 +84,7 @@ module Napa
       desc "generate api <api_name>", "Create a Grape API, Model and Representer"
       subcommand "generate api", Napa::CLI::Generate
 
-      desc "generate migration <migration_name>", "Create a Database Migration"
+      desc "generate migration <migration_name> [field[:type][:index] field[:type][:index]]", "Create a Database Migration"
       subcommand "generate", Napa::CLI::Generate
 
       desc "generate readme", "Create a formatted README"

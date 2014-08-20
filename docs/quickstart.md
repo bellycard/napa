@@ -96,7 +96,7 @@ Done!
 From the output above, we can see that the generated create a `Person` model, so we should create a migration to actually build the table for that in our database. So, let's run:
 
 ```
-napa generate migration CreatePerson
+napa generate migration CreatePerson name job_title email 
 ```
 
 You will see the following output:
@@ -108,7 +108,7 @@ Generating migration...
 Done!
 ```
 
-Open up that migration file and add the migration to create the `people` table:
+Open up that migration file and see the generated migration for the `people` table:
 
 ```ruby
 class CreatePerson < ActiveRecord::Migration
