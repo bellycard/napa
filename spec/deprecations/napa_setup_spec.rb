@@ -12,7 +12,7 @@ describe Napa::Deprecations do
       "require 'napa/setup'",
       "Bundler.require(:default, Napa.env.to_sym)",
       "require 'napa'",
-      "Dotenv.load(Napa.env.test? ? '.env.test' : '.env')",
+      "Napa.load_environment",
       "Dir['./config/initializers/**/*.rb'].map { |file| require file }",
       "Dir['./config/middleware/**/*.rb'].map { |file| require file }",
       "relative_load_paths = %w(app/apis app/entities app/models app/workers app/representers lib)",

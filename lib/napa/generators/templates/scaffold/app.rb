@@ -6,7 +6,7 @@ Bundler.require(:default, Napa.env.to_sym)
 require 'napa'
 
 # load environment
-Dotenv.load(Napa.env.test? ? '.env.test' : '.env')
+Napa.load_environment
 
 # autoload initalizers
 Dir['./config/initializers/**/*.rb'].map { |file| require file }
