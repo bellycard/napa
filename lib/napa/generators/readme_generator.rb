@@ -9,6 +9,10 @@ module Napa
     class ReadmeGenerator < Thor::Group
       include Thor::Actions
 
+      def load_environment
+        Napa.load_environment
+      end
+
       def service_name
         Napa::Identity.name
       end
