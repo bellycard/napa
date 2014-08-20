@@ -1,5 +1,6 @@
 require 'thor'
 require 'napa/generators'
+require 'napa/deploy'
 require 'napa/version'
 
 module Napa
