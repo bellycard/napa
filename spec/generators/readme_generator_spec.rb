@@ -6,7 +6,7 @@ describe Napa::Generators::ReadmeGenerator do
   let(:test_readme_directory) { 'spec/tmp' }
 
   before do
-    described_class.any_instance.stub(:output_directory) { test_readme_directory }
+    allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_readme_directory)
     Napa::CLI::Base.new.generate("readme")
   end
 

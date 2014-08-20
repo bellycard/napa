@@ -1,3 +1,5 @@
+require 'active_support/json'
+
 module Napa
   class GemDependency
     def self.log_all
