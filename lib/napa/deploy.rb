@@ -1,3 +1,6 @@
+require 'git'
+require 'octokit'
+
 module Napa
   class Deploy
     attr_reader :errors, :github_login
