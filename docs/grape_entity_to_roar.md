@@ -49,7 +49,35 @@ class FooRepresenter < Napa::Representer
 end
 ```
 
+Check out the options on Representers if there are other cases:
+
+https://github.com/apotonick/representable#available-options
+
 ### Some Gotchas
+
+In your `Grape::API`, you'll something like this for Entities:
+
+```
+desc 'whatever', entity: FooEntity
+get do
+  # code code
+  present foo, with: FooEntity
+end
+```
+
+Do this instead:
+
+```
+desc 'whatever'
+get do
+  # code code
+  represent foo, with: FooRepresenter
+end
+```
+
+Change `present` to `represent`
+
+---
 
 `Napa::Entity` defines the following convenience methods
 
@@ -64,30 +92,6 @@ end
 ```
 
 These may be defined inline for your Entities if they're not using Napa::Entity
-
----
-
-In your `Grape::API`, you'll something like this for Entities:
-
-```
-desc 'whatever', entity: FooEntity
-get do
-  # code code
-  **present** foo, with: FooEntity
-end
-```
-
-Do this instead:
-
-```
-desc 'whatever'
-get do
-  # code code
-  **represent** foo, with: FooRepresenter
-end
-```
-
-Change `present` to `__re__present`
 
 ---
 
