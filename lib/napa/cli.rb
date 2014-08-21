@@ -3,6 +3,8 @@ require 'napa/generators'
 require 'napa/deploy'
 require 'napa/version'
 
+Napa.load_environment if defined?(Dotenv)
+
 module Napa
   class CLI
     class Generate < Thor

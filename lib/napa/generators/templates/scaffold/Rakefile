@@ -1,4 +1,5 @@
 #!/usr/bin/env rake
+require 'napa/setup'
 require 'dotenv'
 Napa.load_environment
 

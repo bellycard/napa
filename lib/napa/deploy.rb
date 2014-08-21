@@ -6,6 +6,8 @@ module Napa
     attr_reader :errors, :github_login
 
     def initialize(environment, revision: nil, force: false, github_repo: nil, github_token: nil)
+      Napa.load_environment
+
       @github_repo  = github_repo || ENV['GITHUB_REPO']
       @github_token = github_token || ENV['GITHUB_OAUTH_TOKEN']
       @environment  = environment
