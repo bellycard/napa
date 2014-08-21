@@ -8,6 +8,7 @@ master
 * Added new deploy CLI with `force` and `revision` options `napa deploy production`
 * Added deprecation warnings
 * Added initialization hook to run code when a Napa service boots
+* Added Migration generators from Rails
 
 0.3.0
 ===
