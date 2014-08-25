@@ -14,6 +14,8 @@ class FooEntity < Napa::Entity
           :other_attr
 
   expose :weird_name, as: sane_name
+  
+  expose :attr_items
 
   expose :id, format_with: to_s, documentation:
     {type: 'String', description: 'ID'}
@@ -34,6 +36,8 @@ class FooRepresenter < Napa::Representer
   property :other_attr
   
   property :weird_name, as: sane_name
+  
+  collection :attr_items
 
   property :id, type: String
 
