@@ -31,7 +31,8 @@ module Napa
         github_client.update_ref(
           @github_repo,
           "tags/#{@environment}",
-          @revision
+          @revision,
+          @force
         )
       rescue Octokit::UnprocessableEntity
         github_client.create_ref(
