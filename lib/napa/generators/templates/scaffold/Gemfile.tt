@@ -3,7 +3,7 @@ ruby "2.0.0"
 
 gem 'rack-cors'
 gem '<%= @database_gem %>'
-gem 'activerecord', '~> 4.0.0', :require => 'active_record'
+gem 'activerecord', '~> 4.1.0', :require => 'active_record'
 gem 'honeybadger'
 gem 'json'
 gem 'napa'
