@@ -20,7 +20,7 @@ module Napa
     def deploy!
       if deployable?
         set_github_tag
-        "#{@revision} tagged as #{@environment} by #{@github_login}"
+        "#{@revision} tagged as #{@environment} by #{@github_login} at #{Time.now.to_s(:long)}"
       else
         "Deploy error(s): #{@errors.join(' --- ')}"
       end
