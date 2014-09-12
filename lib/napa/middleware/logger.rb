@@ -7,7 +7,7 @@ module Napa
 
       def call(env)
         # log the request
-        Napa::Logger.logger.debug format_request(env)
+        Napa::Logger.logger.info format_request(env)
 
         # process the request
         status, headers, body = @app.call(env)
