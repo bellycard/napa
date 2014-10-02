@@ -2,10 +2,7 @@ require 'active_record'
 require 'spec_helper'
 require 'napa/active_record_extensions/seeder'
 
-
 describe Napa::ActiveRecordSeeder do
-  before do
-  end
 
   context 'when a valid file is not provided' do
     it 'raises an exception' do
