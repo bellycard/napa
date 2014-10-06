@@ -63,6 +63,7 @@ rake db:migrate         # Migrate the database through scripts in db/migrate
 rake db:reset           # Create the test database
 rake db:schema:dump     # Create a db/schema.rb file that can be portably used against any DB supported by AR
 rake db:schema:load     # Load a schema.rb file into the database
+rake db:seed            # Load the seed data from db/seeds.rb
 rake deploy:production  # Deploy to production
 rake deploy:staging     # Deploy to staging
 rake git:set_tag[tag]   # Set tag, which triggers deploy

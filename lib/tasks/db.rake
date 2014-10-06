@@ -72,5 +72,12 @@ unless defined?(Rails)
         load(file)
       end
     end
+
+    desc 'Load the seed data from db/seeds.rb'
+    task :seed => :environment do
+      ActiveRecord::Tasks::DatabaseTasks.seed_loader = Napa::ActiveRecordSeeder.new './db/seeds.rb'
+      ActiveRecord::Tasks::DatabaseTasks.load_seed
+    end
+
   end
 end

@@ -9,6 +9,7 @@ master
 * Added deprecation warnings
 * Added initialization hook to run code when a Napa service boots
 * Added Migration generators from Rails
+* Added rake db:seed functionality
 
 0.3.0
 ===
