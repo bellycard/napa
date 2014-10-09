@@ -39,6 +39,7 @@ Commands:
   napa generate api <api_name>                                                          # Create a Grape API, Model and Representer
   napa generate migration <migration_name> [field[:type][:index] field[:type][:index]]  # Create a Database Migration
   napa generate readme                                                                  # Create a formatted README
+  napa deploy <environment>                                                             # Deploy to <environment> by setting a git tag
   napa help [COMMAND]                                                                   # Describe available commands or one specific command
   napa new <app_name> [app_path]                                                        # Create a scaffold for a new Napa service
   napa version                                                                          # Shows the Napa version number
@@ -50,6 +51,21 @@ Similar to the Rails console, load an IRB sesson with your applications environm
 
 ```
 napa console
+```
+
+### Deploy
+Napa provides a CLI for deploying to a given environment by setting a git tag. This is useful for chef-based deploys where deploys are trigged when a git SHA changes.
+
+```sh
+napa deploy production
+Are you sure you want to deploy this service? Y
+#=> <git SHA> tagged as production by danielmackey at October 09, 2014 14:41
+```
+
+If you want to skip the 'Are you sure?' prompt, pass the `--confirm` flag to set the tag automatically
+```sh
+napa deploy production --confirm
+#=> <git SHA> tagged as production by danielmackey at October 09, 2014 14:41
 ```
 
 ### Rake Tasks
@@ -64,8 +80,6 @@ rake db:reset           # Create the test database
 rake db:schema:dump     # Create a db/schema.rb file that can be portably used against any DB supported by AR
 rake db:schema:load     # Load a schema.rb file into the database
 rake db:seed            # Load the seed data from db/seeds.rb
-rake deploy:production  # Deploy to production
-rake deploy:staging     # Deploy to staging
 rake git:set_tag[tag]   # Set tag, which triggers deploy
 rake git:verify         # Verify git repository is in a good state for deployment
 rake routes             # display all routes for Grape
