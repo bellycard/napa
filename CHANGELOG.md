@@ -10,6 +10,7 @@ master
 * Added initialization hook to run code when a Napa service boots
 * Added Migration generators from Rails
 * Added rake db:seed functionality
+* Added some convinience methods to spec_helper
 
 0.3.0
 ===
