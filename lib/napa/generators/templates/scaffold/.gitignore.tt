@@ -4,6 +4,7 @@
 .rspec
 .env
 !.env.test
+!log/.keep
 log/*
 tmp/*
 coverage
