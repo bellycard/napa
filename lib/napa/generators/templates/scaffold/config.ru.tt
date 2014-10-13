@@ -14,7 +14,8 @@ require './app'
 # use Napa::Middleware::Logger
 
 use Napa::Middleware::AppMonitor
-use Napa::Middleware::Authentication
+# Uncomment to require header passwords for all requestss
+# use Napa::Middleware::Authentication
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
 run ApplicationApi
