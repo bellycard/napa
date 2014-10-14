@@ -10,8 +10,8 @@ module Napa
       end
     end
 
-    def present_error(code, message = '')
-      Napa::JsonError.new(code, message)
+    def present_error(code, message = '', additional={})
+      Napa::JsonError.new(code, message, additional)
     end
 
     def permitted_params(options = {})

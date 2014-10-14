@@ -11,7 +11,7 @@ module Napa
           rack_response(err.to_json, 404)
         end
         modified_class.rescue_from ::ActiveRecord::RecordInvalid do |e|
-          err = Napa::JsonError.new(:unprocessable_entity, e.message)
+          err = Napa::JsonError.new(:unprocessable_entity, e.message, e.record.errors.messages)
           Napa::Logger.logger.debug Napa::Logger.response(422, {}, err)
           rack_response(err.to_json, 422)
         end
