@@ -49,8 +49,8 @@ describe Napa::Generators::ScaffoldGenerator do
     end
 
     it 'selects mysql as the default database adapter' do
-      database_config_file = File.read("#{app_path}/.env")
-      expect(database_config_file).to match(/DATABASE_URL=mysql2/)
+      database_config_file = File.read("#{app_path}/config/database.yml")
+      expect(database_config_file).to match(/adapter: mysql2/)
     end
 
     it 'adds the mysql2 gem in the Gemfile' do
@@ -78,8 +78,8 @@ describe Napa::Generators::ScaffoldGenerator do
     let(:options) { { :database => "pg" } }
 
     it 'selects postres/pg as the database' do
-      database_config_file = File.read("#{app_path}/.env")
-      expect(database_config_file).to match(/DATABASE_URL=postgresql/)
+      database_config_file = File.read("#{app_path}/config/database.yml")
+      expect(database_config_file).to match(/adapter: postgresql/)
     end
 
     it 'adds the pg gem in the Gemfile' do
