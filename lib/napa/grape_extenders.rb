@@ -16,6 +16,15 @@ module Napa
           rack_response(err.to_json, 422)
         end
       end
+
+      # if AASM is being used, rescue from invalid transitions
+      if defined?(::AASM)
+        modified_class.rescue_from ::AASM::InvalidTransition do |e|
+          err = Napa::JsonError.new(:unprocessable_entity, e.message)
+          Napa::Logger.logger.debug Napa::Logger.response(422, {}, err)
+          rack_response(err.to_json, 422)
+        end
+      end
     end
   end
 end
