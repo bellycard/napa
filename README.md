@@ -180,7 +180,7 @@ ascending, and `field3` is sorted descending. For example,
 `-field4,field1` would be equivalent to `ORDER BY field4 DESC, field1'.
 
 Call `sorted_from_params(ar_relation, params[:sort])` passing in an
-`ActiveRecord::Relation`.
+`ActiveRecord::Relation` for `ar_relation`, and a comma-delimited string of field names for `params[:sort]`.
 
 ## Bugs & Feature Requests
 Please add an issue in [Github](https://github.com/bellycard/napa/issues) if you discover a bug or have a feature request.
