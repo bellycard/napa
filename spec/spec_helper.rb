@@ -5,9 +5,12 @@ require 'napa/setup'
 Napa.skip_initialization = true
 
 require 'napa'
+require 'napa/rspec_extensions/response_helpers'
 
 # from https://gist.github.com/adamstegman/926858
 RSpec.configure do |config|
+  config.include Napa::RspecExtensions::ResponseHelpers
+
   config.before(:all) { silence_output }
   config.after(:all) { enable_output }
 
