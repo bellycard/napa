@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'napa/setup'
+require 'acts_as_fu'
 
 Napa.skip_initialization = true
 
@@ -13,6 +14,8 @@ RSpec.configure do |config|
 
   config.before(:all) { silence_output }
   config.after(:all) { enable_output }
+
+  config.include ActsAsFu
 
   config.before(:each) do
     allow(Napa).to receive(:initialize)

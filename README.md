@@ -168,6 +168,20 @@ By default it will use `:memory_store`, but you can override it to use any other
 Napa.cache = :dalli_store
 ```
 
+### Sorting
+
+Napa has an optional module you can include in any Api called
+`Napa::SortableApi`. To include this, add `include SortableApi` in the
+`helpers` block of the Api.
+
+`SortableApi` takes in a parameter for sort in the format of
+`field1,field2,-field3`, where `field1` and `field2` are used to sort
+ascending, and `field3` is sorted descending. For example,
+`-field4,field1` would be equivalent to `ORDER BY field4 DESC, field1'.
+
+Call `sorted_from_params(ar_relation, params[:sort])` passing in an
+`ActiveRecord::Relation` for `ar_relation`, and a comma-delimited string of field names for `params[:sort]`.
+
 ## Bugs & Feature Requests
 Please add an issue in [Github](https://github.com/bellycard/napa/issues) if you discover a bug or have a feature request.
 
