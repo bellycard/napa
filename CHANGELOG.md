@@ -1,5 +1,6 @@
 master
 ===
+* added a reasons object to error responses to represent active record validation errors for individual attributes 
 
 0.4.0
 ===
