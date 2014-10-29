@@ -1,8 +1,9 @@
 module Napa
   class JsonError
-    def initialize(code, message)
+    def initialize(code, message, reasons={})
       @code = code
       @message = message
+      @reasons = reasons
     end
 
     def to_json(options = {})
@@ -10,12 +11,14 @@ module Napa
     end
 
     def to_h
-      {
+      e = {
         error: {
           code: @code,
           message: @message
         }
       }
+      e[:error][:reasons] = @reasons if @reasons
+      e
     end
   end
 end
