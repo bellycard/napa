@@ -5,8 +5,9 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Darby Frey"]
   gem.email         = ["darby@bellycard.com"]
   gem.description   = %q{A simple framework for building APIs with Grape}
-  gem.summary       = %q{A simple framework for building APIs with Grape}
-  gem.homepage      = ""
+  gem.summary       = %q{A rack-based framework wrapping around the Grape REST-like framework for Ruby.}
+  gem.homepage      = "http://tech.bellycard.com"
+  gem.licenses      = ['MIT']
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   << 'napa'
@@ -17,23 +18,23 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.0'
 
 
-  gem.add_dependency 'rake'
-  gem.add_dependency 'logging'
-  gem.add_dependency 'dotenv'
-  gem.add_dependency 'octokit'
-  gem.add_dependency 'thor'
-  gem.add_dependency 'virtus'
-  gem.add_dependency 'grape'
-  gem.add_dependency 'grape-swagger'
-  gem.add_dependency 'roar'
-  gem.add_dependency 'statsd-ruby'
-  gem.add_dependency 'racksh'
-  gem.add_dependency 'git'
+  gem.add_dependency 'rake', '~> 10.3'
+  gem.add_dependency 'logging', '~> 1.8'
+  gem.add_dependency 'dotenv', '~> 1.0'
+  gem.add_dependency 'octokit', '~> 3.5'
+  gem.add_dependency 'thor', '~> 0.19'
+  gem.add_dependency 'virtus', '~> 1.0'
+  gem.add_dependency 'grape', '~> 0.9'
+  gem.add_dependency 'grape-swagger', '~> 0.8'
+  gem.add_dependency 'roar', '~> 0.12'
+  gem.add_dependency 'statsd-ruby', '~> 1.2'
+  gem.add_dependency 'racksh', '~> 1.0'
+  gem.add_dependency 'git', '~> 1.2'
 
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'pry'
-  gem.add_development_dependency 'rubocop'
-  gem.add_development_dependency 'activerecord', '~>3.2.2'
-  gem.add_development_dependency 'sqlite3'
-  gem.add_development_dependency 'acts_as_fu'
+  gem.add_development_dependency 'rspec', '~> 3.1'
+  gem.add_development_dependency 'pry', '~> 0.10'
+  gem.add_development_dependency 'rubocop', '~> 0.25'
+  gem.add_development_dependency 'activerecord', '~> 3.2'
+  gem.add_development_dependency 'sqlite3', '~> 1.3'
+  gem.add_development_dependency 'acts_as_fu', '~> 0'
 end
