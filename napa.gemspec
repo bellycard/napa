@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["darby@bellycard.com"]
   gem.description   = %q{A simple framework for building APIs with Grape}
   gem.summary       = %q{A rack-based framework wrapping around the Grape REST-like framework for Ruby.}
-  gem.homepage      = "http://tech.bellycard.com"
+  gem.homepage      = "https://tech.bellycard.com"
   gem.licenses      = ['MIT']
 
   gem.files         = `git ls-files`.split($\)
