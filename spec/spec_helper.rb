@@ -3,6 +3,9 @@ ENV['RACK_ENV'] = 'test'
 require 'napa/setup'
 require 'acts_as_fu'
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 Napa.skip_initialization = true
 
 require 'napa'
