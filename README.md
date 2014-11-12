@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/bellycard/napa.png?branch=master)](https://travis-ci.org/bellycard/napa)
 [![Dependency Status](https://gemnasium.com/bellycard/napa.png)](https://gemnasium.com/bellycard/napa)
+[![Code Climate](https://codeclimate.com/github/bellycard/napa/badges/gpa.svg)](https://codeclimate.com/github/bellycard/napa)
+[![Test Coverage](https://codeclimate.com/github/bellycard/napa/badges/coverage.svg)](https://codeclimate.com/github/bellycard/napa)
 
 # Napa
 
