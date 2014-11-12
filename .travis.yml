@@ -7,3 +7,7 @@ rvm:
   - ruby-2.0.0
 
 script: "bundle exec rspec spec --color"
+
+addons:
+  code_climate:
+    repo_token: 8d11efee

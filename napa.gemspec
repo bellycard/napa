@@ -37,4 +37,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'activerecord', '~> 3.2'
   gem.add_development_dependency 'sqlite3', '~> 1.3'
   gem.add_development_dependency 'acts_as_fu', '~> 0'
+  gem.add_development_dependency 'codeclimate-test-reporter'
 end
