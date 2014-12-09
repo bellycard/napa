@@ -32,6 +32,7 @@ require 'napa/middleware/authentication'
 require 'napa/middleware/request_stats'
 require 'napa/middleware/database_stats'
 require 'napa/authentication'
+require 'napa/sortable_api'
 
 require 'napa/deprecations'
 require 'napa/deploy'
