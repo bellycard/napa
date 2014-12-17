@@ -20,5 +20,14 @@ describe Napa::JsonError do
       expect(parsed['error']['reasons']['foo']).to eq('bar')
     end
 
+    it 'excludes `reasons` from hash if no reasons given' do
+      error = Napa::JsonError.new(:code, 'message').to_json
+      parsed = JSON.parse(error)
+
+      expect(parsed['error']['code']).to eq('code')
+      expect(parsed['error']['message']).to eq('message')
+      expect(parsed['error']['reasons']).to be nil
+    end
+
   end
 end

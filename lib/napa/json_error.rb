@@ -17,7 +17,7 @@ module Napa
           message: @message
         }
       }
-      e[:error][:reasons] = @reasons if @reasons
+      e[:error][:reasons] = @reasons if @reasons.present?
       e
     end
   end
