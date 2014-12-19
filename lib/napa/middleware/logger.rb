@@ -1,6 +1,10 @@
+require 'napa/param_sanitizer'
+
 module Napa
   class Middleware
     class Logger
+      include Napa::ParamSanitizer
+
       def initialize(app)
         @app = app
       end
@@ -26,7 +30,8 @@ module Napa
 
         def format_request(env)
           request = Rack::Request.new(env)
-          params =  request.params
+          params  = request.params
+
           begin
             params = JSON.parse(request.body.read) if env['CONTENT_TYPE'] == 'application/json'
           rescue
@@ -36,11 +41,11 @@ module Napa
           request_data = {
             method:           request.request_method,
             path:             request.path_info,
-            query:            request.query_string,
+            query:            filtered_query_string(request.query_string),
             host:             Napa::Identity.hostname,
             pid:              Napa::Identity.pid,
             revision:         Napa::Identity.revision,
-            params:           params,
+            params:           filtered_parameters(params),
             remote_ip:        request.ip
           }
           request_data[:user_id] = current_user.try(:id) if defined?(current_user)
