@@ -49,7 +49,7 @@ Commands:
 
 
 ### Console
-Similar to the Rails console, load an IRB sesson with your applications environment by running:
+Similar to the Rails console, load an IRB session with your applications environment by running:
 
 ```
 napa console
