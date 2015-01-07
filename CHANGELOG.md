@@ -1,6 +1,7 @@
 master
 ===
-* added a reasons object to error responses to represent active record validation errors for individual attributes 
+* Added a reasons object to error responses to represent active record validation errors for individual attributes
+* Added ability to filter sensitive data from logs.
 
 0.4.0
 ===
@@ -14,7 +15,7 @@ master
 * Added initialization hook to run code when a Napa service boots
 * Added Migration generators from Rails
 * Added rake db:seed functionality
-* Added some convinience methods to spec_helper
+* Added some convenience methods to spec_helper
 
 0.3.0
 ===
