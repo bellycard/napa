@@ -129,6 +129,27 @@ ActiveRecord::Base.logger = Napa::Logger.logger
 ```ruby
 Napa::Logger.logger.debug 'Some Debug Message'
 ```
+
+### Scrubbing Logs of Sensitive Data
+
+Some requests may contain sensitive information, such as passwords or credit card numbers. In order to protect this information, they should be filtered out from logs.
+
+To do so, add the following line to an initializer:
+```ruby
+Napa::ParamSanitizer.filter_params = [:password, :password_confirmation, :cvv, :card_number]
+```
+Note that the keys in the array above are just examples. They should be replaced with the parameters that have sensitive data in their value.
+
+Example **unfiltered** request ( ... denotes other information):
+```
+{ ... "message":{"request":{"method":"POST","path":"/example","query":"name=Test%20User%200039\u0026password=password", ... "params":{"name":"Test User 0039","password":"password"} ...}}}
+```
+
+Example **filtered** request ( ... denotes other information):
+```
+{ ... "message":{"request":{"method":"POST","path":"/example","query":"name=Test%20User%200039\u0026password=[FILTERED]", ... "params":{"name":"Test User 0039","password":"[FILTERED]"} ...}}}
+```
+
 ### StatsD
 There are two middlewares available to enable StatsD reporting, `RequestStats` and `DatabaseStats`. They can be enabled independently in your `config.ru` file:
 
