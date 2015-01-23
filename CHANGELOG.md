@@ -1,5 +1,8 @@
 master
 ===
+
+0.4.1
+===
 * Added a reasons object to error responses to represent active record validation errors for individual attributes
 * Added ability to filter sensitive data from logs.
 
