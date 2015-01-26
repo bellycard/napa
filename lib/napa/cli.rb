@@ -64,7 +64,7 @@ module Napa
       end
 
       desc 'server', "Start the Napa server"
-      options aliases: 'c'
+      options aliases: 's'
       def server
         puts "Napa server starting..."
 
