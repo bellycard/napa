@@ -187,10 +187,10 @@ Now that the code is in place, let's start up the app and send it some requests.
 
 Napa runs on Rack, so any rack based webserver will work. Shotgun is nice to use in development because it will reload your app on each request and you don't need to restart the server when there are changes.
 
-Start the server on port 9393 by running:
+Start the shotgun server on port 9393 by running:
 
 ```
-shotgun
+napa server
 ```
 
 ### POST /people
