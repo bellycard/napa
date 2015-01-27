@@ -4,7 +4,6 @@ require 'napa/setup'
 require 'acts_as_fu'
 
 require "codeclimate-test-reporter"
-CodeClimate::TestReporter.configuration.logger = Logger.new('/dev/null')
 CodeClimate::TestReporter.start
 
 Napa.skip_initialization = true
