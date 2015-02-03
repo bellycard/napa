@@ -1,5 +1,7 @@
 master
 ===
+* [Set Napa.env to the environment arg we pass in the console](https://github.com/bellycard/napa/pull/179)
+* [Add thor command to start shotgun server](https://github.com/bellycard/napa/pull/177)
 
 0.4.1
 ===
