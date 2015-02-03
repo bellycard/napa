@@ -38,6 +38,7 @@ Run `napa` terminal prompt to see available features:
 ```
 Commands:
   napa console [environment]                                                            # Start the Napa console
+  napa server                                                                           # Start the Napa server
   napa generate api <api_name>                                                          # Create a Grape API, Model and Representer
   napa generate migration <migration_name> [field[:type][:index] field[:type][:index]]  # Create a Database Migration
   napa generate readme                                                                  # Create a formatted README

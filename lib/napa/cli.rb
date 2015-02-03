@@ -63,6 +63,28 @@ module Napa
         interpreter.start
       end
 
+      desc 'server', "Start the Napa server"
+      options aliases: 's'
+      def server
+        puts "Napa server starting..."
+
+        require 'pty'
+        exit = "... Napa server exited!"
+
+        begin
+          PTY.spawn('shotgun') do |stdout, stdin, pid|
+            begin
+              Signal.trap('INT') { Process.kill('INT', pid) }
+              stdout.each { |line| puts line }
+            rescue Errno::EIO
+              puts exit
+            end
+          end
+        rescue PTY::ChildExited
+          puts exit
+        end
+      end
+
       desc 'deploy [target]', 'Deploys A Service to a given target (i.e. production, staging, etc.)'
       method_options :force => :boolean, :revision => :string, :confirm => :boolean
       def deploy(environment)
