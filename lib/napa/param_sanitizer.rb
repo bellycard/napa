@@ -1,4 +1,4 @@
-require 'action_dispatch'
+require 'action_dispatch/http/filter_parameters'
 
 module Napa
   module ParamSanitizer
