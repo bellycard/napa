@@ -3,7 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/bellycard/napa/badges/gpa.svg)](https://codeclimate.com/github/bellycard/napa)
 [![Test Coverage](https://codeclimate.com/github/bellycard/napa/badges/coverage.svg)](https://codeclimate.com/github/bellycard/napa)
 
-# Napa
+![Napa](https://cloud.githubusercontent.com/assets/36847/6060136/92d0bedc-acff-11e4-900d-1b6083f22fa6.png =400x)
 
 Napa is a simple framework for building Rack based APIs using Grape, Roar and ActiveRecord. It's designed to make it easy to quickly create and deploy new API services by providing **generators**, **middlewares** and a **console** similar to what you would expect from a Rails app.
 
