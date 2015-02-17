@@ -4,6 +4,7 @@ require 'active_support/core_ext/string'
 module Napa
   module Generators
     class ScaffoldGenerator < Thor::Group
+
       include Thor::Actions
 
       source_root "#{File.dirname(__FILE__)}/templates/scaffold"
@@ -15,15 +16,24 @@ module Napa
       def generate
         say 'Generating scaffold...'
 
-        @database_gem       = ['pg','postgres'].include?(options[:database]) ? 'pg' : 'mysql2'
-        @database_adapter   = ['pg','postgres'].include?(options[:database]) ? 'postgresql' : 'mysql2'
-        @database_encoding  = ['pg','postgres'].include?(options[:database]) ? 'unicode' : 'utf8'
-        @database_user      = ['pg','postgres'].include?(options[:database]) ? '' : 'root'
+        @database_gem       = postgres? ? 'pg'         : 'mysql2'
+        @database_adapter   = postgres? ? 'postgresql' : 'mysql2'
+        @database_encoding  = postgres? ? 'unicode'    : 'utf8'
+        @database_user      = postgres? ? ''           : 'root'
 
         directory ".", (app_path || app_name)
 
         say 'Done!', :green
       end
+
+      no_commands do
+
+        def postgres?
+          %w[pg postgres].include?(options[:database])
+        end
+
+      end
+
     end
   end
 end
