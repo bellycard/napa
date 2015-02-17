@@ -6,7 +6,7 @@ require 'napa/version'
 Napa.load_environment if defined?(Dotenv)
 
 module Napa
-  class CLI
+  module CLI
     class Generate < Thor
       register(
         Generators::ApiGenerator,
@@ -31,7 +31,7 @@ module Napa
     end
   end
 
-  class CLI
+  module CLI
     class Base < Thor
       desc "version", "Shows the Napa version number"
       def version
