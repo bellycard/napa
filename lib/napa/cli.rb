@@ -80,14 +80,8 @@ module Napa
         'Create a scaffold for a new Napa service'
       )
 
-      desc "generate api <api_name>", "Create a Grape API, Model and Representer"
-      subcommand "generate api", Napa::CLI::Generate
-
-      desc "generate migration <migration_name> [field[:type][:index] field[:type][:index]]", "Create a Database Migration"
+      desc "generate", "Generate new code"
       subcommand "generate", Napa::CLI::Generate
-
-      desc "generate readme", "Create a formatted README"
-      subcommand "generate readme", Napa::CLI::Generate
     end
   end
 end
