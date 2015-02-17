@@ -1,36 +1,11 @@
 require 'thor'
-require 'napa/generators'
+require 'napa/cli/generate'
 require 'napa/deploy'
 require 'napa/version'
 
 Napa.load_environment if defined?(Dotenv)
 
 module Napa
-  module CLI
-    class Generate < Thor
-      register(
-        Generators::ApiGenerator,
-        'api',
-        'api <api_name>',
-        'Create a Grape API, Model and Entity'
-      )
-
-      register(
-        Generators::MigrationGenerator,
-        'migration',
-        'migration <migration_name> [field[:type][:index] field[:type][:index]]',
-        'Create a Database Migration'
-      )
-
-      register(
-        Generators::ReadmeGenerator,
-        'readme',
-        'readme',
-        'Create a formatted README'
-      )
-    end
-  end
-
   module CLI
     class Base < Thor
       desc "version", "Shows the Napa version number"
