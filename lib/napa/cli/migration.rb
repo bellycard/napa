@@ -2,8 +2,8 @@ require 'thor'
 require 'active_support/all'
 
 module Napa
-  module Generators
-    class MigrationGenerator < Thor::Group
+  module CLI
+    class Migration < Thor::Group
       include Thor::Actions
       # largely ported over, with a few differences, from
       # https://github.com/rails/rails/blob/76883f92374c6395f13c16628e1d87d40b6d2399/activerecord/lib/rails/generators/active_record/migration/migration_generator.rb
@@ -212,7 +212,7 @@ module Napa
       end
 
       def password_digest?
-        name == 'password' && type == :digest 
+        name == 'password' && type == :digest
       end
 
       def inject_options
