@@ -4,6 +4,7 @@ master
 * [Default rake task runs specs](https://github.com/bellycard/napa/pull/176)
 * [Set Napa.env to the environment arg we pass in the console](https://github.com/bellycard/napa/pull/179)
 * [Add thor command to start shotgun server](https://github.com/bellycard/napa/pull/177)
+* [Lock honeybadger and roar in the meantime](https://github.com/bellycard/napa/pull/185)
 
 0.4.1
 ===
