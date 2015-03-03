@@ -1,5 +1,9 @@
 master
 ===
+
+
+0.4.2
+===
 * [Explicitly require `filter_parameters.rb` instead of relying on `action_dispatch` autoload](https://github.com/bellycard/napa/pull/181)
 * [Default rake task runs specs](https://github.com/bellycard/napa/pull/176)
 * [Set Napa.env to the environment arg we pass in the console](https://github.com/bellycard/napa/pull/179)
