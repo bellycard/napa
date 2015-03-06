@@ -25,7 +25,10 @@ module Napa
       end
 
       def authenticated_request?(env)
-        @allowed_passwords.include? env['HTTP_PASSWORD'] unless @allowed_passwords.nil?
+        return if @allowed_passwords.nil?
+        possible_passwords = env['HTTP_PASSWORD'].to_s.split(',')
+        return if possible_passwords.length > 2
+        (@allowed_passwords & possible_passwords).any?
       end
     end
   end

@@ -16,6 +16,15 @@ describe Napa::Identity do
 
       expect(status).to eq(200)
     end
+
+    it 'allows the request to continue if one password is correct' do
+      app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
+      middleware = Napa::Middleware::Authentication.new(app)
+      env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'foo,bar'})
+      status, headers, body = middleware.call(env)
+
+      expect(status).to eq(200)
+    end
   end
 
   context 'Failed Authentication Request' do
@@ -29,10 +38,30 @@ describe Napa::Identity do
       expect(body).to eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
     end
 
+    it 'returns an error message if more than two Password headers are applied' do
+      app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
+      middleware = Napa::Middleware::Authentication.new(app)
+      env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect,bad,really'})
+      status, headers, body = middleware.call(env)
+
+      expect(status).to eq(401)
+      expect(body).to eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
+    end
+
     it 'returns an error message if an incorrect Password header is supplied' do
       app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
       middleware = Napa::Middleware::Authentication.new(app)
       env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect'})
+      status, headers, body = middleware.call(env)
+
+      expect(status).to eq(401)
+      expect(body).to eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
+    end
+
+    it 'returns an error message if all Password headers are incorrect' do
+      app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
+      middleware = Napa::Middleware::Authentication.new(app)
+      env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect,reallybad'})
       status, headers, body = middleware.call(env)
 
       expect(status).to eq(401)
