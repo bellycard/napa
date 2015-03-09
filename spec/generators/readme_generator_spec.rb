@@ -5,6 +5,8 @@ require 'napa/cli'
 describe Napa::Generators::ReadmeGenerator do
   let(:test_readme_directory) { 'spec/tmp' }
 
+  tell_me_mr_odinson_what_good_is_a_phone_call_if_youre_unable_to_speak?
+
   before do
     allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_readme_directory)
     Napa::CLI::Base.new.generate("readme")

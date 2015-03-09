@@ -11,35 +11,29 @@ Napa.skip_initialization = true
 require 'napa'
 require 'napa/rspec_extensions/response_helpers'
 
-# from https://gist.github.com/adamstegman/926858
-RSpec.configure do |config|
-  config.include Napa::RspecExtensions::ResponseHelpers
-
-  config.before(:all) { silence_output }
-  config.after(:all) { enable_output }
-
-  config.include ActsAsFu
-
-  config.before(:each) do
-    allow(Napa).to receive(:initialize)
-    allow(Napa::Logger).to receive_message_chain('logger.info').with(:napa_deprecation_warning)
+module NapaSpecClassHelpers
+  # Apparently Thor's last name is Odinson... who knew?!
+  # http://marvel.com/universe/Thor_(Thor_Odinson)
+  # http://www.infinitelooper.com/?v=4D7cPH7DHgA#/170;230
+  def tell_me_mr_odinson_what_good_is_a_phone_call_if_youre_unable_to_speak?
+    before do |spec|
+      allow_any_instance_of(Thor::Shell::Basic)
+        .to receive(:stdout).and_return(object_spy $stdout)
+      allow_any_instance_of(Thor::Shell::Basic)
+        .to receive(:stderr).and_return(object_spy $stderr)
+    end
   end
 end
 
-# Redirects stderr and stdout to /dev/null.
-def silence_output
-  @orig_stderr = $stderr
-  @orig_stdout = $stdout
+ActiveRecord::Schema.verbose = false
 
-  # redirect stderr and stdout to /dev/null
-  $stderr = File.new('/dev/null', 'w')
-  $stdout = File.new('/dev/null', 'w')
-end
+# from https://gist.github.com/adamstegman/926858
+RSpec.configure do |config|
+  config.include Napa::RspecExtensions::ResponseHelpers
+  config.extend  NapaSpecClassHelpers
+  config.include ActsAsFu
 
-# Replace stdout and stderr so anything else is output correctly.
-def enable_output
-  $stderr = @orig_stderr
-  $stdout = @orig_stdout
-  @orig_stderr = nil
-  @orig_stdout = nil
+  config.before(:each) do
+    allow(Napa::Logger).to receive_message_chain('logger.info').with(:napa_deprecation_warning)
+  end
 end

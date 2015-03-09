@@ -7,6 +7,8 @@ describe Napa::Generators::ScaffoldGenerator do
   let(:app_path) { 'spec/my_different_directory' }
   let(:options) { {} }
 
+  tell_me_mr_odinson_what_good_is_a_phone_call_if_youre_unable_to_speak?
+
   before do
     scaffold = Napa::CLI::Base.new(args, options)
     scaffold.invoke(:new)
