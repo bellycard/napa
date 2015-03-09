@@ -1,6 +1,7 @@
 master
 ===
-* [Smarter way to silence Thor](https://github.com/bellycard/napa/pull/175)
+* [rename to silence_thor](https://github.com/bellycard/napa/pull/189)
+* [Hey! Spec suite! Leave them streams alone!](https://github.com/bellycard/napa/pull/175)
 
 0.4.2
 ===
