@@ -12,10 +12,7 @@ require 'napa'
 require 'napa/rspec_extensions/response_helpers'
 
 module NapaSpecClassHelpers
-  # Apparently Thor's last name is Odinson... who knew?!
-  # http://marvel.com/universe/Thor_(Thor_Odinson)
-  # http://www.infinitelooper.com/?v=4D7cPH7DHgA#/170;230
-  def tell_me_mr_odinson_what_good_is_a_phone_call_if_youre_unable_to_speak?
+  def silence_thor
     before do |spec|
       allow_any_instance_of(Thor::Shell::Basic)
         .to receive(:stdout).and_return(object_spy $stdout)

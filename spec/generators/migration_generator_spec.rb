@@ -6,7 +6,7 @@ describe Napa::Generators::MigrationGenerator do
   let(:migration_filename) { 'foo' }
   let(:test_migrations_directory) { 'spec/tmp' }
 
-  tell_me_mr_odinson_what_good_is_a_phone_call_if_youre_unable_to_speak?
+  silence_thor
 
   before do
     allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_migrations_directory)
