@@ -1,6 +1,6 @@
 master
 ===
-
+* [Smarter way to silence Thor](https://github.com/bellycard/napa/pull/175)
 
 0.4.2
 ===
