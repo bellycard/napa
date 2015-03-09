@@ -1,8 +1,11 @@
 module Napa
   class Authentication
     def self.password_header
-      raise 'header_password_not_configured' unless ENV['HEADER_PASSWORD']
-      { 'Password' => ENV['HEADER_PASSWORD'] }
+      password_hash = {}
+      password_hash['Password'] = ENV['HEADER_PASSWORD'] if ENV['HEADER_PASSWORD']
+      password_hash['Passwords'] = ENV['SENT_HEADER_PASSWORDS'] if ENV['SENT_HEADER_PASSWORDS']
+      raise 'header_password_not_configured' if password_hash.keys.blank?
+      password_hash
     end
   end
 end
