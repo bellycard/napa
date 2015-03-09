@@ -16,6 +16,15 @@ describe Napa::Identity do
 
       expect(status).to eq(200)
     end
+
+    it 'allows the request to continue if one password is correct' do
+      app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
+      middleware = Napa::Middleware::Authentication.new(app)
+      env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'foo,bar'})
+      status, headers, body = middleware.call(env)
+
+      expect(status).to eq(200)
+    end
   end
 
   context 'Failed Authentication Request' do
