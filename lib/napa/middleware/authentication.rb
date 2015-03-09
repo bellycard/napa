@@ -3,14 +3,15 @@ module Napa
     class Authentication
       def initialize(app)
         @app = app
-        @allowed_passwords = []
+        @old_allowed_passwords = []
+        @allowed_header_passwords = []
 
         if ENV['HEADER_PASSWORDS']
-          @allowed_passwords += ENV['HEADER_PASSWORDS'].split(',').map { |pw| pw.strip }.freeze
+          @old_allowed_passwords += ENV['HEADER_PASSWORDS'].split(',').map(&:strip).freeze
         end
 
         if ENV['ALLOWED_HEADER_PASSWORDS']
-          @allowed_passwords += ENV['ALLOWED_HEADER_PASSWORDS'].split(',').map { |pw| pw.strip }.freeze
+          @allowed_header_passwords += ENV['ALLOWED_HEADER_PASSWORDS'].split(',').map(&:strip).freeze
         end
       end
 
@@ -18,7 +19,7 @@ module Napa
         if authenticated_request?(env)
           @app.call(env)
         else
-          if !@allowed_passwords.blank?
+          unless @old_allowed_passwords.blank? && @allowed_header_passwords.blank?
             error_response = Napa::JsonError.new('bad_password', 'bad password').to_json
           else
             error_response = Napa::JsonError.new('not_configured', 'password not configured').to_json
@@ -26,13 +27,17 @@ module Napa
 
           [401, { 'Content-type' => 'application/json' }, Array.wrap(error_response)]
         end
-
       end
 
       def authenticated_request?(env)
-        return if @allowed_passwords.blank?
-        possible_passwords = env['HTTP_PASSWORD'].to_s.split(',')
-        (@allowed_passwords & possible_passwords).any?
+        return if @old_allowed_passwords.blank? && @allowed_header_passwords.blank?
+
+        if env['HTTP_PASSWORDS'].present?
+          possible_passwords = env['HTTP_PASSWORDS'].to_s.split(',')
+          (@allowed_header_passwords & possible_passwords).any?
+        else
+          @old_allowed_passwords.include? env['HTTP_PASSWORD']
+        end
       end
     end
   end
