@@ -1,4 +1,4 @@
-require 'honeybadger/rake_handler'
+require 'honeybadger/tasks'
 
 Honeybadger.configure do |config|
   config.rescue_rake_exceptions = true
