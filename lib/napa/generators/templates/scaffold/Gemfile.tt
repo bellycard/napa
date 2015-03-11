@@ -9,6 +9,7 @@ gem 'json'
 gem 'napa'
 gem 'roar', '~> 0.12.0'
 gem 'grape-swagger'
+gem 'hashie_rails'
 
 group :development,:test do
   gem 'pry'
