@@ -1,0 +1,9 @@
+.vagrant
+Vagrantfile
+unicorn.pid
+.git
+.gitignore
+.env
+.env.test
+.rubocop.yml
+log/*
