@@ -19,7 +19,7 @@ describe Napa::CLI::Migration do
 
   describe 'AddFooToBar flew:string:index brew:integer' do
     before do
-      Napa::CLI::Migration.new(['AddFooToBar', 'flew:string:index', 'brew:integer']).invoke
+      Napa::CLI::Migration.new(['AddFooToBar', 'flew:string:index', 'brew:integer']).invoke_all
 
       expected_migration_file = File.join(test_migrations_directory, 'foo.rb')
       @migration_code = File.read(expected_migration_file)
@@ -41,7 +41,7 @@ describe Napa::CLI::Migration do
 
   describe 'RemoveFooFromBar flew:string brew:integer' do
     before do
-      Napa::CLI::Migration.new(['RemoveFooFromBar', 'flew:string', 'brew:integer']).invoke
+      Napa::CLI::Migration.new(['RemoveFooFromBar', 'flew:string', 'brew:integer']).invoke_all
       expected_migration_file = File.join(test_migrations_directory, 'foo.rb')
       @migration_code = File.read(expected_migration_file)
     end
@@ -58,7 +58,7 @@ describe Napa::CLI::Migration do
 
   describe 'CreateJoinTableFooBar foo bar' do
     before do
-      Napa::CLI::Migration.new(['CreateJoinTableFooBar', 'foo', 'bar']).invoke
+      Napa::CLI::Migration.new(['CreateJoinTableFooBar', 'foo', 'bar']).invoke_all
       expected_migration_file = File.join(test_migrations_directory, 'foo.rb')
       @migration_code = File.read(expected_migration_file)
     end
@@ -79,7 +79,7 @@ describe Napa::CLI::Migration do
 
   describe 'CreateSkrillex drops:integer hair:string:index' do
     before do
-      Napa::CLI::Migration.new(['CreateSkrillex', 'drops:integer', 'hair:string:index']).invoke
+      Napa::CLI::Migration.new(['CreateSkrillex', 'drops:integer', 'hair:string:index']).invoke_all
       expected_migration_file = File.join(test_migrations_directory, 'foo.rb')
       @migration_code = File.read(expected_migration_file)
     end
