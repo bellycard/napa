@@ -1,15 +1,14 @@
 require 'spec_helper'
-require 'napa/generators/readme_generator'
-require 'napa/cli'
+require 'napa/cli/generate/readme'
 
-describe Napa::Generators::ReadmeGenerator do
+describe Napa::CLI::Generate do
   let(:test_readme_directory) { 'spec/tmp' }
 
   silence_thor
 
   before do
     allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_readme_directory)
-    Napa::CLI::Base.new.generate("readme")
+    Napa::CLI::Generate.new.readme
   end
 
   after do

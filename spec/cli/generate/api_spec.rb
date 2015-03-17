@@ -1,8 +1,7 @@
 require 'spec_helper'
-require 'napa/generators/api_generator'
-require 'napa/cli'
+require 'napa/cli/generate/api'
 
-describe Napa::Generators::ApiGenerator do
+describe Napa::CLI::Generate do
   let(:api_name) { 'foo' }
   let(:test_api_directory) { 'spec/tmp' }
 
@@ -10,7 +9,7 @@ describe Napa::Generators::ApiGenerator do
 
   before do
     allow_any_instance_of(described_class).to receive(:output_directory).and_return(test_api_directory)
-    Napa::CLI::Base.new.generate("api", api_name)
+    Napa::CLI::Generate.new.api(api_name)
   end
 
   after do
