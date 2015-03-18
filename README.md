@@ -90,9 +90,9 @@ rake routes             # display all routes for Grape
 Napa includes a number of Rack middlewares that can be enabled to add functionality to your project.
 
 ### Authentication
-The Authentication middleware will add a simple header based authentication layer to all requests. This is just looking for a header of `'Password' = 'Your Password'`. The passwords are defined in the `.env` file. You can allow multiple passwords by supplying a comma separated list. For example:
+The Authentication middleware will add a simple header based authentication layer to all requests. This is just looking for a header of `'Passwords' = 'Your Password'`. The passwords are defined in the `.env` file. You can allow multiple passwords by supplying a comma separated list. For example:
 
-`HEADER_PASSWORDS='password1,password2'`
+`ALLOWED_HEADER_PASSWORDS='password1,password2'`
 
 If your application doesn't require authentication, you can simply remove the middleware.
 
