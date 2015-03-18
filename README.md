@@ -37,15 +37,13 @@ Run `napa` terminal prompt to see available features:
 
 ```
 Commands:
-  napa console [environment]                                                            # Start the Napa console
-  napa server                                                                           # Start the Napa server
-  napa generate api <api_name>                                                          # Create a Grape API, Model and Representer
-  napa generate migration <migration_name> [field[:type][:index] field[:type][:index]]  # Create a Database Migration
-  napa generate readme                                                                  # Create a formatted README
-  napa deploy <environment>                                                             # Deploy to <environment> by setting a git tag
-  napa help [COMMAND]                                                                   # Describe available commands or one specific command
-  napa new <app_name> [app_path]                                                        # Create a scaffold for a new Napa service
-  napa version                                                                          # Shows the Napa version number
+  napa console [ENVIRONMENT]  # Start the Napa console
+  napa deploy [TARGET]        # Deploys A Service to a given target (i.e. production, staging, etc.)
+  napa generate [COMMAND]     # Generate new code
+  napa help [COMMAND]         # Describe available commands or one specific command
+  napa new <NAME> [PATH]      # Create a new Napa application
+  napa server                 # Start the Napa server
+  napa version                # Shows the Napa version number
 ```
 
 
