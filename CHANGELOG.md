@@ -3,6 +3,7 @@ master
 * [Allow Napa::Authentication to receive multiple and accept multiple passwords](https://github.com/bellycard/napa/pull/190)
 * [rename to silence_thor](https://github.com/bellycard/napa/pull/189)
 * [Hey! Spec suite! Leave them streams alone!](https://github.com/bellycard/napa/pull/175)
+* [Refactoring CLI](https://github.com/bellycard/napa/pull/186)
 
 0.4.2
 ===
