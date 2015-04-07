@@ -16,6 +16,15 @@ describe Napa::Identity do
 
         expect(status).to eq(200)
       end
+
+      it 'allows the request if given a correct password header and a Passwords header' do
+        app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
+        middleware = Napa::Middleware::Authentication.new(app)
+        env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'foo', 'HTTP_PASSWORDS' => 'foo,bar'})
+        status, headers, body = middleware.call(env)
+
+        expect(status).to eq(200)
+      end
     end
 
     context 'a failed authentication request' do
@@ -33,6 +42,16 @@ describe Napa::Identity do
         app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
         middleware = Napa::Middleware::Authentication.new(app)
         env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect'})
+        status, headers, body = middleware.call(env)
+
+        expect(status).to eq(401)
+        expect(body).to eq([Napa::JsonError.new('bad_password', 'bad password').to_json])
+      end
+
+      it 'returns an error message if an incorrect Password header is supplied, and a Passwords header is there' do
+        app = lambda { |env| [200, {'Content-Type' => 'application/json'}, Array.new] }
+        middleware = Napa::Middleware::Authentication.new(app)
+        env = Rack::MockRequest.env_for('/test', {'HTTP_PASSWORD' => 'incorrect', 'HTTP_PASSWORDS' => 'foo,bar'})
         status, headers, body = middleware.call(env)
 
         expect(status).to eq(401)

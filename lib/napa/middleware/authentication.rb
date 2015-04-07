@@ -34,7 +34,11 @@ module Napa
 
         if env['HTTP_PASSWORDS'].present?
           possible_passwords = env['HTTP_PASSWORDS'].to_s.split(',')
-          (@allowed_header_passwords & possible_passwords).any?
+          successful_auth = (@allowed_header_passwords & possible_passwords).any?
+          return successful_auth if successful_auth
+
+          # check old header password if the new one fails
+          @old_allowed_passwords.include? env['HTTP_PASSWORD']
         else
           @old_allowed_passwords.include? env['HTTP_PASSWORD']
         end
