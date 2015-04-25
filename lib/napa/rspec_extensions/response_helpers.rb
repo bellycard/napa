@@ -29,6 +29,10 @@ module Napa
         expect(result_count).to eq(count)
       end
 
+      def expect_error_code(error_code)
+        expect(parsed_response.error.code).to eq(error_code.to_s)
+      end
+
       def expect_only(object)
         expect_count_of 1
         expect(first_result.id).to eq(object.id)
