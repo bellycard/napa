@@ -1,5 +1,6 @@
 master
 ===
+* Added an rspec response helper `expect_error_code` for easier testing of API methods which are supposed to send back a JSON representation of an error
 
 0.4.3
 ===
