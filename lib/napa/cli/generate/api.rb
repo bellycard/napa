@@ -23,6 +23,10 @@ module Napa
           @name
         end
 
+        def indefinite_article
+          %w(a e i o u).include?(name[0].downcase) ? "an" : "a"
+        end
+
         def name_underscore
           name.underscore
         end
