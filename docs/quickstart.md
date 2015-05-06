@@ -201,17 +201,7 @@ To create a person we will send a `POST` request to our API.
 curl -X POST -d name="Darby Frey" -d job_title="Software Engineer" -d email="darbyfrey@gmail.com" http://localhost:9393/people
 ```
 
-**SIDENOTE:** At this point, you will likely get an error response like the one below. By default Napa ships with the `Napa::Middleware::Authentication` enabled. For the purposes of this guide, we will disable this middleware to make the requests easier to construct. Be sure to re-enable this before you go to production. To disable the middleware, just comment out the `use Napa::Middleware::Authentication` line in `config.ru` and restart shotgun. Also, see the Napa::Middleware::Authentication docs for more details.
-
-```json
-{
-  "error": {
-    "code": "not_configured",
-    "message": "password not configured"
-  }
-}
-```
-
+**SIDENOTE:** Napa ships with authentication support via the `Napa::Middleware::Authentication` middleware. This middleware is disabled by default, but can be enabled by uncommenting the `use Napa::Middleware::Authentication` line in `config.ru` and restarting shotgun. Also, see the Napa::Middleware::Authentication docs for more details.
 
 All response from Napa include the `data` key. In this case the newly created person object is returned nested within the `data` key.
 
