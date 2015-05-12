@@ -32,7 +32,7 @@ module Napa
       end
 
       def set_local_assigns!
-        @migration_template = "migration"
+        @migration_template = "migration/migration.rb.tt"
         filename = migration_name.underscore
         case filename
         when /^(add|remove)_.*_(?:to|from)_(.*)/
@@ -47,14 +47,14 @@ module Napa
           end
         when /^create_(.+)/
           @table_name = $1.pluralize
-          @migration_template = "create_table_migration"
+          @migration_template = "model/db/migrate/migration.rb.tt"
         end
       end
 
       def migration
-        self.class.source_root "#{File.dirname(__FILE__)}/templates/#{@migration_template}"
+        self.class.source_root "#{File.dirname(__FILE__)}/templates/"
         say 'Generating migration...'
-        directory '.', output_directory
+        template @migration_template, "#{output_directory}/#{migration_filename}.rb"
         say 'Done!', :green
       end
 

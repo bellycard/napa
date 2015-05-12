@@ -1,6 +1,6 @@
 module Napa
   module CLI
-    # directly ported from
+    # directly ported with slight modification from
     # https://github.com/rails/rails/blob/76883f92374c6395f13c16628e1d87d40b6d2399/railties/lib/rails/generators/generated_attribute.rb
     class GeneratedAttribute # :nodoc:
       INDEX_OPTIONS = %w(index uniq)
@@ -90,6 +90,22 @@ module Napa
         end
       end
 
+      def factory_stub
+        case type
+          when :integer                     then "1"
+          when :float                       then "1.5"
+          when :decimal                     then "9.99"
+          when :datetime, :timestamp, :time then "{ Time.now }"
+          when :date                        then "{ Date.today }"
+          when :string                      then '"MyString"'
+          when :text                        then '"MyText"'
+          when :boolean                     then "false"
+          when :digest                      then '"password"'
+          else
+            '"Unknown"'
+        end
+      end
+
       def plural_name
         name.sub(/_id$/, '').pluralize
       end
@@ -124,6 +140,10 @@ module Napa
 
       def polymorphic?
         self.attr_options.has_key?(:polymorphic)
+      end
+
+      def required?
+        self.attr_options[:required]
       end
 
       def has_index?

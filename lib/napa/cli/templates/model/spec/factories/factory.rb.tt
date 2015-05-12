@@ -1,0 +1,14 @@
+FactoryGirl.define do
+  factory :<%= model_name %> do
+<% attributes.each do |attribute| -%>
+<% if attribute.reference? -%>
+    association :<%= attribute.name %>
+<% elsif attribute.password_digest? -%>
+    password <%= attribute.factory_stub %>
+    password_confirmation <%= attribute.factory_stub %>
+<% else -%>
+    <%= attribute.name %> <%= attribute.factory_stub %>
+<% end -%>
+<% end -%>
+  end
+end
