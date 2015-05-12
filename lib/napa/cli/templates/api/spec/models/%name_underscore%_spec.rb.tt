@@ -1,9 +1,0 @@
-require 'spec_helper'
-
-describe <%= name.classify %> do
-
-  it 'needs tests to be written!' do
-    pending('write tests for <%= name.classify %>!')
-  end
-
-end
