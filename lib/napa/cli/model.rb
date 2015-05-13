@@ -121,10 +121,6 @@ module Napa
         attributes.select { |a| !a.reference? && a.has_index? }
       end
 
-      def accessible_attributes
-        attributes.reject(&:reference?)
-      end
-
     end
   end
 end
