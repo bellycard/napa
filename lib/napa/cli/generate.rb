@@ -18,7 +18,7 @@ module Napa
         Model,
         'model',
         'model <NAME> [field[:type][:index] field[:type][:index]] [options]',
-        'Create a Model, including it\'s database migration and test scaffolding'
+        'Create a Model, including its database migration and test scaffolding'
       )
 
     end
