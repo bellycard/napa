@@ -27,6 +27,9 @@ unless defined?(Rails)
       options = db.tap do |o|
         o[:adapter]                 = db['adapter']
         o[:database]                = 'postgres' if db['adapter'] == 'postgresql'
+        %w(host port username password).each do |f|
+          o[f.to_sym] = db[f] if db.has_key? f
+        end
       end
 
       ActiveRecord::Base.establish_connection(options)
@@ -41,6 +44,9 @@ unless defined?(Rails)
       options = db.tap do |o|
         o[:adapter]                 = db['adapter']
         o[:database]                = 'postgres' if db['adapter'] == 'postgresql'
+        %w(host port username password).each do |f|
+          o[f.to_sym] = db[f] if db.has_key? f
+        end
       end
 
       ActiveRecord::Base.establish_connection(options)
