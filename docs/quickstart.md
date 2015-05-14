@@ -69,11 +69,37 @@ Once your databases are setup, you can run `rspec` to verify everything is worki
 rspec spec
 ```
 
+## Model Generator
+
+Now that we have our service scaffolded up, let's generate the data model for our service.
+
+Napa includes a Model generator that will create an ActiveRecord model, the associated database migration, a factory stub for testing, and an initial rspec test. To invoke this, run:
+
+```
+napa generate model Person name:string job_title:string email:string
+```
+
+You will see the following output:
+
+```
+Generating model...
+      create  db/migrate/20140411163743_create_people.rb
+      create  app/models/person.rb
+      create  spec/factories/people.rb
+      create  spec/models/person_spec.rb
+Done!
+```
+
+Now we're ready to create and setup our databases by running:
+
+```
+rake db:migrate
+RACK_ENV=test rake db:migrate
+```
+
 ## API Generator
 
-Now that we have our service scaffolded up, let's generate an API.
-
-Napa includes an API generator which will create a Grape API, Model and Representer by running:
+Next, let's generate an API to expose this information. Napa also includes an API generator which will create a Grape API, Model and Representer by running:
 
 ```
 napa generate api person
@@ -86,46 +112,9 @@ You will see the following output:
 ```
 Generating api...
       create  app/apis/people_api.rb
-      create  app/models/person.rb
       create  app/representers/person_representer.rb
+      create  spec/apis/people_api_spec.rb
 Done!
-```
-
-## Create a Person model
-
-From the output above, we can see that the generated create a `Person` model, so we should create a migration to actually build the table for that in our database. So, let's run:
-
-```
-napa generate migration CreatePerson name job_title email 
-```
-
-You will see the following output:
-
-```
-Generating migration...
-      create  db/migrate
-      create  db/migrate/20140411163743_create_person.rb
-Done!
-```
-
-Open up that migration file and see the generated migration for the `people` table:
-
-```ruby
-class CreatePerson < ActiveRecord::Migration
-  def change
-    create_table :people do |t|
-      t.string :name
-      t.string :job_title
-      t.string :email
-    end
-  end
-end
-```
-
-Then you can run:
-
-```
-rake db:migrate
 ```
 
 ## Declare these attributes in the API and Representer
