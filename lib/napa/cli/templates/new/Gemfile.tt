@@ -4,6 +4,7 @@ ruby "2.0.0"
 gem 'rack-cors'
 gem '<%= @database_gem %>'
 gem 'activerecord', '~> 4.0.0', :require => 'active_record'
+gem 'hashie-forbidden_attributes'
 gem 'honeybadger', '~> 1.16.7'
 gem 'json'
 gem 'napa'
