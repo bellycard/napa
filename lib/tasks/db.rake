@@ -24,7 +24,7 @@ unless defined?(Rails)
     task :create => :environment do
       db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
 
-      options = db.tap do |o|
+      options = {}.tap do |o|
         o[:adapter]                 = db['adapter']
         o[:database]                = 'postgres' if db['adapter'] == 'postgresql'
         %w(host port username password).each do |f|
@@ -41,7 +41,7 @@ unless defined?(Rails)
     task :drop => :environment do
       db = YAML.load(ERB.new(File.read('./config/database.yml')).result)[Napa.env]
 
-      options = db.tap do |o|
+      options = {}.tap do |o|
         o[:adapter]                 = db['adapter']
         o[:database]                = 'postgres' if db['adapter'] == 'postgresql'
         %w(host port username password).each do |f|
