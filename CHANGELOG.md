@@ -2,7 +2,6 @@ master
 ===
 * [Support for Rails style Model Generation](https://github.com/bellycard/napa/pull/207)
 * [Resolves issue #205 by adding hashie-forbidden_attributes gem to generated Gemfile](https://github.com/bellycard/napa/pull/206)
-* [Fixed bug preventing db rake tasks from running on remote servers](https://github.com/bellycard/napa/pull/202)
 * [use RAILS_ENV if RACK_ENV not found](https://github.com/bellycard/napa/pull/200)
 * [Support for creating and dropping databases on non-standard ports](https://github.com/bellycard/napa/pull/166)
 * Added an rspec response helper `expect_error_code` for easier testing of API methods which are supposed to send back a JSON representation of an error
