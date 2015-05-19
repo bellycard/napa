@@ -1,5 +1,8 @@
 master
 ===
+
+0.5.0
+===
 * [Support for Rails style Model Generation](https://github.com/bellycard/napa/pull/207)
 * [Resolves issue #205 by adding hashie-forbidden_attributes gem to generated Gemfile](https://github.com/bellycard/napa/pull/206)
 * [use RAILS_ENV if RACK_ENV not found](https://github.com/bellycard/napa/pull/200)
