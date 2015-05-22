@@ -8,7 +8,7 @@ class <%= name.classify.pluralize %>Api < Grape::API
     represent <%= name.underscore.tableize %>, with: <%= name.classify %>Representer
   end
 
-  desc 'Create an <%= name.underscore %>'
+  desc 'Create <%= name.underscore.with_indefinite_article %>'
   params do
   end
 
@@ -21,13 +21,13 @@ class <%= name.classify.pluralize %>Api < Grape::API
     requires :id, desc: 'ID of the <%= name.underscore %>'
   end
   route_param :id do
-    desc 'Get an <%= name.underscore %>'
+    desc 'Get <%= name.underscore.with_indefinite_article %>'
     get do
       <%= name.underscore %> = <%= name.classify %>.find(params[:id])
       represent <%= name.underscore %>, with: <%= name.classify %>Representer
     end
 
-    desc 'Update an <%= name.underscore %>'
+    desc 'Update <%= name.underscore.with_indefinite_article %>'
     params do
     end
     put do

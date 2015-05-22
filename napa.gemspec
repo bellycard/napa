@@ -31,6 +31,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'racksh', '~> 1.0.0'
   gem.add_dependency 'git', '~> 1.2.0'
   gem.add_dependency 'actionpack', '>= 3.2.0'
+  gem.add_dependency 'indefinite_article', '~> 0.2.0'
 
   gem.add_development_dependency 'rspec', '~> 3.1.0'
   gem.add_development_dependency 'pry', '~> 0.10.0'

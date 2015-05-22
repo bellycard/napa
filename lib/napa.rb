@@ -6,6 +6,7 @@ require 'octokit'
 require 'grape'
 require 'grape-entity'
 require 'json'
+require 'indefinite_article'
 
 # require internal files
 require 'napa/setup'
