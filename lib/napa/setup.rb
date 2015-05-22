@@ -18,7 +18,7 @@ module Napa
     end
 
     def env
-      @_env ||= ActiveSupport::StringInquirer.new(ENV['RACK_ENV'] || 'development')
+      @_env ||= ActiveSupport::StringInquirer.new(lookup_env)
     end
 
     def env=(environment)
@@ -31,6 +31,10 @@ module Napa
 
     def cache=(store_option)
       @_cache = ActiveSupport::Cache.lookup_store(store_option)
+    end
+
+    def lookup_env
+      ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
     end
   end
 end

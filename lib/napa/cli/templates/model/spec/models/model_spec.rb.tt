@@ -1,0 +1,14 @@
+require 'spec_helper'
+
+describe <%= model_name.camelize %> do
+
+  it 'can be created' do
+    <%= model_name %> = create :<%= model_name %>
+    expect(<%= model_name %>).to_not be_nil
+  end
+
+  it 'needs tests to be written!' do
+    pending('write tests for <%= model_name.camelize.classify %>!')
+  end
+
+end
