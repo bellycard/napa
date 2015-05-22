@@ -16,12 +16,52 @@ describe Napa::CLI::Generate do
     FileUtils.rm_rf(test_api_directory)
   end
 
-  describe 'app' do
-    it 'creates an api class' do
-      expected_api_file = File.join(test_api_directory, 'app/apis/foos_api.rb')
-      api_code = File.read(expected_api_file)
+  describe 'indefinite_article' do
+    it 'uses \'an\' for APIs starting with a vowel' do
+      api_generator = Napa::CLI::Generate.new
+      api_generator.api("apple")
+      expect(api_generator.indefinite_article).to eq("an")
+    end
 
-      expect(api_code).to match(/class FoosApi/)
+    it 'uses \'a\' for APIs starting with a non-vowel' do
+      api_generator = Napa::CLI::Generate.new
+      api_generator.api("wolf")
+      expect(api_generator.indefinite_article).to eq("a")
+    end
+
+    it 'uses \'a\' for APIs starting with a non-vowel that grammatically should use \'an\'' do
+      api_generator = Napa::CLI::Generate.new
+      api_generator.api("hour")
+      expect(api_generator.indefinite_article).to eq("a")
+    end
+  end
+
+  describe 'app' do
+    describe 'apis' do
+      before do
+        expected_api_file = File.join(test_api_directory, 'app/apis/foos_api.rb')
+        @api_code = File.read(expected_api_file)
+      end
+
+      it 'creates an api class' do
+        expect(@api_code).to match(/class FoosApi/)
+      end
+
+      it 'describes a list action' do
+        expect(@api_code).to match(/Get a list of foos/)
+      end
+
+      it 'describes a create action' do
+        expect(@api_code).to match(/Create a foo/)
+      end
+
+      it 'describes a get action' do
+        expect(@api_code).to match(/Get a foo/)
+      end
+
+      it 'describes an update action' do
+        expect(@api_code).to match(/Update a foo/)
+      end
     end
 
     it 'creates a model class' do

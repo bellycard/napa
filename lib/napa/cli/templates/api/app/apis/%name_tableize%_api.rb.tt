@@ -21,13 +21,13 @@ class <%= name.classify.pluralize %>Api < Grape::API
     requires :id, desc: 'ID of the <%= name.underscore %>'
   end
   route_param :id do
-    desc 'Get <%= "#{indefinite_article} name.underscore" %>'
+    desc 'Get <%= "#{indefinite_article} #{name.underscore}" %>'
     get do
       <%= name.underscore %> = <%= name.classify %>.find(params[:id])
       represent <%= name.underscore %>, with: <%= name.classify %>Representer
     end
 
-    desc 'Update <%= "#{indefinite_article} name.underscore" %>'
+    desc 'Update <%= "#{indefinite_article} #{name.underscore}" %>'
     params do
     end
     put do
