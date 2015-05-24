@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
 
 
   gem.add_dependency 'rake', '~> 10.3.0'
-  gem.add_dependency 'logging', '~> 1.8.0'
+  gem.add_dependency 'logging', '~> 2.0.0'
   gem.add_dependency 'dotenv', '~> 1.0.0'
   gem.add_dependency 'octokit', '~> 3.5.0'
   gem.add_dependency 'thor', '~> 0.19.0'

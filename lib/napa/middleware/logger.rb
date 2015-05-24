@@ -10,14 +10,14 @@ module Napa
       end
 
       def call(env)
-        # log the request
-        Napa::Logger.logger.info format_request(env)
+        # log the request and set the log level from the configuration
+        Napa::Logger.logger.send(Napa::Logger.config.request_level, format_request(env))
 
         # process the request
         status, headers, body = @app.call(env)
 
-        # log the response
-        Napa::Logger.logger.debug format_response(status, headers, body)
+        # log the response and set the log level from the configuration
+        Napa::Logger.logger.send(Napa::Logger.config.response_level, format_response(status, headers, body))
 
         # return the results
         [status, headers, body]
@@ -49,7 +49,12 @@ module Napa
             remote_ip:        request.ip
           }
           request_data[:user_id] = current_user.try(:id) if defined?(current_user)
-          { request: request_data }
+
+          if Napa::Logger.config.format == :basic
+            Napa::Logger.basic_request_format(request_data)
+          else
+            Napa::Logger.request_format(request_data)
+          end
         end
 
         def format_response(status, headers, body)
@@ -60,7 +65,11 @@ module Napa
             response_body = body.inspect
           end
 
-          Napa::Logger.response(status, headers, response_body)
+          if Napa::Logger.config.format == :basic
+            Napa::Logger.basic_response_format(status, headers, response_body)
+          else
+            Napa::Logger.response_format(status, headers, response_body)
+          end
         end
     end
   end
