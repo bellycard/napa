@@ -3,7 +3,12 @@ module Napa
     class Configuration
 
       def initialize(options = {})
-        @options = options
+        @options = {}.tap do |o|
+          o[:format] = :basic if Napa.env.development?
+          o[:output] = [:stdout] if ENV['DYNO']
+        end
+
+        @options.merge!(options)
       end
 
       def format
@@ -13,7 +18,7 @@ module Napa
 
       def output
         # Allowed options: :stdout, :file
-        Array.wrap(@options[:output]) || [:stdout, :file]
+        @options[:output] ? Array.wrap(@options[:output]) : [:stdout, :file]
       end
 
       def request_level
