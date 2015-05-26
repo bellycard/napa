@@ -22,7 +22,7 @@ describe Napa::Logger do
         foo: 123,
         bar: 234
       }
-      Napa::Logger.basic_request_format(data)
+      request = Napa::Logger.basic_request_format(data)
 
       expect(request).to eq('foo=123 bar=234')
     end
@@ -34,7 +34,7 @@ describe Napa::Logger do
         foo: 123,
         bar: 234
       }
-      Napa::Logger.hash_request_format(data)
+      request = Napa::Logger.hash_request_format(data)
 
       expect(request[:request][:foo]).to eq(123)
       expect(request[:request][:bar]).to eq(234)
@@ -57,7 +57,7 @@ describe Napa::Logger do
 
   describe '#basic_response_format' do
     it 'returns the response data in a key/value string' do
-      Napa::Logger.basic_response_format('foo', 'bar', ['baz'])
+      response = Napa::Logger.basic_response_format('foo', 'bar', ['baz'])
 
       expect(response).to eq('status=foo headers=bar response=baz')
     end
