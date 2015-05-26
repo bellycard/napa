@@ -10,14 +10,14 @@ module Napa
       end
 
       def call(env)
-        # log the request
-        Napa::Logger.logger.info format_request(env)
+        # log the request and set the log level from the configuration
+        Napa::Logger.logger.send(Napa::Logger.config.request_level, format_request(env))
 
         # process the request
         status, headers, body = @app.call(env)
 
-        # log the response
-        Napa::Logger.logger.debug format_response(status, headers, body)
+        # log the response and set the log level from the configuration
+        Napa::Logger.logger.send(Napa::Logger.config.response_level, format_response(status, headers, body))
 
         # return the results
         [status, headers, body]
@@ -28,40 +28,41 @@ module Napa
 
       private
 
-        def format_request(env)
-          request = Rack::Request.new(env)
-          params  = request.params
+      def format_request(env)
+        request = Rack::Request.new(env)
+        params  = request.params
 
-          begin
-            params = JSON.parse(request.body.read) if env['CONTENT_TYPE'] == 'application/json'
-          rescue
-            # do nothing, params is already set
-          end
-
-          request_data = {
-            method:           request.request_method,
-            path:             request.path_info,
-            query:            filtered_query_string(request.query_string),
-            host:             Napa::Identity.hostname,
-            pid:              Napa::Identity.pid,
-            revision:         Napa::Identity.revision,
-            params:           filtered_parameters(params),
-            remote_ip:        request.ip
-          }
-          request_data[:user_id] = current_user.try(:id) if defined?(current_user)
-          { request: request_data }
+        begin
+          params = JSON.parse(request.body.read) if env['CONTENT_TYPE'] == 'application/json'
+        rescue
+          # do nothing, params is already set
         end
 
-        def format_response(status, headers, body)
-          response_body = nil
-          begin
-            response_body = body.respond_to?(:body) ? body.body.map { |r| r } : nil
-          rescue
-            response_body = body.inspect
-          end
+        request_data = {
+          method:           request.request_method,
+          path:             request.path_info,
+          query:            filtered_query_string(request.query_string),
+          host:             Napa::Identity.hostname,
+          pid:              Napa::Identity.pid,
+          revision:         Napa::Identity.revision,
+          params:           filtered_parameters(params),
+          remote_ip:        request.ip
+        }
+        request_data[:user_id] = current_user.try(:id) if defined?(current_user)
 
-          Napa::Logger.response(status, headers, response_body)
+        Napa::Logger.request(request_data)
+      end
+
+      def format_response(status, headers, body)
+        response_body = nil
+        begin
+          response_body = body.respond_to?(:body) ? body.body.map { |r| r } : nil
+        rescue
+          response_body = body.inspect
         end
+
+        Napa::Logger.response(status, headers, response_body)
+      end
     end
   end
 end
