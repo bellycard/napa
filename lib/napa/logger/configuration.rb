@@ -4,7 +4,7 @@ module Napa
 
       def initialize(options = {})
         @options = {}.tap do |o|
-          o[:format] = :basic if Napa.env.development?
+          o[:format] = :basic if Napa.env.development? || ENV['DYNO']
           o[:output] = [:stdout] if ENV['DYNO']
         end
 
