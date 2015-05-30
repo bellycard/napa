@@ -20,7 +20,11 @@ module Napa
     end
 
     def self.revision
-      @revision ||= `git rev-parse HEAD`.strip
+      @revision ||= if ENV['DYNO']
+          ENV['GITSHA']
+        else
+          `git rev-parse HEAD`.strip
+        end
     end
 
     def self.pid

@@ -26,12 +26,22 @@ describe Napa::Identity do
   end
 
   context '#revision' do
+    before do
+      Napa::Identity.instance_variable_set :@revision, nil
+    end
+
     it 'returns the value of the \'git rev-parse HEAD\' system call and doesn\'t make a second system call' do
       expect(Napa::Identity).to receive(:`).with('git rev-parse HEAD').and_return('12345')
       expect(Napa::Identity.revision).to eq('12345')
 
       expect(Napa::Identity).to_not receive(:`).with('git rev-parse HEAD')
       expect(Napa::Identity.revision).to eq('12345')
+    end
+
+    it 'returns the value of ENV[\'GITSHA\'] if in the Heroku environment' do
+      allow(ENV).to receive(:[]).with("DYNO").and_return("foo")
+      allow(ENV).to receive(:[]).with("GITSHA").and_return("98765")
+      expect(Napa::Identity.revision).to eq('98765')
     end
   end
 
