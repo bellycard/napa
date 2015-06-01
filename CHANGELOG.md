@@ -1,5 +1,6 @@
 master
 ===
+* [Heroku Customizations](https://github.com/bellycard/napa/pull/214)
 * [Better Logger](https://github.com/bellycard/napa/pull/213)
 
 0.5.0
