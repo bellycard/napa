@@ -18,6 +18,12 @@ describe Napa::Logger::Configuration do
       config = Napa::Logger::Configuration.new
       expect(config.format).to eq(:basic)
     end
+
+    it 'returns basic if in the Heroku environment' do
+      allow(ENV).to receive(:[]).with("DYNO").and_return("foo")
+      config = Napa::Logger::Configuration.new
+      expect(config.format).to eq(:basic)
+    end
   end
 
   describe '#output' do
