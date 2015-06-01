@@ -4,8 +4,8 @@ module Napa
 
       def initialize(options = {})
         @options = {}.tap do |o|
-          o[:format] = :basic if Napa.env.development? || ENV['DYNO']
-          o[:output] = [:stdout] if ENV['DYNO']
+          o[:format] = :basic if Napa.env.development? || Napa.heroku?
+          o[:output] = [:stdout] if Napa.heroku?
         end
 
         @options.merge!(options)

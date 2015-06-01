@@ -20,7 +20,7 @@ module Napa
     end
 
     def self.revision
-      @revision ||= if ENV['DYNO']
+      @revision ||= if Napa.heroku?
           ENV['GITSHA']
         else
           `git rev-parse HEAD`.strip
