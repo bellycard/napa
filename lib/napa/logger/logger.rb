@@ -49,7 +49,7 @@ module Napa
         {
           status:   status,
           headers:  headers,
-          response: body.first
+          response: body.try(:first)
         }.map { |k, v| "#{k}=#{v}" }.join(' ')
       end
 

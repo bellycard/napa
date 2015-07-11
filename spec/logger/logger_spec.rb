@@ -61,6 +61,12 @@ describe Napa::Logger do
 
       expect(response).to eq('status=foo headers=bar response=baz')
     end
+
+    it 'returns an acceptable response if body is nil' do
+      response = Napa::Logger.basic_response_format('foo', 'bar', nil)
+
+      expect(response).to eq('status=foo headers=bar response=')
+    end
   end
 
   describe '#hash_response_format' do
