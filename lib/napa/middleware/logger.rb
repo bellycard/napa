@@ -54,13 +54,7 @@ module Napa
       end
 
       def format_response(status, headers, body)
-        response_body = nil
-        begin
-          response_body = body.respond_to?(:body) ? body.body.map { |r| r } : nil
-        rescue
-          response_body = body.inspect
-        end
-
+        response_body = body.respond_to?(:body) ? body.body : nil
         Napa::Logger.response(status, headers, response_body)
       end
     end
