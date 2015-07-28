@@ -21,7 +21,7 @@ module Napa
 
     def self.revision
       @revision ||= if Napa.heroku?
-          ENV['GITSHA']
+          File.exist?('.gitsha') ? File.read('.gitsha').gsub(/[^0-9a-z ]/i, '') : ''
         else
           `git rev-parse HEAD`.strip
         end
