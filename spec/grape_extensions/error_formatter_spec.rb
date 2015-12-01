@@ -21,7 +21,7 @@ describe Grape::ErrorFormatter::Json do
     it 'adds the backtrace with rescue_option[:backtrace] specified' do
       error = Grape::ErrorFormatter::Json.call('',
                                                'backtrace',
-                                               rescue_options: {backtrace: true})
+                                               rescue_options: { backtrace: true })
       parsed = JSON.parse(error)
       expect(parsed['backtrace']).to eq('backtrace')
     end
