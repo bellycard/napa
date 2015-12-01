@@ -7,19 +7,12 @@ Napa::Stats.emitter = nil
 ENV['STATSD_HOST'] = 'localhost'
 ENV['STATSD_PORT'] = '8125'
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
-
-ActiveRecord::Schema.define(version: 1) do
-  create_table :foos do |t|
-    t.string :word
-  end
-end
-
-class Foo < ActiveRecord::Base
-end
-
 describe Napa::Middleware::DatabaseStats do
   before do
+    build_model :foos do
+      integer :word
+    end
+
     # Delete any prevous instantiations of the emitter and set valid statsd env vars
     Napa::Stats.emitter = nil
     ENV['STATSD_HOST'] = 'localhost'
