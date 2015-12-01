@@ -22,7 +22,7 @@ describe Napa::GrapeExtenders do
   describe 'ActiveRecord extensions' do
     it 'rescues ActiveRecord::RecordNotFound and returns a 404' do
       subject.get do
-        raise ActiveRecord::RecordNotFound
+        fail ActiveRecord::RecordNotFound
       end
 
       get '/'
@@ -39,7 +39,7 @@ describe Napa::GrapeExtenders do
       end
 
       subject.get do
-        raise AASM::InvalidTransition
+        fail AASM::InvalidTransition
       end
 
       get '/'
