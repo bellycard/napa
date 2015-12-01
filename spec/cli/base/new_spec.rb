@@ -25,7 +25,6 @@ describe Napa::CLI::Base do
     let(:args) { [app_name] }
 
     it 'creates a scaffold app in a directory that mirrors the app name' do
-      args = [app_name]
       expect(Dir).to exist(app_name)
     end
   end
@@ -76,7 +75,7 @@ describe Napa::CLI::Base do
 
   context 'with the -d=pg option' do
     let(:args) { [app_name, app_path] }
-    let(:options) { { :database => "pg" } }
+    let(:options) { { database: 'pg' } }
 
     it 'selects postres/pg as the database' do
       database_config_file = File.read("#{app_path}/config/database.yml")
