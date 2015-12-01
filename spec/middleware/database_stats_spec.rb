@@ -38,27 +38,27 @@ describe Napa::Middleware::DatabaseStats do
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.query_time', an_instance_of(Float))
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.table.foos.insert.query_time', an_instance_of(Float))
 
-    @app = lambda { |env| [200, { 'Content-Type' => 'application/json' }, Foo.create(word: 'baz')] }
+    @app = ->(_env) { [200, { 'Content-Type' => 'application/json' }, Foo.create(word: 'baz')] }
   end
 
   it 'should send a query_time for a select' do
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.query_time', an_instance_of(Float))
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.table.foos.select.query_time', an_instance_of(Float))
 
-    @app = lambda { |env| [200, { 'Content-Type' => 'application/json' }, Foo.first] }
+    @app = ->(_env) { [200, { 'Content-Type' => 'application/json' }, Foo.first] }
   end
 
   it 'should send a query_time for a delete' do
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.query_time', an_instance_of(Float))
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.table.foos.delete.query_time', an_instance_of(Float))
 
-    @app = lambda { |env| [200, { 'Content-Type' => 'application/json' }, @foo.delete ] }
+    @app = ->(_env) { [200, { 'Content-Type' => 'application/json' }, @foo.delete] }
   end
 
   it 'should send a query_time for an update' do
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.query_time', an_instance_of(Float))
     allow(Napa::Stats.emitter).to receive(:timing).with('sql.table.foos.update.query_time', an_instance_of(Float))
 
-    @app = lambda { |env| [200, { 'Content-Type' => 'application/json' }, @foo.update_attributes(word: 'baz') ] }
+    @app = ->(_env) { [200, { 'Content-Type' => 'application/json' }, @foo.update_attributes(word: 'baz')] }
   end
 end
