@@ -3,7 +3,7 @@ require 'napa/authentication'
 
 describe Napa::Authentication do
   context '#password_header' do
-    it "returns a password hash for the request header" do
+    it 'returns a password hash for the request header' do
       ENV['HEADER_PASSWORD'] = 'foo'
       expect(Napa::Authentication.password_header.class).to eq(Hash)
       expect(Napa::Authentication.password_header).to eq('Password' => 'foo')
@@ -11,7 +11,7 @@ describe Napa::Authentication do
 
     it 'raises when the HEADER_PASSWORD env var is not defined' do
       ENV['HEADER_PASSWORD'] = nil
-      expect{Napa::Authentication.password_header}.to raise_error
+      expect { Napa::Authentication.password_header }.to raise_error
     end
   end
 end
