@@ -2,7 +2,6 @@ require 'active_record'
 require 'spec_helper'
 require 'napa/active_record_extensions/filter_by_hash'
 
-
 describe Napa::FilterByHash do
   before do
     expect(ActiveSupport::Deprecation).to receive(:warn)

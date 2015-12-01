@@ -2,18 +2,18 @@
 require File.expand_path('../lib/napa/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Darby Frey"]
-  gem.email         = ["darby@bellycard.com"]
-  gem.description   = %q{A simple framework for building APIs with Grape}
-  gem.summary       = %q{A rack-based framework wrapping around the Grape REST-like framework for Ruby.}
-  gem.homepage      = "https://tech.bellycard.com"
+  gem.authors       = ['Darby Frey']
+  gem.email         = ['darby@bellycard.com']
+  gem.description   = 'A simple framework for building APIs with Grape'
+  gem.summary       = 'A rack-based framework wrapping around the Grape REST-like framework for Ruby.'
+  gem.homepage      = 'https://tech.bellycard.com'
   gem.licenses      = ['MIT']
 
-  gem.files         = `git ls-files`.split($\)
+  gem.files         = Dir['**/*'].keep_if { |file| File.file?(file) }
   gem.executables   << 'napa'
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "napa"
-  gem.require_paths = ["lib"]
+  gem.test_files    = Dir['spec/**/*']
+  gem.name          = 'napa'
+  gem.require_paths = ['lib']
   gem.version       = Napa::VERSION
   gem.required_ruby_version = '>= 2.0'
 
