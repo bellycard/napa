@@ -1,4 +1,4 @@
-desc "bump the gem version"
+desc 'bump the gem version'
 namespace :version do
   namespace :bump do
 
@@ -19,8 +19,8 @@ namespace :version do
 
     def execute_version_bump
       if !clean_staging_area?
-        system "git status"
-        raise "Unclean staging area! Be sure to commit or .gitignore everything first. See `git status` above."
+        system 'git status'
+        fail 'Unclean staging area! Be sure to commit or .gitignore everything first. See `git status` above.'
       else
         require 'git'
         git = Git.open('.')
@@ -37,11 +37,11 @@ namespace :version do
     def write_update
       filedata = File.read('lib/napa/version.rb')
       changed_filedata = filedata.gsub("VERSION = '#{Napa::VERSION}'\n", "VERSION = '#{@new_version}'\n")
-      File.open('lib/napa/version.rb',"w"){|file| file.puts changed_filedata}
+      File.open('lib/napa/version.rb', 'w') { |file| file.puts changed_filedata }
     end
 
     def clean_staging_area?
-      `git ls-files --deleted --modified --others --exclude-standard` == ""
+      `git ls-files --deleted --modified --others --exclude-standard` == ''
     end
 
     def release_tag
