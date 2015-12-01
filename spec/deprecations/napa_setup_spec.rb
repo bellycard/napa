@@ -8,15 +8,15 @@ describe Napa::Deprecations do
 
     @apprb_stub = [
       "require 'bundler/setup'",
-      "Bundler.setup(:default)",
+      'Bundler.setup(:default)',
       "require 'napa/setup'",
-      "Bundler.require(:default, Napa.env.to_sym)",
+      'Bundler.require(:default, Napa.env.to_sym)',
       "require 'napa'",
-      "Napa.load_environment",
+      'Napa.load_environment',
       "Dir['./config/initializers/**/*.rb'].map { |file| require file }",
       "Dir['./config/middleware/**/*.rb'].map { |file| require file }",
-      "relative_load_paths = %w(app/apis app/entities app/models app/workers app/representers lib)",
-      "ActiveSupport::Dependencies.autoload_paths += relative_load_paths"
+      'relative_load_paths = %w(app/apis app/entities app/models app/workers app/representers lib)',
+      'ActiveSupport::Dependencies.autoload_paths += relative_load_paths'
     ]
   end
 
