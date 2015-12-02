@@ -2,9 +2,7 @@ require 'statsd'
 module Napa
   class Stats
     class << self
-      def emitter=(emitter)
-        @emitter = emitter
-      end
+      attr_writer :emitter
 
       def emitter
         unless @emitter
@@ -25,7 +23,7 @@ module Napa
         if ENV['STATSD_API_KEY'].present?
           "#{ENV['STATSD_API_KEY']}.#{Napa::Identity.name}.#{environment}"
         else
-          "#{Napa::Identity.name}.#{environment}"
+          "#{Napa::Identity.name}.#{ environment }"
         end
       end
 
@@ -36,7 +34,7 @@ module Napa
         # join all parts with a .
         # prepend with the method
         # downcase the whole thing
-        "#{method}.#{path.split(/\//).reject{|p| p.empty?}.collect{|p| p.gsub(/\d+/,'_')}.join('.')}".downcase
+        "#{method}.#{ path.split(/\//).reject { |p| p.empty? }.map { |p| p.gsub(/\d+/, '_') }.join('.') }".downcase
       end
     end
   end
