@@ -27,20 +27,18 @@ module Napa
     end
 
     def set_github_tag
-      begin
-        github_client.update_ref(
-          @github_repo,
-          "tags/#{@environment}",
-          @revision,
-          @force
-        )
+      github_client.update_ref(
+        @github_repo,
+        "tags/#{@environment}",
+        @revision,
+        @force
+      )
       rescue Octokit::UnprocessableEntity
         github_client.create_ref(
           @github_repo,
           "tags/#{@environment}",
           @revision
         )
-      end
     end
 
     def local_repo
@@ -61,7 +59,7 @@ module Napa
         @github_login = client.login
         return @github_client = client
       rescue Octokit::Unauthorized
-        @errors << "Access denied for GITHUB_OAUTH_TOKEN"
+        @errors << 'Access denied for GITHUB_OAUTH_TOKEN'
       end
     end
 
@@ -78,20 +76,18 @@ module Napa
     end
 
     def revision_exists_on_github?
-      begin
-        github_client.commit(@github_repo, @revision)
+      github_client.commit(@github_repo, @revision)
       rescue Octokit::NotFound
         @errors << "Revision #{@revision} does not exist on #{@github_repo}, make sure you've merged your changes."
-      end
     end
 
     def any_local_uncommited_changes?
-      changes = local_repo_status.changed.collect{|change| change[0]}
+      changes = local_repo_status.changed.map { |change| change[0] }
       @errors << "#{changes.to_sentence} have been changed and not committed." if changes.any?
     end
 
     def any_local_untracked_files?
-      changes = local_repo_status.untracked.collect{|change| change[0]}
+      changes = local_repo_status.untracked.map { |change| change[0] }
       @errors << "#{changes.to_sentence} file(s) have been added and are not tracked." if changes.any?
     end
   end
