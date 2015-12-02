@@ -5,4 +5,4 @@ machine:
 
 database:
   override:
-    - bundle exec rake -T
+    - bundle exec rake -T # do nothing, this overrides the default db actions from CircleCI
