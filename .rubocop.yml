@@ -3,6 +3,6 @@ AllCops:
     - db/**
     - config/**
     - script/**
-    - vendor/**
+    - vendor/**/*
 
 inherit_from: .rubocop_todo.yml
