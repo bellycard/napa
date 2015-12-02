@@ -2,7 +2,6 @@ machine:
   ruby:
     version:
       2.0.0
-
 database:
   override:
     - bundle exec rake -T # do nothing, this overrides the default db actions from CircleCI
