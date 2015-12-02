@@ -7,10 +7,10 @@ module Napa
 
       def normalize_path(path)
         case
-          when path == '/'
-            'root'
-          else
-            path.start_with?('/') ? path[1..-1] : path
+        when path == '/'
+          'root'
+        else
+          path.start_with?('/') ? path[1..-1] : path
         end
       end
 
@@ -29,10 +29,10 @@ module Napa
 
         request = Rack::Request.new(env)
         path = normalize_path(request.path_info)
-
+        input_path = Napa::Stats.path_to_key(request.request_method, path)
         # Emit stats to StatsD
         Napa::Stats.emitter.timing('response_time', response_time)
-        Napa::Stats.emitter.timing("path.#{Napa::Stats.path_to_key(request.request_method, path)}.response_time", response_time)
+        Napa::Stats.emitter.timing("path.#{input_path}.response_time", response_time)
 
         # Return the results
         [status, headers, body]
