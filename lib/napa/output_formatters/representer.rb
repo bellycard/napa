@@ -7,6 +7,6 @@ module Napa
     include Roar::Representer::JSON
     include ::Representable::Coercion
 
-    property :object_type, getter: lambda { |*| self.class.name.underscore }
+    property :object_type, getter: ->(*) { self.class.name.underscore }
   end
 end
