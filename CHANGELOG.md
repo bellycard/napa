@@ -1,5 +1,6 @@
 master
 ===
+* [Move to CircleCI](https://github.com/bellycard/napa/pull/241)
 * [Fix for Logging bug in :basic format](https://github.com/bellycard/napa/pull/222)
 
 0.5.1
