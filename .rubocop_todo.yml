@@ -1,0 +1,27 @@
+Documentation:
+  Enabled: false
+
+Encoding:
+  Enabled: false
+
+HandleExceptions:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+ClassLength:
+  Max: 130
+
+Lint/DeprecatedClassMethods:
+  Description: 'Check for deprecated class method calls.'
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 14
+
+NumericLiterals:
+  Enabled: false
+
+MethodLength:
+  Enabled: false

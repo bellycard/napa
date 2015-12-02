@@ -1,6 +1,7 @@
 if defined?(ActiveRecord)
   module Napa
     module FilterByHash
+      WARNING = 'Napa::FilterByHash is deprecated, this module will be removed in future releases'
       module ClassMethods
         def filter(search_hash = {})
           # pass an empty where clause to force results to be a relation that will be lazy evaluated
@@ -13,7 +14,7 @@ if defined?(ActiveRecord)
       end
 
       def self.included(base)
-        ActiveSupport::Deprecation.warn 'Napa::FilterByHash is deprecated, this module will be removed in future releases', caller
+        ActiveSupport::Deprecation.warn WARNING, caller
         base.extend(ClassMethods)
       end
     end
