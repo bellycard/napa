@@ -14,7 +14,7 @@ module Napa
       attr_reader :migration_action, :join_tables, :table_name
 
       def version
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
+        Time.now.utc.strftime('%Y%m%d%H%M%S')
       end
 
       def migration_filename
@@ -32,12 +32,12 @@ module Napa
       end
 
       def set_local_assigns!
-        @migration_template = "migration/migration.rb.tt"
+        @migration_template = 'migration/migration.rb.tt'
         filename = migration_name.underscore
         case filename
         when /^(add|remove)_.*_(?:to|from)_(.*)/
-          @migration_action = $1
-          @table_name       = $2.pluralize
+          @migration_action = Regexp.last_match[1]
+          @table_name       = Regexp.last_match[2].pluralize
         when /join_table/
           if attributes.length == 2
             @migration_action = 'join'
@@ -46,8 +46,8 @@ module Napa
             set_index_names
           end
         when /^create_(.+)/
-          @table_name = $1.pluralize
-          @migration_template = "model/db/migrate/migration.rb.tt"
+          @table_name = Regexp.last_match[1].pluralize
+          @migration_template = 'model/db/migrate/migration.rb.tt'
         end
       end
 
@@ -59,23 +59,24 @@ module Napa
       end
 
       private
-        def attributes_with_index
-          attributes.select { |a| !a.reference? && a.has_index? }
-        end
 
-        def set_index_names
-          attributes.each_with_index do |attr, i|
-            attr.index_name = [attr, attributes[i - 1]].map{ |a| index_name_for(a) }
-          end
-        end
+      def attributes_with_index
+        attributes.select { |a| !a.reference? && a.has_index? }
+      end
 
-        def index_name_for(attribute)
-          if attribute.foreign_key?
-            attribute.name
-          else
-            attribute.name.singularize.foreign_key
-          end.to_sym
+      def set_index_names
+        attributes.each_with_index do |attr, i|
+          attr.index_name = [attr, attributes[i - 1]].map { |a| index_name_for(a) }
         end
+      end
+
+      def index_name_for(attribute)
+        if attribute.foreign_key?
+          attribute.name
+        else
+          attribute.name.singularize.foreign_key
+        end.to_sym
+      end
     end
   end
 end
