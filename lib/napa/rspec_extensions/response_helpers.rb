@@ -12,7 +12,7 @@ module Napa
       def response_body
         last_response.body
       end
-      
+
       def result_count
         parsed_response.data.count
       end
@@ -39,11 +39,11 @@ module Napa
       end
 
       def expect_to_have(object)
-        expect(!!result_with_id(object.id)).to be_truthy
+        expect(!result_with_id(object.id).nil?).to be_truthy
       end
 
       def expect_to_not_have(object)
-        expect(!!result_with_id(object.id)).to be_falsy
+        expect(!result_with_id(object.id).nil?).to be_falsy
       end
     end
   end

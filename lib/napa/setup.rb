@@ -38,7 +38,7 @@ module Napa
     end
 
     def heroku?
-      !!ENV['DYNO']
+      !ENV['DYNO'].nil?
     end
   end
 end
