@@ -5,7 +5,7 @@ module Napa
 
       # if AR is being used, rescue from common AR errors
       if defined?(::ActiveRecord)
-        modified_class.rescue_from ::ActiveRecord::RecordNotFound do |e|
+        modified_class.rescue_from ::ActiveRecord::RecordNotFound do
           err = Napa::JsonError.new(:record_not_found, 'record not found')
           Napa::Logger.logger.debug(Napa::Logger.response(404, {}, err))
           rack_response(err.to_json, 404)
