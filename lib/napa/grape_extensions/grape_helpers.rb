@@ -1,16 +1,16 @@
 module Napa
   module GrapeHelpers
     def represent(data, with: nil, **args)
-      raise ArgumentError.new(":with option is required") if with.nil?
+      fail ArgumentError, ':with option is required' if with.nil?
 
       if data.respond_to?(:map)
-        return { data: data.map{ |item| with.new(item).to_hash(args) } }
+        return { data: data.map { |item| with.new(item).to_hash(args) } }
       else
-        return { data: with.new(data).to_hash(args)}
+        return { data: with.new(data).to_hash(args) }
       end
     end
 
-    def present_error(code, message = '', reasons={})
+    def present_error(code, message = '', reasons = {})
       Napa::JsonError.new(code, message, reasons)
     end
 

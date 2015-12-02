@@ -1,6 +1,6 @@
 module Napa
   class JsonError
-    def initialize(code, message, reasons={})
+    def initialize(code, message, reasons = {})
       @code = code
       @message = message
       @reasons = reasons
