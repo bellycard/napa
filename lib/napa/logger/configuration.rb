@@ -1,7 +1,6 @@
 module Napa
   class Logger
     class Configuration
-
       def initialize(options = {})
         @options = {}.tap do |o|
           o[:format] = :basic if Napa.env.development? || Napa.heroku?
@@ -30,7 +29,6 @@ module Napa
         # :info, :debug, :warning, etc.
         @options[:response_level] || :debug
       end
-
     end
   end
 end
