@@ -20,7 +20,7 @@ describe Napa::Logger::Configuration do
     end
 
     it 'returns basic if in the Heroku environment' do
-      allow(ENV).to receive(:[]).with("DYNO").and_return("foo")
+      allow(ENV).to receive(:[]).with('DYNO').and_return('foo')
       config = Napa::Logger::Configuration.new
       expect(config.format).to eq(:basic)
     end
@@ -38,7 +38,7 @@ describe Napa::Logger::Configuration do
     end
 
     it 'returns only :stdout if in the Heroku environment' do
-      allow(ENV).to receive(:[]).with("DYNO").and_return("foo")
+      allow(ENV).to receive(:[]).with('DYNO').and_return('foo')
       config = Napa::Logger::Configuration.new
       expect(config.output).to eq([:stdout])
     end

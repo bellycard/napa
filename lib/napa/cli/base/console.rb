@@ -1,7 +1,6 @@
 module Napa
   module CLI
     class Base < Thor
-
       desc 'console [ENVIRONMENT]', 'Start the Napa console'
       options aliases: 'c'
       def console(environment = nil)
@@ -10,11 +9,11 @@ module Napa
         require 'racksh/init'
 
         begin
-          require "pry"
+          require 'pry'
           interpreter = Pry
         rescue LoadError
-          require "irb"
-          require "irb/completion"
+          require 'irb'
+          require 'irb/completion'
           interpreter = IRB
           # IRB uses ARGV and does not expect these arguments.
           ARGV.delete('console')
@@ -23,10 +22,9 @@ module Napa
 
         Rack::Shell.init
 
-        $0 = "#{$0} console"
+        $0 = "#{$PROGRAM_NAME} console"
         interpreter.start
       end
-
     end
   end
 end

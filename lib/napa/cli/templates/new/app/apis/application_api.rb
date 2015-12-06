@@ -6,4 +6,3 @@ class ApplicationApi < Grape::API
 
   add_swagger_documentation
 end
-

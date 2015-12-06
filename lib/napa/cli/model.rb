@@ -17,12 +17,12 @@ module Napa
       #  - railties/lib/rails/generators/named_base.rb
 
       argument :name
-      argument :attributes, :type => :array, :default => []
+      argument :attributes, type: :array, default: []
 
-      class_option :migration,  :type => :boolean, :default => true
-      class_option :timestamps, :type => :boolean, :default => true
-      class_option :indexes,    :type => :boolean, :default => true
-      class_option :parent,     :type => :string
+      class_option :migration,  type: :boolean, default: true
+      class_option :timestamps, type: :boolean, default: true
+      class_option :indexes,    type: :boolean, default: true
+      class_option :parent,     type: :string
 
       def parse_attributes!
         self.attributes = (attributes || []).map do |attr|
@@ -44,12 +44,14 @@ module Napa
       protected
 
       def version
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
+        Time.now.utc.strftime('%Y%m%d%H%M%S')
       end
 
       def create_migration_file
         return unless options[:migration] && options[:parent].nil?
-        attributes.each { |a| a.attr_options.delete(:index) if a.reference? && !a.has_index? } if options[:indexes] == false
+        if options[:indexes] == false
+          attributes.each { |a| a.attr_options.delete(:index) if a.reference? && !a.has_index? }
+        end
 
         # This does not currently check for similar migrations.
         #   This can be done by overriding the CreateFile Thor action and
@@ -82,11 +84,11 @@ module Napa
       end
 
       def migration_template
-        "model/db/migrate/migration.rb.tt"
+        'model/db/migrate/migration.rb.tt'
       end
 
       def parent_class_name
-        options[:parent] || "ActiveRecord::Base"
+        options[:parent] || 'ActiveRecord::Base'
       end
 
       def migration_output_directory
@@ -94,7 +96,7 @@ module Napa
       end
 
       def model_template
-        "model/app/models/model.rb.tt"
+        'model/app/models/model.rb.tt'
       end
 
       def model_output_directory
@@ -102,7 +104,7 @@ module Napa
       end
 
       def factory_template
-        "model/spec/factories/factory.rb.tt"
+        'model/spec/factories/factory.rb.tt'
       end
 
       def factory_output_directory
@@ -110,7 +112,7 @@ module Napa
       end
 
       def model_spec_template
-        "model/spec/models/model_spec.rb.tt"
+        'model/spec/models/model_spec.rb.tt'
       end
 
       def model_spec_output_directory
@@ -120,7 +122,6 @@ module Napa
       def attributes_with_index
         attributes.select { |a| !a.reference? && a.has_index? }
       end
-
     end
   end
 end

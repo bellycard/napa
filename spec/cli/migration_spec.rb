@@ -58,7 +58,7 @@ describe Napa::CLI::Migration do
 
   describe 'CreateJoinTableFooBar foo bar' do
     before do
-      Napa::CLI::Migration.new(['CreateJoinTableFooBar', 'foo', 'bar']).invoke_all
+      Napa::CLI::Migration.new(%w(CreateJoinTableFooBar foo bar)).invoke_all
       expected_migration_file = File.join(test_migrations_directory, 'foo.rb')
       @migration_code = File.read(expected_migration_file)
     end

@@ -21,10 +21,10 @@ describe Napa::CLI::Model do
 
   describe 'Car model' do
     before do
-      model = Napa::CLI::Model.new([ 'Car',
-                                     'transmission_type:references',
-                                     'has_navigation:boolean' ],
-                                   [ '--parent=Vehicle' ])
+      model = Napa::CLI::Model.new(['Car',
+                                    'transmission_type:references',
+                                    'has_navigation:boolean'],
+                                   ['--parent=Vehicle'])
       model.invoke_all
 
       # The migration should not be created because a parent model is specified.
@@ -42,7 +42,7 @@ describe Napa::CLI::Model do
 
     describe 'migration' do
       it 'is not created' do
-        expect(File.exists?(@migration_file)).to eq(false)
+        expect(File.exist?(@migration_file)).to eq(false)
       end
     end
 
@@ -96,11 +96,11 @@ describe Napa::CLI::Model do
 
   describe 'User model' do
     before do
-      Napa::CLI::Model.new([ 'User',
-                             'username:string:index',
-                             'password:digest',
-                             'referrer:references',
-                             'birth_date:date:index' ]).invoke_all
+      Napa::CLI::Model.new(['User',
+                            'username:string:index',
+                            'password:digest',
+                            'referrer:references',
+                            'birth_date:date:index']).invoke_all
 
       expected_migration_file = File.join(test_output_directory, "#{version}_create_users.rb")
       @migration_content = File.read(expected_migration_file)
@@ -199,10 +199,10 @@ describe Napa::CLI::Model do
 
   describe 'Gender model' do
     before do
-      model = Napa::CLI::Model.new([ 'Gender',
-                                     'name:string',
-                                     'personal_characteristic:belongs_to{polymorphic}' ],
-                                   [ '--no-timestamps' ])
+      model = Napa::CLI::Model.new(['Gender',
+                                    'name:string',
+                                    'personal_characteristic:belongs_to{polymorphic}'],
+                                   ['--no-timestamps'])
       model.invoke_all
 
       expected_migration_file = File.join(test_output_directory, "#{version}_create_genders.rb")

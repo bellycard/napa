@@ -12,7 +12,7 @@ describe Napa::JsonError do
     end
 
     it 'returns a json hash with additional reasons' do
-      error = Napa::JsonError.new(:code, 'message', {foo: 'bar'}).to_json
+      error = Napa::JsonError.new(:code, 'message', foo: 'bar').to_json
       parsed = JSON.parse(error)
 
       expect(parsed['error']['code']).to eq('code')

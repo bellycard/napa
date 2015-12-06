@@ -2,12 +2,12 @@
 module Napa
   module Representable
     module IncludeNil
-      def self.included base
+      def self.included(base)
         base.extend ClassMethods
       end
 
       module ClassMethods
-        def property(name, options={}, &block)
+        def property(name, options = {}, &block)
           super(name, options.merge(render_nil: true), &block)
         end
       end

@@ -21,10 +21,10 @@ module Napa
 
     def self.revision
       @revision ||= if Napa.heroku?
-          File.exist?('.gitsha') ? File.read('.gitsha').gsub(/[^0-9a-z ]/i, '') : ''
-        else
-          `git rev-parse HEAD`.strip
-        end
+                      File.exist?('.gitsha') ? File.read('.gitsha').gsub(/[^0-9a-z ]/i, '') : ''
+                    else
+                      `git rev-parse HEAD`.strip
+                    end
     end
 
     def self.pid
@@ -38,7 +38,7 @@ module Napa
     def self.platform
       {
         version: platform_revision,
-        name: "Napa"
+        name: 'Napa'
       }
     end
 

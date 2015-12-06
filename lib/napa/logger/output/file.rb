@@ -3,10 +3,9 @@ module Napa
     class Output
       class File
         def initialize(filename = "log/#{Napa.env}.log")
-          if enable?
-            Logging.appenders.file(filename, options)
-            Napa::Logger.logger.add_appenders filename
-          end
+          return unless enable?
+          Logging.appenders.file(filename, options)
+          Napa::Logger.logger.add_appenders filename
         end
 
         def options

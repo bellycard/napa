@@ -8,15 +8,15 @@ describe Napa::GrapeHelpers do
       end
 
       class FooRepresenter < Napa::Representer
-      end    
+      end
 
       class DummyClass
-          include Napa::GrapeHelpers
-      end        
+        include Napa::GrapeHelpers
+      end
 
-      foo = double("Foo")
+      foo = double('Foo')
       expect(foo).not_to receive(:to_a)
-      expect(foo).to receive(:map) { ['foo', 'bar'] }
+      expect(foo).to receive(:map) { %w('foo', 'bar') }
 
       DummyClass.new.represent(foo, with: FooRepresenter)
     end

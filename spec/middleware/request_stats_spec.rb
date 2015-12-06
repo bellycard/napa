@@ -12,7 +12,7 @@ describe Napa::Middleware::RequestStats do
   it 'should send the api_response_time' do
     expect(Napa::Stats.emitter).to receive(:timing).with('response_time', an_instance_of(Float))
     expect(Napa::Stats.emitter).to receive(:timing).with('path.get.test.path.response_time', an_instance_of(Float))
-    app = lambda { |env| [200, { 'Content-Type' => 'application/json'}, Array.new] }
+    app = ->(_env) { [200, { 'Content-Type' => 'application/json' }, Array.new] }
     middleware = Napa::Middleware::RequestStats.new(app)
     env = Rack::MockRequest.env_for('/test/path')
     middleware.call(env)

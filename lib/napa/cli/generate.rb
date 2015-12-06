@@ -1,12 +1,11 @@
-require "napa/cli/generate/api"
-require "napa/cli/generate/readme"
-require "napa/cli/migration"
-require "napa/cli/model"
+require 'napa/cli/generate/api'
+require 'napa/cli/generate/readme'
+require 'napa/cli/migration'
+require 'napa/cli/model'
 
 module Napa
   module CLI
     class Generate < Thor
-
       register(
         Migration,
         'migration',
@@ -20,7 +19,6 @@ module Napa
         'model <NAME> [field[:type][:index] field[:type][:index]] [options]',
         'Create a Model, including its database migration and test scaffolding'
       )
-
     end
   end
 end

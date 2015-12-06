@@ -7,8 +7,8 @@ module Napa
       /Bundler.require\(:default, Napa.env.to_sym\)/,
       /require 'napa'/,
       /Napa.load_environment/,
-      /Dir['.\/config\/initializers\/**\/*.rb'].map { |file| require file }/,
-      /Dir['.\/config\/middleware\/**\/*.rb'].map { |file| require file }/,
+      %r(Dir['.\/config\/initializers\/**\/*.rb'].map { |file| require file }),
+      %r(Dir['.\/config\/middleware\/**\/*.rb'].map { |file| require file }),
       /relative_load_paths/,
       /ActiveSupport::Dependencies.autoload_paths \+\= relative_load_paths/
     ]
@@ -29,7 +29,8 @@ module Napa
       expired_patterns_regex = Regexp.union(EXPIRED_PATTERNS)
 
       if File.exists?('./app.rb')
-        if File.readlines('./app.rb').grep(expired_patterns_regex).any? || (File.readlines('./app.rb').grep(required_patterns_regex).count < REQUIRED_PATTERNS.count)
+        if File.readlines('./app.rb').grep(expired_patterns_regex).any? ||
+          (File.readlines('./app.rb').grep(required_patterns_regex).count < REQUIRED_PATTERNS.count)
           ActiveSupport::Deprecation.warn 'app.rb is out of date, please update your configuration', caller
         end
       end

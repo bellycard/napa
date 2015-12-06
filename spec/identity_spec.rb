@@ -39,14 +39,14 @@ describe Napa::Identity do
     end
 
     it 'returns the value of .gitsha if in the Heroku environment if file exists' do
-      allow(ENV).to receive(:[]).with("DYNO").and_return("foo")
+      allow(ENV).to receive(:[]).with('DYNO').and_return('foo')
       allow(File).to receive(:exist?).with('.gitsha').and_return(true)
       allow(File).to receive(:read).with('.gitsha').and_return('98765')
       expect(Napa::Identity.revision).to eq('98765')
     end
 
     it 'returns the empty string in the Heroku environment when no .gitsha file' do
-      allow(ENV).to receive(:[]).with("DYNO").and_return("foo")
+      allow(ENV).to receive(:[]).with('DYNO').and_return('foo')
       expect(Napa::Identity.revision).to eq('')
     end
   end

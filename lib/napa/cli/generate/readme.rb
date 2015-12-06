@@ -7,12 +7,11 @@ require 'dotenv'
 module Napa
   module CLI
     class Generate < Thor
-
       include Thor::Actions
 
-      desc "readme", "Create a formatted README"
+      desc 'readme', 'Create a formatted README'
       def readme
-        self.class.source_root File.expand_path("../../templates/readme", __FILE__)
+        self.class.source_root File.expand_path('../../templates/readme', __FILE__)
         say 'Generating README...'
         directory '.', output_directory
         say 'Done!', :green
@@ -29,7 +28,7 @@ module Napa
         end
 
         def routes
-          routes = ""
+          routes = ''
 
           if defined? ApplicationApi
             ApplicationApi.routes.each do |api|
@@ -42,9 +41,7 @@ module Napa
 
           routes
         end
-
       end
-
     end
   end
 end

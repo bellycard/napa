@@ -1,23 +1,8 @@
-Documentation:
-  Enabled: false
-
-Encoding:
-  Enabled: false
-
-HandleExceptions:
-  Enabled: false
-
-LineLength:
-  Max: 120
-
-NumericLiterals:
-  Enabled: false
-
-MethodLength:
-  Enabled: false
-
 AllCops:
   Excludes:
     - db/**
     - config/**
     - script/**
+    - vendor/**/*
+
+inherit_from: .rubocop_todo.yml

@@ -35,11 +35,10 @@ module Napa
           significant_index = 3
         end
 
-        parts.map.with_index { |p, i| parts[i] = 0 if i >= significant_index }
+        parts.map.with_index { |_p, i| parts[i] = 0 if i >= significant_index }
 
         parts.join('.')
       end
-
     end
   end
 end

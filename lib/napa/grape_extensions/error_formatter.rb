@@ -3,7 +3,7 @@ if defined?(Grape)
     module ErrorFormatter
       module Json
         class << self
-          def call(message, backtrace, options = {}, env = nil)
+          def call(message, backtrace, options = {}, _env = nil)
             result = message.is_a?(Napa::JsonError) ? message : Napa::JsonError.new(:api_error, message)
 
             if (options[:rescue_options] || {})[:backtrace] && backtrace && !backtrace.empty?

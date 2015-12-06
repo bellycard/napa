@@ -20,7 +20,7 @@ describe Napa::CLI::Generate do
       expected_readme_file = File.join(test_readme_directory, 'README.md')
       readme = File.read(expected_readme_file)
 
-      expect(readme).to match /# #{Napa::Identity.name}/
+      expect(readme).to match(/# #{Napa::Identity.name}/)
     end
   end
 

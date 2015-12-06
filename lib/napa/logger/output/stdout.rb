@@ -3,10 +3,9 @@ module Napa
     class Output
       class Stdout
         def initialize
-          if enable?
-            Logging.appenders.stdout('stdout', options)
-            Napa::Logger.logger.add_appenders 'stdout'
-          end
+          return unless enable?
+          Logging.appenders.stdout('stdout', options)
+          Napa::Logger.logger.add_appenders 'stdout'
         end
 
         def options

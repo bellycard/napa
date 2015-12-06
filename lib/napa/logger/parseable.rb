@@ -3,7 +3,6 @@
 module Logging
   module Layouts
     class Parseable < ::Logging::Layout
-
       # Public: Take a given object and convert it into a format suitable for
       # inclusion as a log message. The conversion allows the object to be more
       # easily expressed in YAML or JSON form.
