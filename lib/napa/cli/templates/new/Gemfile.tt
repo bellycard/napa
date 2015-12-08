@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby '<%= RUBY_VERSION %>'
 
 gem 'rack-cors'
 gem '<%= @database_gem %>'
-gem 'activerecord', '~> 4.0.0', :require => 'active_record'
+gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'hashie-forbidden_attributes'
 gem 'honeybadger', '~> 1.16.7'
 gem 'json'
@@ -11,7 +11,7 @@ gem 'napa'
 gem 'roar', '~> 0.12.0'
 gem 'grape-swagger'
 
-group :development,:test do
+group :development, :test do
   gem 'pry'
 end
 
