@@ -12,3 +12,7 @@ LineLength:
 
 NumericLiterals:
   Enabled: false
+
+AllCops:
+  Exclude:
+    - db/**/**
