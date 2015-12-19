@@ -2,7 +2,6 @@
 .env
 .vagrant
 .rspec
-.env
 !.env.test
 !log/.keep
 log/*
