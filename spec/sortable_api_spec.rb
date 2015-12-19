@@ -18,7 +18,7 @@ describe 'SortableApi' do
 
       @api = Object.new
       @api.extend(Napa::SortableApi)
-      @foos = Foo.scoped
+      @foos = Foo.all
     end
 
     it 'returns the sortable objects if sort_param is nil' do
