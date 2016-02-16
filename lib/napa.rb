@@ -42,7 +42,6 @@ require 'napa/gem_dependency'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
-  load 'tasks/deploy.rake'
   load 'tasks/routes.rake'
   load 'tasks/db.rake'
 end
