@@ -3,6 +3,7 @@ master
 * [Support Roar > 1.0](https://github.com/bellycard/napa/pull/242)
 * [Move to CircleCI](https://github.com/bellycard/napa/pull/241)
 * [Fix for Logging bug in :basic format](https://github.com/bellycard/napa/pull/222)
+* [Remove deployment features, docker files, version rake task, and remove git and octokit dependencies](https://github.com/bellycard/napa/pull/254)
 
 0.5.1
 ===
