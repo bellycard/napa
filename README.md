@@ -38,7 +38,6 @@ Run `napa` terminal prompt to see available features:
 ```
 Commands:
   napa console [ENVIRONMENT]  # Start the Napa console
-  napa deploy [TARGET]        # Deploys A Service to a given target (i.e. production, staging, etc.)
   napa generate [COMMAND]     # Generate new code
   napa help [COMMAND]         # Describe available commands or one specific command
   napa new <NAME> [PATH]      # Create a new Napa application
@@ -54,21 +53,6 @@ Similar to the Rails console, load an IRB session with your applications environ
 napa console
 ```
 
-### Deploy
-Napa provides a CLI for deploying to a given environment by setting a git tag. This is useful for chef-based deploys where deploys are trigged when a git SHA changes.
-
-```sh
-napa deploy production
-Are you sure you want to deploy this service? Y
-#=> <git SHA> tagged as production by danielmackey at October 09, 2014 14:41
-```
-
-If you want to skip the 'Are you sure?' prompt, pass the `--confirm` flag to set the tag automatically
-```sh
-napa deploy production --confirm
-#=> <git SHA> tagged as production by danielmackey at October 09, 2014 14:41
-```
-
 ### Rake Tasks
 
 `rake -T` will give you a list of all available rake tasks:
@@ -81,8 +65,6 @@ rake db:reset           # Create the test database
 rake db:schema:dump     # Create a db/schema.rb file that can be portably used against any DB supported by AR
 rake db:schema:load     # Load a schema.rb file into the database
 rake db:seed            # Load the seed data from db/seeds.rb
-rake git:set_tag[tag]   # Set tag, which triggers deploy
-rake git:verify         # Verify git repository is in a good state for deployment
 rake routes             # display all routes for Grape
 ```
 

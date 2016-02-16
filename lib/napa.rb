@@ -2,7 +2,6 @@
 require 'rake'
 require 'dotenv'
 require 'logging'
-require 'octokit'
 require 'grape'
 require 'grape-entity'
 require 'json'
@@ -39,12 +38,10 @@ require 'napa/authentication'
 require 'napa/sortable_api'
 
 require 'napa/deprecations'
-require 'napa/deploy'
 require 'napa/gem_dependency'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
-  load 'tasks/deploy.rake'
   load 'tasks/routes.rake'
   load 'tasks/db.rake'
 end

@@ -1,5 +1,4 @@
 require 'napa/cli/base/console'
-require 'napa/cli/base/deploy'
 require 'napa/cli/base/new'
 require 'napa/cli/base/server'
 require 'napa/cli/base/version'

@@ -1,6 +1,0 @@
-.env
-.env.test
-.git
-.rubocop.yml
-.travis.yml
-log/*
