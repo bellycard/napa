@@ -45,7 +45,7 @@ module Napa
           h[:host]        = Napa::Identity.hostname
           h[:pid]         = Napa::Identity.pid
           h[:revision]    = Napa::Identity.revision
-          h[:params]      = params unless ENV['SILENCE_REQUEST_PARAMS_LOG'] == 'true'
+          h[:params]      = filtered_parameters(params) unless ENV['SILENCE_REQUEST_PARAMS_LOG'] == 'true'
           h[:remote_ip]   = request.ip
         end
 
