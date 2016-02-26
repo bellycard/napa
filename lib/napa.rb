@@ -40,7 +40,6 @@ require 'napa/sortable_api'
 
 require 'napa/deprecations'
 require 'napa/deploy'
-require 'napa/gem_dependency'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
@@ -53,7 +52,6 @@ module Napa
   class << self
     def initialize
       return if Napa.skip_initialization
-      Napa::Logger.logger.info Napa::GemDependency.log_all if Napa.env.production?
       Napa::Deprecations.initialization_checks
     end
   end

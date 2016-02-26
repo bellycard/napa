@@ -1,5 +1,6 @@
 master
 ===
+* [Optionally Silence Request Param Logging](https://github.com/bellycard/napa/pull/259)
 * [Support Roar > 1.0](https://github.com/bellycard/napa/pull/242)
 * [Move to CircleCI](https://github.com/bellycard/napa/pull/241)
 * [Fix for Logging bug in :basic format](https://github.com/bellycard/napa/pull/222)
