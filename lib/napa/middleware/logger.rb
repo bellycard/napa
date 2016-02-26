@@ -38,16 +38,17 @@ module Napa
           # do nothing, params is already set
         end
 
-        request_data = {
-          method:           request.request_method,
-          path:             request.path_info,
-          query:            filtered_query_string(request.query_string),
-          host:             Napa::Identity.hostname,
-          pid:              Napa::Identity.pid,
-          revision:         Napa::Identity.revision,
-          params:           filtered_parameters(params),
-          remote_ip:        request.ip
-        }
+        request_data = {}.tap do |h|
+          h[:method]      = request.request_method
+          h[:path]        = request.path_info
+          h[:query]       = filtered_query_string(request.query_string)
+          h[:host]        = Napa::Identity.hostname
+          h[:pid]         = Napa::Identity.pid
+          h[:revision]    = Napa::Identity.revision
+          h[:params]      = params unless ENV['SILENCE_REQUEST_PARAMS_LOG'] == 'true'
+          h[:remote_ip]   = request.ip
+        end
+
         request_data[:user_id] = current_user.try(:id) if defined?(current_user)
 
         Napa::Logger.request(request_data)
