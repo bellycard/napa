@@ -40,6 +40,7 @@ require 'napa/sortable_api'
 
 require 'napa/deprecations'
 require 'napa/deploy'
+require 'napa/custom_logger'
 
 # load rake tasks if Rake installed
 if defined?(Rake)
@@ -53,6 +54,7 @@ module Napa
     def initialize
       return if Napa.skip_initialization
       Napa::Deprecations.initialization_checks
+      CustomLogger.define_log_methods(Napa::Logger.logger)
     end
   end
 end
