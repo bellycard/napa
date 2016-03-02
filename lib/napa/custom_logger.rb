@@ -1,8 +1,6 @@
 module CustomLogger
-  extend self
-
-  def define_log_methods( logger )
-    ::Logging::LEVELS.each do |name,num|
+  def define_log_methods(logger)
+    ::Logging::LEVELS.each do |name, num|
       code =  "undef :#{name}  if method_defined? :#{name}\n"
       code << "undef :#{name}? if method_defined? :#{name}?\n"
 
@@ -17,7 +15,7 @@ module CustomLogger
           def #{name}( data = nil )
             data = yield if block_given?
             if data.kind_of?(Hash)
-              data = data.map { |k, v| k.to_s + '=' + v.to_s }.join(' ')
+              data = Napa::Logger.basic_request_format(data)
             end
             log_event(::Logging::LogEvent.new(@name, #{num}, data, @caller_tracing))
             true
@@ -29,4 +27,5 @@ module CustomLogger
     end
     logger
   end
+  module_funtion :define_log_methods
 end
