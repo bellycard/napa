@@ -1,4 +1,4 @@
-module CustomLogger
+class ::Logging::Logger
   def self.define_log_methods(logger)
     ::Logging::LEVELS.each do |name, num|
       code =  "undef :#{name}  if method_defined? :#{name}\n"
