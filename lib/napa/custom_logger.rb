@@ -1,5 +1,5 @@
 module CustomLogger
-  def define_log_methods(logger)
+  def self.define_log_methods(logger)
     ::Logging::LEVELS.each do |name, num|
       code =  "undef :#{name}  if method_defined? :#{name}\n"
       code << "undef :#{name}? if method_defined? :#{name}?\n"
@@ -27,5 +27,4 @@ module CustomLogger
     end
     logger
   end
-  module_funtion :define_log_methods
 end
