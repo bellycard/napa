@@ -42,11 +42,11 @@ require 'napa/sortable_api'
 require 'napa/deprecations'
 require 'napa/deploy'
 
-# load rake tasks if Rake installed
 if defined?(Rake)
   load 'tasks/deploy.rake'
   load 'tasks/routes.rake'
-  load 'tasks/db.rake'
+
+  require 'tasks/database'
 end
 
 module Napa
