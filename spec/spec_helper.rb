@@ -3,6 +3,9 @@ ENV['RACK_ENV'] = 'test'
 require 'napa/setup'
 require 'acts_as_fu'
 
+require 'logging'
+require 'rspec/logging_helper'
+
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
@@ -27,10 +30,8 @@ ActiveRecord::Schema.verbose = false
 # from https://gist.github.com/adamstegman/926858
 RSpec.configure do |config|
   config.include Napa::RspecExtensions::ResponseHelpers
-  config.extend NapaSpecClassHelpers
   config.include ActsAsFu
 
-  config.before(:each) do
-    allow(Napa::Logger).to receive_message_chain('logger.info').with(:napa_deprecation_warning)
-  end
+  config.extend NapaSpecClassHelpers
+  config.extend RSpec::LoggingHelper
 end
