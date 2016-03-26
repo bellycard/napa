@@ -4,7 +4,7 @@ module Napa
   module ParamSanitizer
     include ActionDispatch::Http::FilterParameters
 
-    mattr_accessor :filter_params
+    attr_accessor :filter_params
     PAIR_REGEXP = /([^&;=]+)=([^&;=]+)/
 
     def filter_params
