@@ -17,6 +17,8 @@ Gem::Specification.new do |gem|
   gem.version       = Napa::VERSION
   gem.required_ruby_version = '>= 2.0'
 
+  gem.add_dependency 'suicide'
+
   gem.add_dependency 'rake', '~> 10.3.0'
   gem.add_dependency 'logging', '~> 2.0.0'
   gem.add_dependency 'dotenv'
