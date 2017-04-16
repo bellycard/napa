@@ -36,6 +36,7 @@ require 'napa/middleware/app_monitor'
 require 'napa/middleware/authentication'
 require 'napa/middleware/request_stats'
 require 'napa/middleware/database_stats'
+require 'napa/rspec_extensions/response_helpers'
 require 'napa/authentication'
 require 'napa/sortable_api'
 
