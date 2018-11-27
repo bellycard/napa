@@ -1,4 +1,4 @@
-#Napa Quickstart
+# Napa Quickstart
 
 Napa was designed to make it easy to quickly create a new API service. Here we will cover the steps required to create a new simple API service using Napa, Grape, Roar and ActiveRecord.
 
