@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.version       = Napa::VERSION
   gem.required_ruby_version = '>= 2.0'
 
-  gem.add_dependency 'rake', '< 12.0.0'
+  gem.add_dependency 'rake', '~> 10.3.0'
   gem.add_dependency 'logging', '~> 2.0.0'
   gem.add_dependency 'dotenv'
   gem.add_dependency 'octokit', '~> 3.5.0'
@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'statsd-ruby', '~> 1.2.0'
   gem.add_dependency 'racksh', '~> 1.0.0'
   gem.add_dependency 'git', '~> 1.2.0'
-  gem.add_dependency 'actionpack', '>= 3.2.0'
+  gem.add_dependency 'actionpack', '~> 3.2.0'
   gem.add_dependency 'indefinite_article', '~> 0.2.0'
 
   gem.add_development_dependency 'rspec', '~> 3.1.0'
