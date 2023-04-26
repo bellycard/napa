@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'statsd-ruby', '~> 1.2.0'
   gem.add_dependency 'racksh', '~> 1.0.0'
   gem.add_dependency 'git', '~> 1.2.0'
-  gem.add_dependency 'actionpack', '~> 4.2.0'
+  gem.add_dependency 'actionpack', '~> 5.0'
   gem.add_dependency 'indefinite_article', '~> 0.2.0'
 
   gem.add_development_dependency 'rspec', '~> 3.1.0'
