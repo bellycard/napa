@@ -16,6 +16,10 @@ module Napa
           err = Napa::JsonError.new(:unprocessable_entity, e.message)
           Napa::Logger.logger.debug(Napa::Logger.response(422, {}, err))
           rack_response(err.to_json, 422)
+        elsif e.class == ::Grape::Exceptions::ValidationErrors
+          err = Napa::JsonError.new(:api_error, e.message)
+          Napa::Logger.logger.debug(Napa::Logger.response(400, {}, err))
+          rack_response(err.to_json, 400)
         else
           raise e
         end
