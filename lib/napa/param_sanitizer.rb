@@ -21,7 +21,7 @@ module Napa
 
     def filtered_query_string(query_string)
       query_string.gsub(PAIR_REGEXP) do |_|
-        parameter_filter.filter([[Regexp.last_match[1], Regexp.last_match[2]]]).first.join('=')
+        parameter_filter.filter({ Regexp.last_match[1] => Regexp.last_match[2] }).first.join('=')
       end
     end
   end
